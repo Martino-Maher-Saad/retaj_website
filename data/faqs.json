@@ -1,0 +1,272 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "name": {
+        "ar": "عام",
+        "en": "General"
+      }
+    },
+    {
+      "id": "taj-city",
+      "name": {
+        "ar": "تاج سيتي",
+        "en": "Taj City"
+      }
+    },
+    {
+      "id": "sarai",
+      "name": {
+        "ar": "سراي",
+        "en": "Sarai"
+      }
+    },
+    {
+      "id": "butterfly",
+      "name": {
+        "ar": "بترفلاي",
+        "en": "The Butterfly"
+      }
+    },
+    {
+      "id": "talala",
+      "name": {
+        "ar": "تلالا",
+        "en": "Talala"
+      }
+    },
+    {
+      "id": "d2n",
+      "name": {
+        "ar": "D2N",
+        "en": "D2N"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "faq-1",
+      "category": "general",
+      "categoryName": {
+        "ar": "عام",
+        "en": "General"
+      },
+      "question": {
+        "ar": "مين مطور مشاريع مدينة مصر؟",
+        "en": "Who is the developer of these projects?"
+      },
+      "answer": {
+        "ar": "شركة مدينة مصر للإسكان والتعمير (MNHD)، تأسست عام 1959 ومدرجة بالبورصة المصرية، وهي المطور الرائد لأكبر مجتمعات شرق القاهرة.",
+        "en": "Madinet Masr for Housing and Development (MNHD), established in 1959 and listed on EGX."
+      }
+    },
+    {
+      "id": "faq-2",
+      "category": "general",
+      "categoryName": {
+        "ar": "عام",
+        "en": "General"
+      },
+      "question": {
+        "ar": "إيه مشاريع مدينة مصر المتاحة حالياً؟",
+        "en": "What projects does Madinet Masr offer?"
+      },
+      "answer": {
+        "ar": "سراي وتاج سيتي بالقاهرة الجديدة، بترفلاي بمستقبل سيتي، تلالا بهليوبوليس الجديدة، و D2N للمكاتب والعيادات.",
+        "en": "Sarai and Taj City in New Cairo, The Butterfly in Mostakbal City, Talala in New Heliopolis, and D2N for offices & clinics."
+      }
+    },
+    {
+      "id": "faq-3",
+      "category": "general",
+      "categoryName": {
+        "ar": "عام",
+        "en": "General"
+      },
+      "question": {
+        "ar": "أقل سعر متاح في مشاريع مدينة مصر؟",
+        "en": "What is the lowest price across all projects?"
+      },
+      "answer": {
+        "ar": "3,600,000 جنيه لشقة في كمبوند سراي — مرحلة Elm Tree Park بمقدم 1.5% وقسط 7,500 جنيه شهرياً.",
+        "en": "EGP 3,600,000 for an apartment in Sarai — Elm Tree Park with 1.5% down and EGP 7,500/mo."
+      }
+    },
+    {
+      "id": "faq-4",
+      "category": "general",
+      "categoryName": {
+        "ar": "عام",
+        "en": "General"
+      },
+      "question": {
+        "ar": "أقل مقدم متاح كام؟",
+        "en": "What is the lowest down payment available?"
+      },
+      "answer": {
+        "ar": "1.5% فقط في مشاريع سراي وبترفلاي وتاج سيتي.",
+        "en": "1.5% only in Sarai, The Butterfly, and Taj City."
+      }
+    },
+    {
+      "id": "faq-5",
+      "category": "general",
+      "categoryName": {
+        "ar": "عام",
+        "en": "General"
+      },
+      "question": {
+        "ar": "أطول فترة تقسيط؟",
+        "en": "What is the longest installment plan?"
+      },
+      "answer": {
+        "ar": "تصل حتى 15 سنة في مشروعي تلالا بهليوبوليس الجديدة و D2N الإداري.",
+        "en": "Up to 15 years in Talala (New Heliopolis) and D2N Hub."
+      }
+    },
+    {
+      "id": "faq-6",
+      "category": "general",
+      "categoryName": {
+        "ar": "عام",
+        "en": "General"
+      },
+      "question": {
+        "ar": "أعلى خصم كاش كام؟",
+        "en": "What is the highest cash discount?"
+      },
+      "answer": {
+        "ar": "يصل إلى 64% في مشروع تلالا، و 54% في مشروعي سراي وبترفلاي.",
+        "en": "Up to 64% in Talala and 54% in Sarai and The Butterfly."
+      }
+    },
+    {
+      "id": "faq-7",
+      "category": "taj-city",
+      "categoryName": {
+        "ar": "تاج سيتي",
+        "en": "Taj City"
+      },
+      "question": {
+        "ar": "فين موقع تاج سيتي بالظبط؟",
+        "en": "Where is Taj City located?"
+      },
+      "answer": {
+        "ar": "على تقاطع طريق السويس مع الدائري ومحور الوفاء والأمل، أمام فندق جي دبليو ماريوت ومطار القاهرة الدولي مباشرة.",
+        "en": "At the intersection of Suez Road, Ring Road & Wafaa wa Amal Axis, right in front of Cairo Airport & JW Marriott."
+      }
+    },
+    {
+      "id": "faq-8",
+      "category": "taj-city",
+      "categoryName": {
+        "ar": "تاج سيتي",
+        "en": "Taj City"
+      },
+      "question": {
+        "ar": "أسعار شقق تاج سيتي بتبدأ من كام؟",
+        "en": "What is the starting price in Taj City?"
+      },
+      "answer": {
+        "ar": "تبدأ من 6,250,000 جنيه لشقة غرفة نوم في آخر طرح سكني، و 7,700,000 جنيه في مرحلة أوريجامي جولف.",
+        "en": "Starts from EGP 6,250,000 in the final residential launch, and EGP 7.7M in Origami Golf."
+      }
+    },
+    {
+      "id": "faq-9",
+      "category": "taj-city",
+      "categoryName": {
+        "ar": "تاج سيتي",
+        "en": "Taj City"
+      },
+      "question": {
+        "ar": "هل في مراحل اتسلمت في تاج سيتي؟",
+        "en": "Are there delivered phases in Taj City?"
+      },
+      "answer": {
+        "ar": "نعم، تم تسليم مراحل: تاج سلطان، شاليا، ليك بارك، وبارك ريزيدنس، وتعيش فيها آلاف الأسر بالفعل مع خدمات متكاملة.",
+        "en": "Yes: Taj Sultan, Shalya, Lake Park, and Park Residence are delivered and occupied by thousands of families."
+      }
+    },
+    {
+      "id": "faq-10",
+      "category": "sarai",
+      "categoryName": {
+        "ar": "سراي",
+        "en": "Sarai"
+      },
+      "question": {
+        "ar": "موقع كمبوند سراي فين؟",
+        "en": "Where is Sarai Compound located?"
+      },
+      "answer": {
+        "ar": "على طريق السويس مباشرة أمام مدينتي، على بُعد 5 دقائق من العاصمة الإدارية و 15 دقيقة من التجمع الخامس ومطار القاهرة.",
+        "en": "Directly on Suez Road in front of Madinaty, 5 mins from New Capital and 15 mins from AUC New Cairo."
+      }
+    },
+    {
+      "id": "faq-11",
+      "category": "sarai",
+      "categoryName": {
+        "ar": "سراي",
+        "en": "Sarai"
+      },
+      "question": {
+        "ar": "إيه أنواع الفيلات المتاحة في سراي؟",
+        "en": "What villa types are available in Sarai?"
+      },
+      "answer": {
+        "ar": "تاون هاوس يبدأ من 11.2 مليون، وفيلات S-Villa تبدأ من 8.5 مليون، وفيلات مستقلة Standalone تبدأ من 22.5 مليون جنيه.",
+        "en": "Townhouses from EGP 11.2M, S-Villas from EGP 8.5M, and standalone villas from EGP 22.5M."
+      }
+    },
+    {
+      "id": "faq-12",
+      "category": "butterfly",
+      "categoryName": {
+        "ar": "بترفلاي",
+        "en": "The Butterfly"
+      },
+      "question": {
+        "ar": "إيه اللي بيميز كمبوند بترفلاي بمستقبل سيتي؟",
+        "en": "What makes The Butterfly Mostakbal City special?"
+      },
+      "answer": {
+        "ar": "تصميم مستوحى من الطبيعة والمسطحات المائية دون تقاطع مع السيارات، مع فيلات S-Villa المبتكرة وشقق فاخرة بأسعار تبدأ من 4 مليون جنيه.",
+        "en": "Organic water-inspired design, pedestrian safety, innovative S-Villas and apartments from EGP 4M."
+      }
+    },
+    {
+      "id": "faq-13",
+      "category": "talala",
+      "categoryName": {
+        "ar": "تلالا",
+        "en": "Talala"
+      },
+      "question": {
+        "ar": "هل وحدات تلالا بتشطيب كامل؟",
+        "en": "Are Talala units fully finished?"
+      },
+      "answer": {
+        "ar": "نعم، جميع الوحدات تُسلم كاملة التشطيب سوبر لوكس بالتكييفات بمقدم 4% وأقساط حتى 15 سنة.",
+        "en": "Yes, all units deliver fully finished with ACs with 4% down and up to 15 years installments."
+      }
+    },
+    {
+      "id": "faq-14",
+      "category": "d2n",
+      "categoryName": {
+        "ar": "D2N",
+        "en": "D2N"
+      },
+      "question": {
+        "ar": "ما هي الأنشطة المتاحة في مشروع D2N؟",
+        "en": "What unit types are offered in D2N?"
+      },
+      "answer": {
+        "ar": "مكاتب إدارية، عيادات طبية متخصصة، ومحلات تجارية تخدم كمبوند سراي والمناطق المجاورة مباشرة على طريق السويس.",
+        "en": "Corporate offices, specialized clinics, and retail outlets serving Sarai and Suez Road traffic."
+      }
+    }
+  ]
+}

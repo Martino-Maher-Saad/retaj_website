@@ -1,0 +1,1550 @@
+{
+  "taj-city": {
+    "slug": "taj-city",
+    "name": {
+      "ar": "تاج سيتي",
+      "en": "Taj City"
+    },
+    "location": {
+      "ar": "القاهرة الجديدة — طريق السويس",
+      "en": "New Cairo — Suez Road"
+    },
+    "status": {
+      "ar": "متسلم وقيد الإنشاء",
+      "en": "Delivered & Under Construction"
+    },
+    "area": {
+      "ar": "900 فدان",
+      "en": "900 Feddans"
+    },
+    "hero": {
+      "eyebrow": {
+        "ar": "سكني · القاهرة الجديدة",
+        "en": "Residential · New Cairo"
+      },
+      "title": {
+        "ar": "تاج سيتي شقق وتاون هاوس ومكاتب في قلب القاهرة",
+        "en": "Taj City Apartments, Townhouses & Offices in the Heart of Cairo"
+      },
+      "subtitle": {
+        "ar": "آخر مرحلة سكنية تبدأ من 6,250,000 جنيه بمقدم 5%. مشاريع متسلمة ومجتمع حقيقي يعيش فيه آلاف العائلات.",
+        "en": "Final residential phase starting from EGP 6,250,000 with 5% down payment. Handed-over phases with thousands of families living proudly."
+      },
+      "startingPrice": 6250000,
+      "startingPriceText": {
+        "ar": "6,250,000 جنيه",
+        "en": "EGP 6,250,000"
+      },
+      "downPayment": "1.5%",
+      "installmentYears": 12,
+      "deliveryYears": 1,
+      "cashDiscount": "54%",
+      "heroImage": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp"
+    },
+    "locationSection": {
+      "headline": {
+        "ar": "في قلب القاهرة، على بُعد دقائق من كل مكان",
+        "en": "In the heart of Cairo, minutes from everywhere"
+      },
+      "description": {
+        "ar": "موقع تاج سيتي الاستراتيجي على محور الوفاء والأمل وطريق السويس يجعله الأقرب لكل ما تحتاجه — الكوربة، الرحاب، المطار، ومدينة نصر كلها في متناول يدك.",
+        "en": "Strategic location on Wafaa wa Amal axis & Suez Road links old and new Cairo seamlessly."
+      },
+      "landmarks": [
+        {
+          "name": {
+            "ar": "العاصمة الإدارية الجديدة",
+            "en": "New Administrative Capital"
+          },
+          "time": "5 mins"
+        },
+        {
+          "name": {
+            "ar": "مطار القاهرة الدولي",
+            "en": "Cairo International Airport"
+          },
+          "time": "10 mins"
+        },
+        {
+          "name": {
+            "ar": "كايرو فستيفال سيتي",
+            "en": "Cairo Festival City"
+          },
+          "time": "12 mins"
+        },
+        {
+          "name": {
+            "ar": "الجامعة الأمريكية بالتجمع",
+            "en": "AUC New Cairo"
+          },
+          "time": "17 mins"
+        },
+        {
+          "name": {
+            "ar": "مصر الجديدة ومدينة نصر",
+            "en": "Heliopolis & Nasr City"
+          },
+          "time": "15 mins"
+        }
+      ]
+    },
+    "lifestyleSection": {
+      "headline": {
+        "ar": "أكثر من مجرد عنوان — أسلوب حياة متكامل",
+        "en": "More than an address — a complete lifestyle"
+      },
+      "description": {
+        "ar": "من نادٍ رياضي عالمي، إلى فندق بريميوم، وشوارع مضاءة وحدائق خضراء واسعة — صُممت تاج سيتي لمن يستحق الأفضل.",
+        "en": "From an international sports club and premium hotel to lush green landscaping and vibrant commercial hubs."
+      },
+      "features": [
+        {
+          "title": {
+            "ar": "نادي رياضي دولي",
+            "en": "International Sports Club"
+          },
+          "desc": {
+            "ar": "ملاعب وأنشطة رياضية لجميع أفراد الأسرة",
+            "en": "Championship courts & fitness amenities"
+          }
+        },
+        {
+          "title": {
+            "ar": "ممشى تجاري وفندقي",
+            "en": "Commercial & Hotel Promenade"
+          },
+          "desc": {
+            "ar": "أشهر المطاعم والبراندات العالمية وفندق فاخر",
+            "en": "Fine dining, shopping & boutique hospitality"
+          }
+        },
+        {
+          "title": {
+            "ar": "مدارس ومراكز طبية",
+            "en": "Schools & Medical Facilities"
+          },
+          "desc": {
+            "ar": "خدمات تعليمية ورعاية صحية على أعلى مستوى",
+            "en": "Top-tier education and clinics"
+          }
+        },
+        {
+          "title": {
+            "ar": "أمن ومراقبة 24/7",
+            "en": "24/7 Smart Security"
+          },
+          "desc": {
+            "ar": "بوابات إلكترونية ذكية ونظام مراقبة متطور",
+            "en": "Smart gates & round-the-clock surveillance"
+          }
+        }
+      ]
+    },
+    "pricingSection": {
+      "headline": {
+        "ar": "أسعار تاج سيتي القاهرة الجديدة 2026",
+        "en": "Taj City New Cairo Prices 2026"
+      },
+      "description": {
+        "ar": "تبدأ أسعار الشقق من 6,250,000 جنيه في أحدث طرح — آخر مرحلة سكنية بالمشروع — بمقدم 5% وتقسيط حتى 10 سنين. وفي باقي المراحل يبدأ المقدم من 1.5% مع أقساط حتى 12 سنة وخصم كاش يصل إلى 54% وتسليم يبدأ من سنة واحدة. أسعار التاون هاوس تبدأ من 20,200,000 والمكاتب الإدارية من 12,400,000.",
+        "en": "Apartments start from EGP 6,250,000 in the latest launch with 5% down payment and up to 10-year plans. Other phases offer from 1.5% down over 12 years and up to 54% cash discount."
+      },
+      "minPrice": 6250000,
+      "minDownPayment": "1.5%",
+      "maxInstallmentYears": 12,
+      "cashDiscount": "54%",
+      "deliveryFrom": "1 year"
+    },
+    "phases": [
+      {
+        "id": "new-launch",
+        "name": {
+          "ar": "أحدث طرح — المرحلة السكنية الأخيرة",
+          "en": "New Launch — Final Residential Phase"
+        },
+        "badge": {
+          "ar": "أقل سعر في المشروع",
+          "en": "Lowest Entry Price"
+        },
+        "description": {
+          "ar": "آخر مرحلة سكنية في تاج سيتي — شقق تبدأ من 6,250,000 بمقدم 5% وأقساط حتى 10 سنين.",
+          "en": "Final residential phase in Taj City — apartments from EGP 6,250,000 with 5% down and 10-year plans."
+        },
+        "startingPrice": 6250000,
+        "downPayment": "5%",
+        "installments": 10
+      },
+      {
+        "id": "origami-golf",
+        "name": {
+          "ar": "أوريجامي جولف — Origami Golf",
+          "en": "Origami Golf"
+        },
+        "badge": {
+          "ar": "أقل مقدم 1.5%",
+          "en": "1.5% Down Payment"
+        },
+        "description": {
+          "ar": "المرحلة الوحيدة بإطلالة على ملعب الجولف — شقق وتاون هاوس من 7,700,000 بمقدم 1.5%.",
+          "en": "Exclusive golf course views — apartments and townhouses from EGP 7,700,000 with 1.5% down."
+        },
+        "startingPrice": 7700000,
+        "downPayment": "1.5%",
+        "installments": 12
+      },
+      {
+        "id": "origami",
+        "name": {
+          "ar": "أوريجامي — Origami",
+          "en": "Origami"
+        },
+        "badge": {
+          "ar": "الوحيدة بلوفت بريميوم",
+          "en": "Exclusive Lofts"
+        },
+        "description": {
+          "ar": "لوفت وشقق واسعة في قلب تاج سيتي — من 10,500,000 بخصم كاش يصل إلى 50%.",
+          "en": "Spacious lofts and premium apartments in the heart of Taj City from EGP 10,500,000."
+        },
+        "startingPrice": 10500000,
+        "downPayment": "1.5%",
+        "installments": 12
+      },
+      {
+        "id": "kinda-offices",
+        "name": {
+          "ar": "كيندا مكاتب — Kinda Offices",
+          "en": "Kinda Offices"
+        },
+        "badge": {
+          "ar": "أسرع تسليم — سنة واحدة",
+          "en": "Ready in 1 Year"
+        },
+        "description": {
+          "ar": "مكاتب وعيادات إدارية جاهزة للاستثمار تبدأ من 12,400,000 جنيه بتشطيب راقٍ.",
+          "en": "Administrative offices and medical clinics from EGP 12,400,000 with delivery in 1 year."
+        },
+        "startingPrice": 12400000,
+        "downPayment": "10%",
+        "installments": 15
+      }
+    ],
+    "units": [
+      {
+        "id": "taj-u1",
+        "type": {
+          "ar": "شقة غرفة نوم واحدة",
+          "en": "1 Bedroom Apartment"
+        },
+        "phase": "New Launch",
+        "category": {
+          "ar": "شقق بريميوم",
+          "en": "Premium Apartment"
+        },
+        "area": "50 - 65 m²",
+        "startingPrice": 6250000,
+        "startingPriceText": {
+          "ar": "6,250,000 جنيه",
+          "en": "EGP 6,250,000"
+        },
+        "downPayment": "5%",
+        "monthlyInstallment": 13000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/A_moJSTqGdIe.webp"
+      },
+      {
+        "id": "taj-u2",
+        "type": {
+          "ar": "شقة غرفة نوم واحدة فيو جولف",
+          "en": "1 Bedroom Golf View"
+        },
+        "phase": "Origami Golf",
+        "category": {
+          "ar": "شقق فيو جولف",
+          "en": "Golf View Apartment"
+        },
+        "area": "81 m²",
+        "startingPrice": 7700000,
+        "startingPriceText": {
+          "ar": "7,700,000 جنيه",
+          "en": "EGP 7,700,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 16000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/vUWlKkw0naD3.webp"
+      },
+      {
+        "id": "taj-u3",
+        "type": {
+          "ar": "شقة غرفتين نوم فيو جولف",
+          "en": "2 Bedroom Golf View"
+        },
+        "phase": "Origami Golf",
+        "category": {
+          "ar": "شقق فيو جولف",
+          "en": "Golf View Apartment"
+        },
+        "area": "115 - 128 m²",
+        "startingPrice": 10800000,
+        "startingPriceText": {
+          "ar": "10,800,000 جنيه",
+          "en": "EGP 10,800,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 22000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_03.webp"
+      },
+      {
+        "id": "taj-u4",
+        "type": {
+          "ar": "تاون هاوس",
+          "en": "Townhouse"
+        },
+        "phase": "Origami Golf",
+        "category": {
+          "ar": "تاون هاوس فيو جولف",
+          "en": "Golf View Townhouse"
+        },
+        "area": "155 - 177 m²",
+        "startingPrice": 20200000,
+        "startingPriceText": {
+          "ar": "20,200,000 جنيه",
+          "en": "EGP 20,200,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 41000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_15.webp"
+      },
+      {
+        "id": "taj-u5",
+        "type": {
+          "ar": "لوفت بريميوم",
+          "en": "Premium Loft"
+        },
+        "phase": "Origami",
+        "category": {
+          "ar": "لوفت غرفة وغرفتين",
+          "en": "Exclusive Loft"
+        },
+        "area": "90 - 135 m²",
+        "startingPrice": 11500000,
+        "startingPriceText": {
+          "ar": "11,500,000 جنيه",
+          "en": "EGP 11,500,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 24000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_19.webp"
+      },
+      {
+        "id": "taj-u6",
+        "type": {
+          "ar": "مكاتب إدارية",
+          "en": "Administrative Offices"
+        },
+        "phase": "Kinda",
+        "category": {
+          "ar": "مكاتب وعيادات",
+          "en": "Offices & Clinics"
+        },
+        "area": "60 - 210 m²",
+        "startingPrice": 12400000,
+        "startingPriceText": {
+          "ar": "12,400,000 جنيه",
+          "en": "EGP 12,400,000"
+        },
+        "downPayment": "10%",
+        "monthlyInstallment": 25000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/82rS6BRH-IDP.webp"
+      }
+    ],
+    "deliveredTrackRecord": [
+      {
+        "name": {
+          "ar": "تاج سلطان",
+          "en": "Taj Sultan"
+        },
+        "status": {
+          "ar": "متسلم ومأهول بالكامل",
+          "en": "Delivered & Fully Occupied"
+        }
+      },
+      {
+        "name": {
+          "ar": "شاليا",
+          "en": "Shalya"
+        },
+        "status": {
+          "ar": "متسلم ومأهول بالكامل",
+          "en": "Delivered & Fully Occupied"
+        }
+      },
+      {
+        "name": {
+          "ar": "ليك بارك",
+          "en": "Lake Park"
+        },
+        "status": {
+          "ar": "متسلم ومأهول بالكامل",
+          "en": "Delivered & Fully Occupied"
+        }
+      },
+      {
+        "name": {
+          "ar": "بارك ريزيدنس",
+          "en": "Park Residence"
+        },
+        "status": {
+          "ar": "متسلم ومأهول بالكامل",
+          "en": "Delivered & Fully Occupied"
+        }
+      }
+    ],
+    "projectFaqs": [
+      {
+        "question": {
+          "ar": "أقل سعر وحدة في تاج سيتي كام؟",
+          "en": "What is the lowest unit price in Taj City?"
+        },
+        "answer": {
+          "ar": "أقل سعر متاح حاليًا 6,250,000 جنيه لشقة غرفة نوم واحدة بمساحة 50 متر في آخر مرحلة سكنية بالمشروع. وباقي المراحل تبدأ من 7,700,000 جنيه لشقة 81 متر في أوريجامي جولف.",
+          "en": "Starting price is EGP 6,250,000 for a 1-bedroom apartment (50 sqm) in the final residential phase, and EGP 7,700,000 for 81 sqm in Origami Golf."
+        }
+      },
+      {
+        "question": {
+          "ar": "مقدم وتقسيط تاج سيتي كام؟",
+          "en": "What are the down payment and installment plans?"
+        },
+        "answer": {
+          "ar": "المقدم يبدأ من 1.5% والتقسيط يصل حتى 12 سنة، مع خصم كاش يصل إلى 54%.",
+          "en": "Down payment starts from 1.5% with installments up to 12 years and cash discounts up to 54%."
+        }
+      },
+      {
+        "question": {
+          "ar": "هل يوجد فيلات في تاج سيتي؟",
+          "en": "Are there standalone villas in Taj City?"
+        },
+        "answer": {
+          "ar": "تاج سيتي يضم شققًا وتاون هاوس ومكاتب إدارية، ولا يضم فيلات مستقلة. أقرب نوع للفيلا هو التاون هاوس بمساحة 155 م² في مرحلة أوريجامي جولف وتبدأ أسعاره من 20,200,000 جنيه.",
+          "en": "Taj City offers apartments, townhouses, and offices. The closest option to a villa is the 155 sqm townhouse in Origami Golf starting from EGP 20.2M."
+        }
+      }
+    ],
+    "seo": {
+      "title": {
+        "ar": "أسعار تاج سيتي 2026 | كمبوند تاج سيتي القاهرة الجديدة",
+        "en": "Taj City New Cairo Prices 2026 | Apartments & Townhouses"
+      },
+      "description": {
+        "ar": "أسعار تاج سيتي 2026 محدثة: شقق تبدأ من 6,250,000 جنيه ومكاتب من 12.4 مليون، مقدم 1.5%، أقساط 12 سنة، خصم كاش حتى 54%، وتسليم يبدأ من سنة واحدة.",
+        "en": "Taj City New Cairo price list 2026: apartments from EGP 6,250,000 and offices from EGP 12.4M. From 1.5% down, 12-year plans, delivery from 1 year."
+      },
+      "keywords": "تاج سيتي,كمبوند تاج سيتي,Taj City,Taj City Compound,اسعار تاج سيتي 2026,شقق تاج سيتي,تاون هاوس تاج سيتي,القاهرة الجديدة طريق السويس"
+    }
+  },
+  "sarai": {
+    "slug": "sarai",
+    "name": {
+      "ar": "سراي",
+      "en": "Sarai"
+    },
+    "location": {
+      "ar": "طريق السويس — القاهرة الجديدة",
+      "en": "Suez Road — New Cairo"
+    },
+    "status": {
+      "ar": "متسلم وقيد الإنشاء",
+      "en": "Delivered & Under Construction"
+    },
+    "area": {
+      "ar": "1,250 فدان",
+      "en": "1,250 Feddans"
+    },
+    "hero": {
+      "eyebrow": {
+        "ar": "سكني وفيلات · طريق السويس",
+        "en": "Residential & Villas · Suez Road"
+      },
+      "title": {
+        "ar": "سراي مستقبل سيتي — الموقع الأذكى وأكبر لاجون في القاهرة",
+        "en": "Sarai New Cairo — Smartest Location & Largest Crystal Lagoon"
+      },
+      "subtitle": {
+        "ar": "شقق وفيلات تبدأ من 3,600,000 جنيه بمقدم 1.5% فقط وتقسيط يصل إلى 12 سنة. أكبر مجتمع سكني متكامل على طريق السويس مباشرة.",
+        "en": "Apartments & villas starting from EGP 3,600,000 with only 1.5% down payment and up to 12 years installments."
+      },
+      "startingPrice": 3600000,
+      "startingPriceText": {
+        "ar": "3,600,000 جنيه",
+        "en": "EGP 3,600,000"
+      },
+      "downPayment": "1.5%",
+      "installmentYears": 12,
+      "deliveryYears": 1,
+      "cashDiscount": "54%",
+      "heroImage": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp"
+    },
+    "locationSection": {
+      "headline": {
+        "ar": "موقع استراتيجي — كل مكان في متناولك",
+        "en": "Strategic Location — Everything Within Reach"
+      },
+      "description": {
+        "ar": "يقع كمبوند سراي مباشرة على طريق السويس عند تقاطعه مع محور الأمل، على بُعد 5 دقائق فقط من العاصمة الإدارية ومستقبل سيتي.",
+        "en": "Directly on Cairo-Suez Road at Al-Amal axis intersection, 5 minutes from New Capital and Mostakbal City."
+      },
+      "landmarks": [
+        {
+          "name": {
+            "ar": "العاصمة الإدارية الجديدة",
+            "en": "New Administrative Capital"
+          },
+          "time": "5 mins"
+        },
+        {
+          "name": {
+            "ar": "مدينتي والشروق",
+            "en": "Madinaty & El Shorouk"
+          },
+          "time": "5 mins"
+        },
+        {
+          "name": {
+            "ar": "مطار القاهرة الدولي",
+            "en": "Cairo Airport"
+          },
+          "time": "15 mins"
+        },
+        {
+          "name": {
+            "ar": "التجمع الخامس والجامعة الأمريكية",
+            "en": "Fifth Settlement & AUC"
+          },
+          "time": "15 mins"
+        }
+      ]
+    },
+    "lifestyleSection": {
+      "headline": {
+        "ar": "سراي — حياة لا تجدها في أي مكان آخر",
+        "en": "Sarai — A Lifestyle Found Nowhere Else"
+      },
+      "description": {
+        "ar": "أكبر كريستال لاجون في القاهرة الجديدة على مساحة 50,000 م²، نادٍ للفروسية، فنادق عالمية وممشى مائي ساحر.",
+        "en": "Largest crystal lagoon in Cairo (50,000 sqm), prestigious equestrian club, luxury hotels and water promenades."
+      },
+      "features": [
+        {
+          "title": {
+            "ar": "أكبر كريستال لاجون",
+            "en": "Largest Crystal Lagoon"
+          },
+          "desc": {
+            "ar": "بحيرات شاطئية قابلة للسباحة على 50 ألف م²",
+            "en": "50,000 sqm swimmable turquoise lagoons"
+          }
+        },
+        {
+          "title": {
+            "ar": "نادي الفروسية الدولي",
+            "en": "Equestrian Club"
+          },
+          "desc": {
+            "ar": "مضمار عالمي لركوب الخيل وتدريب الفرسان",
+            "en": "International horse riding & training tracks"
+          }
+        },
+        {
+          "title": {
+            "ar": "فنادق وخدمات بريميوم",
+            "en": "Luxury Hotels"
+          },
+          "desc": {
+            "ar": "فنادق عالمية تخدم سكان الكمبوند والزوار",
+            "en": "Boutique hospitality and branded residences"
+          }
+        },
+        {
+          "title": {
+            "ar": "مدارس دولية ونوادٍ",
+            "en": "International Schools"
+          },
+          "desc": {
+            "ar": "تعليم متطور ونوادٍ رياضية متعددة",
+            "en": "Elite schooling and community clubhouses"
+          }
+        }
+      ]
+    },
+    "pricingSection": {
+      "headline": {
+        "ar": "أسعار سراي مدينة مصر 2026",
+        "en": "Sarai Compound Prices 2026"
+      },
+      "description": {
+        "ar": "تبدأ شقق سراي من 3,600,000 جنيه بمقدم 1.5% وقسط يبدأ من 7,500 جنيه شهرياً. والتاون هاوس والفيلات المستقلة تبدأ من 11.2 مليون حتى 27.8 مليون بمقدم يبدأ من 1.5% وخصم كاش يصل إلى 54%.",
+        "en": "Apartments start from EGP 3.6M with 1.5% down and instalments from EGP 7,500/mo. Townhouses and standalone villas from EGP 11.2M up to EGP 27.8M."
+      },
+      "minPrice": 3600000,
+      "minDownPayment": "1.5%",
+      "maxInstallmentYears": 12,
+      "cashDiscount": "54%",
+      "deliveryFrom": "1 year"
+    },
+    "phases": [
+      {
+        "id": "elm-tree-park",
+        "name": {
+          "ar": "إلم تري بارك — Elm Tree Park",
+          "en": "Elm Tree Park"
+        },
+        "badge": {
+          "ar": "أقل قسط شهري من 7,500 ج",
+          "en": "From 7,500 EGP/mo"
+        },
+        "description": {
+          "ar": "شقق وفيلات بإطلالات حدائق واسعة — أسعار تبدأ من 3.6 مليون بمقدم 1.5%.",
+          "en": "Apartments & villas overlooking sprawling parks from EGP 3.6M with 1.5% down."
+        },
+        "startingPrice": 3600000,
+        "downPayment": "1.5%",
+        "installments": 12
+      },
+      {
+        "id": "esse-sheya",
+        "name": {
+          "ar": "إيسي وشيا — Esse & Sheya Residence",
+          "en": "Esse & Sheya Residence"
+        },
+        "badge": {
+          "ar": "شقق بريميوم عالبحيرات",
+          "en": "Lagoon View Residences"
+        },
+        "description": {
+          "ar": "شقق فاخرة تطل مباشرة على الكريستال لاجون بمساحات من 75 إلى 180 م².",
+          "en": "Luxury lagoon-front apartments with flexible layouts from 75 to 180 sqm."
+        },
+        "startingPrice": 5200000,
+        "downPayment": "1.5%",
+        "installments": 12
+      },
+      {
+        "id": "rai-valleys",
+        "name": {
+          "ar": "راي فاليز — Rai Valleys",
+          "en": "Rai Valleys"
+        },
+        "badge": {
+          "ar": "أسرع تسليم — خلال سنة",
+          "en": "Delivery in 1 Year"
+        },
+        "description": {
+          "ar": "تاون هاوس وفيلات فاخرة بتسليم سريع خلال سنة واحدة فقط بمقدم 5% + 5%.",
+          "en": "Exclusive townhouses delivering within 1 year with 5% + 5% down payment."
+        },
+        "startingPrice": 14500000,
+        "downPayment": "5%",
+        "installments": 10
+      }
+    ],
+    "units": [
+      {
+        "id": "sarai-u1",
+        "type": {
+          "ar": "شقة استوديو / غرفة واحدة",
+          "en": "1 Bedroom Studio / Apt"
+        },
+        "phase": "Elm Tree Park",
+        "category": {
+          "ar": "شقق حدائق",
+          "en": "Park View Apartment"
+        },
+        "area": "38 - 60 m²",
+        "startingPrice": 3600000,
+        "startingPriceText": {
+          "ar": "3,600,000 جنيه",
+          "en": "EGP 3,600,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 7500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/A_moJSTqGdIe.webp"
+      },
+      {
+        "id": "sarai-u2",
+        "type": {
+          "ar": "شقة غرفتين نوم",
+          "en": "2 Bedroom Apartment"
+        },
+        "phase": "Elm Tree Park",
+        "category": {
+          "ar": "شقق حدائق",
+          "en": "Park View Apartment"
+        },
+        "area": "105 - 125 m²",
+        "startingPrice": 5800000,
+        "startingPriceText": {
+          "ar": "5,800,000 جنيه",
+          "en": "EGP 5,800,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 13500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/vUWlKkw0naD3.webp"
+      },
+      {
+        "id": "sarai-u3",
+        "type": {
+          "ar": "شقة 3 غرف نوم",
+          "en": "3 Bedroom Apartment"
+        },
+        "phase": "Esse Residence",
+        "category": {
+          "ar": "شقق عائلية",
+          "en": "Family Apartment"
+        },
+        "area": "145 - 175 m²",
+        "startingPrice": 7500000,
+        "startingPriceText": {
+          "ar": "7,500,000 جنيه",
+          "en": "EGP 7,500,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 16500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_03.webp"
+      },
+      {
+        "id": "sarai-u4",
+        "type": {
+          "ar": "تاون هاوس فيو لاجون",
+          "en": "Lagoon View Townhouse"
+        },
+        "phase": "Rai Valleys",
+        "category": {
+          "ar": "تاون هاوس",
+          "en": "Townhouse"
+        },
+        "area": "175 - 210 m²",
+        "startingPrice": 14500000,
+        "startingPriceText": {
+          "ar": "14,500,000 جنيه",
+          "en": "EGP 14,500,000"
+        },
+        "downPayment": "5%",
+        "monthlyInstallment": 32000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_15.webp"
+      },
+      {
+        "id": "sarai-u5",
+        "type": {
+          "ar": "فيلا مستقلة Standalone",
+          "en": "Standalone Villa"
+        },
+        "phase": "Elm Tree Park Villas",
+        "category": {
+          "ar": "فيلات مستقلة",
+          "en": "Standalone Villa"
+        },
+        "area": "198 - 300 m²",
+        "startingPrice": 22500000,
+        "startingPriceText": {
+          "ar": "22,500,000 جنيه",
+          "en": "EGP 22,500,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 49000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_19.webp"
+      }
+    ],
+    "deliveredTrackRecord": [
+      {
+        "name": {
+          "ar": "مراحل سراي 1 و 2",
+          "en": "Sarai Phase 1 & 2"
+        },
+        "status": {
+          "ar": "متسلم ومأهول بالعائلات",
+          "en": "Delivered & Occupied"
+        }
+      },
+      {
+        "name": {
+          "ar": "كريستال لاجون سراي",
+          "en": "Sarai Crystal Lagoon"
+        },
+        "status": {
+          "ar": "تم التشغيل الفعلي",
+          "en": "Fully Operational"
+        }
+      }
+    ],
+    "projectFaqs": [
+      {
+        "question": {
+          "ar": "كمبوند سراي فين بالظبط؟",
+          "en": "Where exactly is Sarai Compound located?"
+        },
+        "answer": {
+          "ar": "سراي يقع مباشرة على طريق السويس في الكيلو 45، أمام مدينتي مباشرة وعلى بُعد 5 دقائق فقط من العاصمة الإدارية ومستقبل سيتي.",
+          "en": "Sarai is directly on Cairo-Suez Road at km 45, right in front of Madinaty and 5 minutes from New Capital."
+        }
+      },
+      {
+        "question": {
+          "ar": "إيه أقل سعر في سراي؟",
+          "en": "What is the lowest price in Sarai?"
+        },
+        "answer": {
+          "ar": "يبدأ من 3,600,000 جنيه لشقة غرفة نوم واحدة بمقدم 1.5% وقسط شهري يبدأ من 7,500 جنيه.",
+          "en": "Starts from EGP 3,600,000 with 1.5% down and monthly instalments from EGP 7,500."
+        }
+      }
+    ],
+    "seo": {
+      "title": {
+        "ar": "أسعار كمبوند سراي 2026 | شقق وفيلات طريق السويس",
+        "en": "Sarai Compound Prices 2026 | Suez Road Apartments & Villas"
+      },
+      "description": {
+        "ar": "أسعار كمبوند سراي 2026: شقق تبدأ من 3.6 مليون بمقدم 1.5% وقسط 7,500 ج شهرياً، وفيلات مستقلة ولاجون كريستال 50,000 م²، وأقساط حتى 12 سنة.",
+        "en": "Sarai Compound prices 2026: apartments from EGP 3.6M with 1.5% down, monthly instalments from EGP 7,500, up to 12 years payment plans."
+      },
+      "keywords": "كمبوند سراي,سراي طريق السويس,اسعار كمبوند سراي 2026,شقق كمبوند سراي,فيلات سراي,Sarai Compound,Sarai New Cairo"
+    }
+  },
+  "butterfly": {
+    "slug": "butterfly",
+    "name": {
+      "ar": "بترفلاي",
+      "en": "The Butterfly"
+    },
+    "location": {
+      "ar": "مدينة المستقبل — Mostakbal City",
+      "en": "Mostakbal City"
+    },
+    "status": {
+      "ar": "قيد الإنشاء — طرح حصري",
+      "en": "Under Construction — Exclusive Launch"
+    },
+    "area": {
+      "ar": "200 فدان",
+      "en": "200 Feddans"
+    },
+    "hero": {
+      "eyebrow": {
+        "ar": "فيلات وشقق فاخرة · مستقبل سيتي",
+        "en": "Luxury Villas & Apartments · Mostakbal City"
+      },
+      "title": {
+        "ar": "بترفلاي مستقبل سيتي — حين يلتقي التصميم العالمي بالطبيعة",
+        "en": "The Butterfly Mostakbal City — Where Global Design Meets Nature"
+      },
+      "subtitle": {
+        "ar": "أحدث كمبوند لمدينة مصر بمستقبل سيتي — شقق وفيلات S-Villa وتاون هاوس تبدأ من 4,000,000 جنيه بمقدم 1.5% وأقساط 12 سنة.",
+        "en": "Madinet Masr's latest community in Mostakbal City — apartments, S-Villas and townhouses from EGP 4M with 1.5% down over 12 years."
+      },
+      "startingPrice": 4000000,
+      "startingPriceText": {
+        "ar": "4,000,000 جنيه",
+        "en": "EGP 4,000,000"
+      },
+      "downPayment": "1.5%",
+      "installmentYears": 12,
+      "deliveryYears": 3,
+      "cashDiscount": "54%",
+      "heroImage": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp"
+    },
+    "locationSection": {
+      "headline": {
+        "ar": "مدينة المستقبل — ليست مجرد عنوان، هي قرار استثماري",
+        "en": "Mostakbal City — Not Just an Address, An Investment Decision"
+      },
+      "description": {
+        "ar": "يقع مشروع بترفلاي في أكثر مناطق مستقبل سيتي تميزاً، محاطاً بأرقى الكمبوندات وبالقرب من الدائري الأوسطي ومحور بن زايد.",
+        "en": "Located in prime Mostakbal City with direct access to Middle Ring Road & Bin Zayed Axis."
+      },
+      "landmarks": [
+        {
+          "name": {
+            "ar": "العاصمة الإدارية والبرج الأيقوني",
+            "en": "New Capital & Iconic Tower"
+          },
+          "time": "7 mins"
+        },
+        {
+          "name": {
+            "ar": "طريق السويس ومدينتي",
+            "en": "Suez Road & Madinaty"
+          },
+          "time": "5 mins"
+        },
+        {
+          "name": {
+            "ar": "الجامعة الأمريكية بالتجمع",
+            "en": "AUC New Cairo"
+          },
+          "time": "15 mins"
+        }
+      ]
+    },
+    "lifestyleSection": {
+      "headline": {
+        "ar": "تصميم مستوحى من أجنحة الفراشة والماء",
+        "en": "Organic Architecture Inspired by Nature & Water"
+      },
+      "description": {
+        "ar": "تصميم معماري فريد يعتمد على الانسيابية والمسطحات المائية والحدائق المتصلة دون تقاطع مع مسارات السيارات.",
+        "en": "Pedestrian-first master plan with flowing waterways, sensory parks, and sustainable living."
+      },
+      "features": [
+        {
+          "title": {
+            "ar": "كلوب هاوس مركزي",
+            "en": "Central Clubhouse"
+          },
+          "desc": {
+            "ar": "سبا، جيم، ولاونج راقٍ للتجمعات",
+            "en": "Spa, gymnasium, and private resident lounges"
+          }
+        },
+        {
+          "title": {
+            "ar": "مسارات مشي وجري",
+            "en": "Jogging & Cycling Trails"
+          },
+          "desc": {
+            "ar": "مسارات محاطة باللاندسكيب الطبيعي",
+            "en": "Dedicated cycling tracks inside green corridors"
+          }
+        },
+        {
+          "title": {
+            "ar": "منطقة تجارية وترفيهية",
+            "en": "Commercial Strip"
+          },
+          "desc": {
+            "ar": "كافيهات ومطاعم وسوبرماركت راقٍ",
+            "en": "Cafes, boutiques, and organic markets"
+          }
+        }
+      ]
+    },
+    "pricingSection": {
+      "headline": {
+        "ar": "أسعار بترفلاي مستقبل سيتي 2026",
+        "en": "The Butterfly Prices 2026"
+      },
+      "description": {
+        "ar": "أسعار الشقق تبدأ من 4,000,000 جنيه، وفيلات S-Villa المبتكرة تبدأ من 8,200,000 جنيه، والتاون هاوس من 11,500,000 جنيه، بمقدم 1.5% وأقساط حتى 12 سنة وخصم كاش 54%.",
+        "en": "Apartments from EGP 4M, S-Villas from EGP 8.2M, townhouses from EGP 11.5M with 1.5% down and 12-year plans."
+      },
+      "minPrice": 4000000,
+      "minDownPayment": "1.5%",
+      "maxInstallmentYears": 12,
+      "cashDiscount": "54%",
+      "deliveryFrom": "3 years"
+    },
+    "phases": [
+      {
+        "id": "butterfly-phase1",
+        "name": {
+          "ar": "المرحلة الأولى — The Horizon",
+          "en": "Phase 1 — The Horizon"
+        },
+        "badge": {
+          "ar": "طرح جديد وحصري",
+          "en": "Exclusive Launch"
+        },
+        "description": {
+          "ar": "أول طرح في كمبوند بترفلاي بأفضل سعر متر في مستقبل سيتي.",
+          "en": "Premier release offering best price-per-meter in Mostakbal City."
+        },
+        "startingPrice": 4000000,
+        "downPayment": "1.5%",
+        "installments": 12
+      }
+    ],
+    "units": [
+      {
+        "id": "bf-u1",
+        "type": {
+          "ar": "شقة غرفتين نوم",
+          "en": "2 Bedroom Apartment"
+        },
+        "phase": "The Horizon",
+        "category": {
+          "ar": "شقق فاخرة",
+          "en": "Luxury Apartment"
+        },
+        "area": "100 - 120 m²",
+        "startingPrice": 4000000,
+        "startingPriceText": {
+          "ar": "4,000,000 جنيه",
+          "en": "EGP 4,000,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 9500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/A_moJSTqGdIe.webp"
+      },
+      {
+        "id": "bf-u2",
+        "type": {
+          "ar": "S-Villa A (رووف)",
+          "en": "S-Villa A (Roof)"
+        },
+        "phase": "The Horizon",
+        "category": {
+          "ar": "فيلات S-Villa",
+          "en": "S-Villa with Roof"
+        },
+        "area": "215 m²",
+        "startingPrice": 8500000,
+        "startingPriceText": {
+          "ar": "8,500,000 جنيه",
+          "en": "EGP 8,500,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 19000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_03.webp"
+      },
+      {
+        "id": "bf-u3",
+        "type": {
+          "ar": "S-Villa B (حديقة)",
+          "en": "S-Villa B (Garden)"
+        },
+        "phase": "The Horizon",
+        "category": {
+          "ar": "فيلات S-Villa",
+          "en": "S-Villa with Garden"
+        },
+        "area": "230 m²",
+        "startingPrice": 9200000,
+        "startingPriceText": {
+          "ar": "9,200,000 جنيه",
+          "en": "EGP 9,200,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 21000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_15.webp"
+      },
+      {
+        "id": "bf-u4",
+        "type": {
+          "ar": "فيلا مستقلة Standalone",
+          "en": "Standalone Villa"
+        },
+        "phase": "The Horizon",
+        "category": {
+          "ar": "فيلات مستقلة",
+          "en": "Standalone Villa"
+        },
+        "area": "270 - 340 m²",
+        "startingPrice": 18500000,
+        "startingPriceText": {
+          "ar": "18,500,000 جنيه",
+          "en": "EGP 18,500,000"
+        },
+        "downPayment": "1.5%",
+        "monthlyInstallment": 39000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_19.webp"
+      }
+    ],
+    "deliveredTrackRecord": [],
+    "projectFaqs": [
+      {
+        "question": {
+          "ar": "أسعار بترفلاي كام؟",
+          "en": "What are Butterfly Compound prices?"
+        },
+        "answer": {
+          "ar": "تبدأ من 4,000,000 جنيه للشقق، و 8.5 مليون لـ S-Villa، بمقدم 1.5% وأقساط 12 سنة.",
+          "en": "Starts from EGP 4M for apartments and EGP 8.5M for S-Villas, with 1.5% down and 12 years installments."
+        }
+      }
+    ],
+    "seo": {
+      "title": {
+        "ar": "أسعار كمبوند بترفلاي مستقبل سيتي 2026 | فيلات وشقق",
+        "en": "The Butterfly Mostakbal City Prices 2026 | Madinet Masr"
+      },
+      "description": {
+        "ar": "أسعار بترفلاي مستقبل سيتي 2026: شقق وفيلات S-Villa تبدأ من 4,000,000 جنيه بمقدم 1.5% وأقساط تصل إلى 12 سنة مع خصم كاش 54%.",
+        "en": "The Butterfly Mostakbal City price list 2026: apartments and S-Villas from EGP 4M with 1.5% down payment over 12 years."
+      },
+      "keywords": "بترفلاي مستقبل سيتي,كمبوند بترفلاي,The Butterfly,The Butterfly Mostakbal City,مدينة مصر مستقبل سيتي"
+    }
+  },
+  "talala": {
+    "slug": "talala",
+    "name": {
+      "ar": "تلالا",
+      "en": "Talala"
+    },
+    "location": {
+      "ar": "هليوبوليس الجديدة — New Heliopolis",
+      "en": "New Heliopolis"
+    },
+    "status": {
+      "ar": "تشطيب كامل — تسليم فوري وقريب",
+      "en": "Fully Finished — Ready & Near Delivery"
+    },
+    "area": {
+      "ar": "150 فدان",
+      "en": "150 Feddans"
+    },
+    "hero": {
+      "eyebrow": {
+        "ar": "تشطيب كامل بالتكييفات · هليوبوليس الجديدة",
+        "en": "Fully Finished with ACs · New Heliopolis"
+      },
+      "title": {
+        "ar": "تلالا هليوبوليس الجديدة — استلم وحدتك بتشطيب كامل وأطول قسط 15 سنة",
+        "en": "Talala New Heliopolis — Fully Finished with 15-Year Installments"
+      },
+      "subtitle": {
+        "ar": "كل الوحدات تُسلّم بتشطيب كامل بالتكييفات. أسعار تبدأ من 4,600,000 جنيه بمقدم 4% وتقسيط حتى 15 سنة، أو خصم كاش تاريخي 64%.",
+        "en": "All units delivered fully finished with ACs. Prices from EGP 4,600,000 with 4% down, up to 15 years installments, or 64% cash discount."
+      },
+      "startingPrice": 4600000,
+      "startingPriceText": {
+        "ar": "4,600,000 جنيه",
+        "en": "EGP 4,600,000"
+      },
+      "downPayment": "4%",
+      "installmentYears": 15,
+      "deliveryYears": 1,
+      "cashDiscount": "64%",
+      "heroImage": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp"
+    },
+    "locationSection": {
+      "headline": {
+        "ar": "هليوبوليس الجديدة — المنطقة التي لا تتوقف عن النمو",
+        "en": "New Heliopolis — Fast Growing Hub"
+      },
+      "description": {
+        "ar": "موقع تلالا المميز على طريق السويس مباشرة يربطه بمصر الجديدة، الشروق، والعاصمة الإدارية في دقائق معدودة.",
+        "en": "Prime spot directly on Suez Road connecting quickly to Heliopolis, Shorouk, and New Capital."
+      },
+      "landmarks": [
+        {
+          "name": {
+            "ar": "طريق السويس ومحور الأمل",
+            "en": "Suez Road & Amal Axis"
+          },
+          "time": "2 mins"
+        },
+        {
+          "name": {
+            "ar": "العاصمة الإدارية ومطار العاصمة",
+            "en": "New Capital & Airport"
+          },
+          "time": "10 mins"
+        },
+        {
+          "name": {
+            "ar": "مصر الجديدة والتجمع الخامس",
+            "en": "Heliopolis & 5th Settlement"
+          },
+          "time": "20 mins"
+        }
+      ]
+    },
+    "lifestyleSection": {
+      "headline": {
+        "ar": "تلالا — استلم وعيش بدون وجع دماغ التشطيب",
+        "en": "Talala — Move In Without Finishing Hassle"
+      },
+      "description": {
+        "ar": "جميع الوحدات تُسلم كاملة التشطيب بخامات فاخرة، مع حدائق ومسارات مشي ومول تجاري يخدم الكمبوند بالكامل.",
+        "en": "Turnkey homes delivered with ultra-super-lux finishing, central park, and dedicated retail zone."
+      },
+      "features": [
+        {
+          "title": {
+            "ar": "تشطيب كامل ألترا سوبر لوكس",
+            "en": "Fully Finished Luxury"
+          },
+          "desc": {
+            "ar": "استلم مفتاح شقتك جاهزة للسكن فوراً",
+            "en": "Ready to move in with zero renovation stress"
+          }
+        },
+        {
+          "title": {
+            "ar": "أطول فترة سداد (15 سنة)",
+            "en": "15-Year Longest Installment"
+          },
+          "desc": {
+            "ar": "أقل عبء شهري على ميزانيتك في السوق",
+            "en": "Lowest monthly burden in the market"
+          }
+        },
+        {
+          "title": {
+            "ar": "أعلى خصم كاش (64%)",
+            "en": "Highest Cash Discount (64%)"
+          },
+          "desc": {
+            "ar": "وفّر أكثر من نصف تمن الوحدة لو كاش",
+            "en": "Save over half the unit price with cash"
+          }
+        }
+      ]
+    },
+    "pricingSection": {
+      "headline": {
+        "ar": "أسعار تلالا مدينة مصر 2026",
+        "en": "Talala Compound Prices 2026"
+      },
+      "description": {
+        "ar": "تبدأ شقق تلالا من 4,600,000 جنيه بتشطيب كامل بمقدم 4% وأقساط 15 سنة. والتاون هاوس يبدأ من 9,800,000 جنيه، والفيلات المستقلة من 14,200,000 جنيه.",
+        "en": "Fully finished apartments start from EGP 4.6M with 4% down and 15-year plans. Townhouses from EGP 9.8M, standalone villas from EGP 14.2M."
+      },
+      "minPrice": 4600000,
+      "minDownPayment": "4%",
+      "maxInstallmentYears": 15,
+      "cashDiscount": "64%",
+      "deliveryFrom": "1 year"
+    },
+    "phases": [
+      {
+        "id": "talala-p1",
+        "name": {
+          "ar": "مرحلة التسليم السريع — Fully Finished",
+          "en": "Fast Handover Phase — Turnkey"
+        },
+        "badge": {
+          "ar": "تشطيب كامل + أطول تقسيط 15 سنة",
+          "en": "Finished + 15 Years Plan"
+        },
+        "description": {
+          "ar": "شقق وفيلات بتشطيب كامل استلام قريب بأطول فترة سداد في مصر.",
+          "en": "Turnkey residences delivering soon with Egypt's longest 15-year financing."
+        },
+        "startingPrice": 4600000,
+        "downPayment": "4%",
+        "installments": 15
+      }
+    ],
+    "units": [
+      {
+        "id": "tl-u1",
+        "type": {
+          "ar": "شقة غرفتين نوم (تشطيب كامل)",
+          "en": "2 Bedroom Finished Apartment"
+        },
+        "phase": "Turnkey Phase",
+        "category": {
+          "ar": "شقق بتشطيب كامل",
+          "en": "Finished Apartment"
+        },
+        "area": "95 - 115 m²",
+        "startingPrice": 4600000,
+        "startingPriceText": {
+          "ar": "4,600,000 جنيه",
+          "en": "EGP 4,600,000"
+        },
+        "downPayment": "4%",
+        "monthlyInstallment": 8500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/A_moJSTqGdIe.webp"
+      },
+      {
+        "id": "tl-u2",
+        "type": {
+          "ar": "شقة 3 غرف نوم (تشطيب كامل)",
+          "en": "3 Bedroom Finished Apartment"
+        },
+        "phase": "Turnkey Phase",
+        "category": {
+          "ar": "شقق عائلية",
+          "en": "Finished Family Apartment"
+        },
+        "area": "135 - 160 m²",
+        "startingPrice": 6200000,
+        "startingPriceText": {
+          "ar": "6,200,000 جنيه",
+          "en": "EGP 6,200,000"
+        },
+        "downPayment": "4%",
+        "monthlyInstallment": 11500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_03.webp"
+      },
+      {
+        "id": "tl-u3",
+        "type": {
+          "ar": "تاون هاوس (تشطيب كامل)",
+          "en": "Finished Townhouse"
+        },
+        "phase": "Turnkey Phase",
+        "category": {
+          "ar": "تاون هاوس",
+          "en": "Finished Townhouse"
+        },
+        "area": "180 m²",
+        "startingPrice": 9800000,
+        "startingPriceText": {
+          "ar": "9,800,000 جنيه",
+          "en": "EGP 9,800,000"
+        },
+        "downPayment": "4%",
+        "monthlyInstallment": 18000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_15.webp"
+      }
+    ],
+    "deliveredTrackRecord": [],
+    "projectFaqs": [
+      {
+        "question": {
+          "ar": "هل الوحدات في تلالا بتشطيب كامل؟",
+          "en": "Are units in Talala fully finished?"
+        },
+        "answer": {
+          "ar": "نعم، جميع شقق وفيلات تلالا تُسلم كاملة التشطيب بالتكييفات جاهزة للسكن فوراً.",
+          "en": "Yes, all apartments and villas in Talala deliver 100% fully finished with ACs."
+        }
+      },
+      {
+        "question": {
+          "ar": "كم مدة التقسيط في تلالا؟",
+          "en": "What is the installment period?"
+        },
+        "answer": {
+          "ar": "تصل إلى 15 سنة بمقدم 4% فقط — وهي أطول فترة تقسيط متاحة في شرق القاهرة.",
+          "en": "Up to 15 years with just 4% down — the longest available term in East Cairo."
+        }
+      }
+    ],
+    "seo": {
+      "title": {
+        "ar": "أسعار كمبوند تلالا هليوبوليس الجديدة 2026 | تشطيب كامل وتقسيط 15 سنة",
+        "en": "Talala New Heliopolis Prices 2026 | Fully Finished 15-Year Plan"
+      },
+      "description": {
+        "ar": "أسعار تلالا مدينة مصر 2026: شقق بتشطيب كامل تبدأ من 4.6 مليون بمقدم 4% وتقسيط 15 سنة، أو خصم كاش تاريخي 64%، استلام قريب.",
+        "en": "Talala New Heliopolis price list 2026: fully finished units from EGP 4.6M, 4% down, 15-year installments, 64% cash discount."
+      },
+      "keywords": "تلالا هليوبوليس الجديدة,كمبوند تلالا,Talala,Talala Compound,اسعار تلالا,شقق تشطيب كامل هليوبوليس الجديدة"
+    }
+  },
+  "d2n": {
+    "slug": "d2n",
+    "name": {
+      "ar": "D2N — داي تو نايت",
+      "en": "D2N — Day to Night"
+    },
+    "location": {
+      "ar": "طريق السويس — داخل كمبوند سراي",
+      "en": "Suez Road — Inside Sarai"
+    },
+    "status": {
+      "ar": "إداري وتجاري وطبي — استثمار مضمون",
+      "en": "Commercial, Admin & Medical"
+    },
+    "area": {
+      "ar": "منطقة الأعمال الحيوية",
+      "en": "Business & Commercial Hub"
+    },
+    "hero": {
+      "eyebrow": {
+        "ar": "مكاتب وعيادات ومحلات تجارية · طريق السويس",
+        "en": "Offices, Clinics & Retail · Suez Road"
+      },
+      "title": {
+        "ar": "D2N داي تو نايت — استثمارك التجاري والإداري الأذكى في شرق القاهرة",
+        "en": "D2N Day to Night — The Smartest Business & Medical District in East Cairo"
+      },
+      "subtitle": {
+        "ar": "مكاتب وعيادات إدارية تبدأ من 7,200,000 جنيه بمقدم 10% وأقساط حتى 15 سنة. يخدم أكثر من 40,000 أسرة في سراي والمناطق المجاورة.",
+        "en": "Offices and medical clinics from EGP 7.2M with 10% down and 15-year plans. Serving 40,000+ residents in Sarai and surroundings."
+      },
+      "startingPrice": 7200000,
+      "startingPriceText": {
+        "ar": "7,200,000 جنيه",
+        "en": "EGP 7,200,000"
+      },
+      "downPayment": "10%",
+      "installmentYears": 15,
+      "deliveryYears": 2,
+      "cashDiscount": "50%",
+      "heroImage": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp"
+    },
+    "locationSection": {
+      "headline": {
+        "ar": "الموقع الذي اخترناه لأنه لا مثيل له",
+        "en": "Unrivalled Location on Suez Road"
+      },
+      "description": {
+        "ar": "يقع D2N على واجهة كمبوند سراي مباشرة على طريق السويس، مما يضمن تدفقاً مرورياً هائلاً من القاهرة ومدينتي والشروق والعاصمة الإدارية.",
+        "en": "Directly facing Cairo-Suez road at Sarai's main gates with massive daily traffic and catchment area."
+      },
+      "landmarks": [
+        {
+          "name": {
+            "ar": "طريق السويس مباشرة",
+            "en": "Direct Suez Road Access"
+          },
+          "time": "0 mins"
+        },
+        {
+          "name": {
+            "ar": "سكان كمبوند سراي ومدينتي",
+            "en": "Sarai & Madinaty Residents"
+          },
+          "time": "Direct Access"
+        },
+        {
+          "name": {
+            "ar": "العاصمة الإدارية",
+            "en": "New Administrative Capital"
+          },
+          "time": "5 mins"
+        }
+      ]
+    },
+    "lifestyleSection": {
+      "headline": {
+        "ar": "3 أنواع استثمار في مكان واحد: إداري وطبي وتجاري",
+        "en": "3 High-Yield Asset Classes: Commercial, Admin & Medical"
+      },
+      "description": {
+        "ar": "مبانٍ ذكية مجهزة بالكامل لشركات المال والأعمال والعيادات الطبية التخصصية ومطاعم الفرانشايز.",
+        "en": "Smart buildings engineered for corporate headquarters, specialised clinics, and flagship retail."
+      },
+      "features": [
+        {
+          "title": {
+            "ar": "غرف اجتماعات ذكية",
+            "en": "Smart Boardrooms"
+          },
+          "desc": {
+            "ar": "قاعات مؤتمرات مجهزة بأحدث وسائل التكنولوجيا",
+            "en": "High-tech presentation facilities"
+          }
+        },
+        {
+          "title": {
+            "ar": "خدمات صيانة وإدارة مرافق",
+            "en": "Facility Management"
+          },
+          "desc": {
+            "ar": "شركة إدارة وتشغيل دولية للمول بالكامل",
+            "en": "Professional property & asset management"
+          }
+        },
+        {
+          "title": {
+            "ar": "جراجات تحت الأرض واسعة",
+            "en": "Underground Parking"
+          },
+          "desc": {
+            "ar": "مواقف ذكية متعددة الطوابق للموظفين والزوار",
+            "en": "Multi-tier parking for staff & clients"
+          }
+        }
+      ]
+    },
+    "pricingSection": {
+      "headline": {
+        "ar": "أسعار مكاتب وعيادات داي تو نايت D2N 2026",
+        "en": "D2N Commercial & Medical Prices 2026"
+      },
+      "description": {
+        "ar": "تبدأ المكاتب والعيادات من 7,200,000 جنيه بمقدم 10% وأقساط تصل حتى 15 سنة مع خصومات كاش استثنائية.",
+        "en": "Offices and clinics from EGP 7.2M with 10% down and up to 15 years installments."
+      },
+      "minPrice": 7200000,
+      "minDownPayment": "10%",
+      "maxInstallmentYears": 15,
+      "cashDiscount": "50%",
+      "deliveryFrom": "2 years"
+    },
+    "phases": [
+      {
+        "id": "d2n-hub",
+        "name": {
+          "ar": "مجمع الأعمال والعيادات — D2N Hub",
+          "en": "D2N Business & Medical Hub"
+        },
+        "badge": {
+          "ar": "أعلى عائد استثماري وإيجاري",
+          "en": "High Rental Yield"
+        },
+        "description": {
+          "ar": "مكاتب وعيادات جاهزة بتشطيب متطور ومساحات تبدأ من 50 م² حتى 300 م².",
+          "en": "Fully serviced office & clinic suites from 50 to 300 sqm."
+        },
+        "startingPrice": 7200000,
+        "downPayment": "10%",
+        "installments": 15
+      }
+    ],
+    "units": [
+      {
+        "id": "d2n-u1",
+        "type": {
+          "ar": "مكتب إداري",
+          "en": "Administrative Office"
+        },
+        "phase": "D2N Hub",
+        "category": {
+          "ar": "مكاتب إدارية",
+          "en": "Corporate Office"
+        },
+        "area": "50 - 85 m²",
+        "startingPrice": 7200000,
+        "startingPriceText": {
+          "ar": "7,200,000 جنيه",
+          "en": "EGP 7,200,000"
+        },
+        "downPayment": "10%",
+        "monthlyInstallment": 14500,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/82rS6BRH-IDP.webp"
+      },
+      {
+        "id": "d2n-u2",
+        "type": {
+          "ar": "عيادة طبية متخصصة",
+          "en": "Specialized Medical Clinic"
+        },
+        "phase": "D2N Hub",
+        "category": {
+          "ar": "عيادات طبية",
+          "en": "Medical Clinic"
+        },
+        "area": "60 - 95 m²",
+        "startingPrice": 8100000,
+        "startingPriceText": {
+          "ar": "8,100,000 جنيه",
+          "en": "EGP 8,100,000"
+        },
+        "downPayment": "10%",
+        "monthlyInstallment": 16000,
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/6XTE83LfTAmp.webp"
+      }
+    ],
+    "deliveredTrackRecord": [],
+    "projectFaqs": [
+      {
+        "question": {
+          "ar": "أسعار مكاتب وعيادات D2N كام؟",
+          "en": "What are D2N office & clinic prices?"
+        },
+        "answer": {
+          "ar": "تبدأ من 7,200,000 جنيه بمقدم 10% وأقساط تصل حتى 15 سنة.",
+          "en": "Prices start from EGP 7.2M with 10% down and installments up to 15 years."
+        }
+      }
+    ],
+    "seo": {
+      "title": {
+        "ar": "أسعار مكاتب وعيادات D2N داي تو نايت 2026 | طريق السويس",
+        "en": "D2N Commercial & Medical Prices 2026 | Suez Road Hub"
+      },
+      "description": {
+        "ar": "أسعار مكاتب وعيادات D2N كمبوند سراي 2026: مكاتب تبدأ من 7.2 مليون بمقدم 10% وتقسيط حتى 15 سنة، استثمار تجاري وإداري مضمون على طريق السويس.",
+        "en": "D2N Suez Road price list 2026: offices and clinics from EGP 7.2M with 10% down and 15-year financing."
+      },
+      "keywords": "D2N سراي,مكاتب للبيع طريق السويس,عيادات للبيع سراي,داي تو نايت,D2N Day to Night"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "brand": {
+    "name_ar": "ريتاج للتسويق والاستثمار العقاري",
+    "name_en": "Retaj Real Estate",
+    "tagline_ar": "وكيل مبيعات معتمد لمشروعات مدينة مصر",
+    "tagline_en": "Authorized Sales Partner for Madinet Masr Projects",
+    "developer_ar": "مدينة مصر للتطوير العقاري (MNHD - تأسست 1959)",
+    "developer_en": "Madinet Masr Development (Est. 1959)"
+  },
+  "contact": {
+    "hotline": "19000",
+    "phone": "+201070020014",
+    "whatsapp": "+201070020014",
+    "email": "sales@retaj-egypt.com",
+    "address_ar": "التجمع الخامس، القاهرة الجديدة، مصر",
+    "address_en": "Fifth Settlement, New Cairo, Egypt"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/RetajRealEstate",
+    "instagram": "https://www.instagram.com/RetajRealEstate",
+    "linkedin": "https://www.linkedin.com/company/retaj-real-estate",
+    "youtube": "https://www.youtube.com/@RetajRealEstate"
+  },
+  "nav": {
+    "ar": [
+      {
+        "label": "الرئيسية",
+        "href": "/"
+      },
+      {
+        "label": "تاج سيتي",
+        "href": "/taj-city"
+      },
+      {
+        "label": "سراي",
+        "href": "/sarai"
+      },
+      {
+        "label": "بترفلاي",
+        "href": "/butterfly"
+      },
+      {
+        "label": "تلالا",
+        "href": "/talala"
+      },
+      {
+        "label": "D2N",
+        "href": "/d2n"
+      },
+      {
+        "label": "المعرض",
+        "href": "/gallery"
+      },
+      {
+        "label": "الأسئلة الشائعة",
+        "href": "/faq"
+      }
+    ],
+    "en": [
+      {
+        "label": "Home",
+        "href": "/en"
+      },
+      {
+        "label": "Taj City",
+        "href": "/en/taj-city"
+      },
+      {
+        "label": "Sarai",
+        "href": "/en/sarai"
+      },
+      {
+        "label": "The Butterfly",
+        "href": "/en/butterfly"
+      },
+      {
+        "label": "Talala",
+        "href": "/en/talala"
+      },
+      {
+        "label": "D2N",
+        "href": "/en/d2n"
+      },
+      {
+        "label": "Gallery",
+        "href": "/en/gallery"
+      },
+      {
+        "label": "FAQ",
+        "href": "/en/faq"
+      }
+    ]
+  }
+}
