@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand: var(--brand-primary);
+  --color-foreground: var(--text-primary);
+  --color-background: var(--bg-primary);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Mode - Warm Architectural Elegance */
+  --bg-primary: #faf8f5;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --text-primary: #171410;
+  --text-secondary: #4a453e;
+  --text-muted: #736d65;
+  --border-color: rgba(23, 20, 16, 0.08);
+  
+  /* Madinet Masr Official Brand Colors: Architectural Terracotta & Heritage Crimson */
+  --brand-primary: #980f0f;
+  --brand-primary-hover: #7b0c0c;
+  --brand-secondary: #f24155;
+  --brand-accent: #c3292c;
+  --brand-accent-hover: #a81e21;
+  --brand-gold: #bfa15f;
+  
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(23, 20, 16, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.dark {
+  /* Dark Mode - Premium Cinematic Onyx */
+  --bg-primary: #0a0908;
+  --bg-secondary: #141210;
+  --bg-card: rgba(20, 18, 16, 0.88);
+  --text-primary: #fdfcfb;
+  --text-secondary: #d4cfc8;
+  --text-muted: #8c857b;
+  --border-color: rgba(255, 255, 255, 0.08);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Madinet Masr Official Brand Colors */
+  --brand-primary: #f24155;
+  --brand-primary-hover: #ff5e70;
+  --brand-secondary: #980f0f;
+  --brand-accent: #e63246;
+  --brand-accent-hover: #ff4d61;
+  --brand-gold: #d4af37;
+
+  --glass-bg: rgba(20, 18, 16, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-arabic), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
+
+[dir="ltr"], [dir="ltr"] body {
+  font-family: var(--font-english), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display-ar), var(--font-arabic), serif;
+}
+
+[dir="ltr"] .font-display, .font-display:lang(en) {
+  font-family: var(--font-display-en), var(--font-english), serif;
+}
+
+/* Glassmorphism*/
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-hover) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px -2px rgba(33, 50, 124, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(33, 50, 124, 0.45);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--brand-accent) 0%, var(--brand-accent-hover) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px -2px rgba(229, 37, 40, 0.35);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(229, 37, 40, 0.45);
+}
+
+/* Backward compatibility for btn-gold */
+.btn-gold {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px -2px rgba(33, 50, 124, 0.35);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(33, 50, 124, 0.45);
+}
+
+/* Hide Next.js Dev Indicator Badge in Bottom-Left */
+nextjs-portal,
+[data-nextjs-dev-indicator],
+#nextjs-dev-indicator,
+[data-nextjs-toast],
+div[data-next-badge],
+div:has(> a[href*="nextjs.org"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

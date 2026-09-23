@@ -1,32 +1,52 @@
 {
   "brand": {
-    "name_ar": "ريتاج للتسويق والاستثمار العقاري",
-    "name_en": "Retaj Real Estate",
-    "tagline_ar": "وكيل مبيعات معتمد لمشروعات مدينة مصر",
-    "tagline_en": "Authorized Sales Partner for Madinet Masr Projects",
-    "developer_ar": "مدينة مصر للتطوير العقاري (MNHD - تأسست 1959)",
-    "developer_en": "Madinet Masr Development (Est. 1959)"
+    "name_ar": "مدينة مصر",
+    "name_en": "Madinet Masr",
+    "site_title_ar": "أسعار مشاريع مدينة مصر 2026 | سراي وبترفلاي وتلالا وتاج سيتي",
+    "site_title_en": "Madinet Masr Prices 2026 | Sarai, Butterfly, Talala & Taj City",
+    "tagline_ar": "أحدث أسعار مشاريع مدينة مصر 2026: سراي وبترفلاي وتلالا وتاج سيتي و D2N. شقق وفيلات تبدأ من 3,600,000 جنيه، بمقدم من 1.5% وأقساط حتى 15 سنة. وكيل بيع معتمد.",
+    "tagline_en": "Latest 2026 prices for Madinet Masr projects: Sarai, Butterfly, Talala, Taj City and D2N. Apartments and villas from EGP 3,600,000, from 1.5% down.",
+    "developer_ar": "شركة مدينة مصر للإسكان والتعمير (تأسست 1959)",
+    "developer_en": "Madinet Masr Housing & Development (Est. 1959)",
+    "logo": "/logo.svg"
+  },
+  "hero": {
+    "badge_ar": "المشروعات الرسمية لشركة مدينة مصر 2026",
+    "badge_en": "Official Madinet Masr Developments 2026",
+    "title_highlight_ar": "امتلك وحدتك الآن",
+    "title_highlight_en": "Own Your Dream Home",
+    "title_main_ar": "في أرقى مشروعات مدينة مصر بأطول فترات سداد",
+    "title_main_en": "In Madinet Masr's Premier Communities",
+    "description_ar": "فرص استثمارية وسكنية استثنائية في تاج سيتي، سراي، بترفلاي، تلالا، و D2N. شقق وفيلات بمقدمات تبدأ من 0% وأقساط تصل إلى 12 عاماً.",
+    "description_en": "Exceptional residential and investment opportunities across Taj City, Sarai, The Butterfly, Talala, and D2N with installments up to 12 years.",
+    "cta_primary_ar": "استكشف المشروعات",
+    "cta_primary_en": "Explore Projects",
+    "cta_secondary_ar": "تواصل عبر واتساب",
+    "cta_secondary_en": "Chat on WhatsApp",
+    "stats": [
+      { "number": "1959", "label_ar": "سنة التأسيس والخبرة", "label_en": "Established Since" },
+      { "number": "+5", "label_ar": "مشروعات مجتمعية رائدة", "label_en": "Major Developments" },
+      { "number": "+32,000", "label_ar": "وحدة سكنية مسلّمة", "label_en": "Delivered Units" }
+    ]
   },
   "contact": {
-    "hotline": "19000",
-    "phone": "+201070020014",
-    "whatsapp": "+201070020014",
-    "email": "sales@retaj-egypt.com",
+    "phone": "+201200603555",
+    "display_phone": "01200603555",
+    "whatsapp": "+201200603555",
+    "email": "info@madinetmasr-sales.com",
     "address_ar": "التجمع الخامس، القاهرة الجديدة، مصر",
-    "address_en": "Fifth Settlement, New Cairo, Egypt"
+    "address_en": "Fifth Settlement, New Cairo, Egypt",
+    "website": "https://www.madinetmasr-sales.com/",
+    "site_url": "https://www.madinetmasr-sales.com"
   },
   "social": {
-    "facebook": "https://www.facebook.com/RetajRealEstate",
-    "instagram": "https://www.instagram.com/RetajRealEstate",
-    "linkedin": "https://www.linkedin.com/company/retaj-real-estate",
-    "youtube": "https://www.youtube.com/@RetajRealEstate"
+    "facebook": "https://www.facebook.com/MadinetMasr",
+    "instagram": "https://www.instagram.com/madinet_masr",
+    "linkedin": "https://www.linkedin.com/company/madinet-masr",
+    "youtube": "https://www.youtube.com/@madinetmasr"
   },
   "nav": {
     "ar": [
-      {
-        "label": "الرئيسية",
-        "href": "/"
-      },
       {
         "label": "تاج سيتي",
         "href": "/taj-city"
@@ -48,8 +68,12 @@
         "href": "/d2n"
       },
       {
-        "label": "المعرض",
+        "label": "الجاليري",
         "href": "/gallery"
+      },
+      {
+        "label": "المدونة",
+        "href": "/blog"
       },
       {
         "label": "الأسئلة الشائعة",
@@ -57,10 +81,6 @@
       }
     ],
     "en": [
-      {
-        "label": "Home",
-        "href": "/en"
-      },
       {
         "label": "Taj City",
         "href": "/en/taj-city"
@@ -70,7 +90,7 @@
         "href": "/en/sarai"
       },
       {
-        "label": "The Butterfly",
+        "label": "Butterfly",
         "href": "/en/butterfly"
       },
       {
@@ -84,6 +104,10 @@
       {
         "label": "Gallery",
         "href": "/en/gallery"
+      },
+      {
+        "label": "Blog",
+        "href": "/en/blog"
       },
       {
         "label": "FAQ",
