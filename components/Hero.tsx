@@ -1,56 +1,64 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { gsap } from "gsap";
+import { useLoader } from "@/components/LoaderContext";
+import homeContent from "@/data/home_content.json";
 
 interface HeroProps {
   isEn?: boolean;
 }
 
 export default function Hero({ isEn = false }: HeroProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const { isCurtainGone } = useLoader();
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const heroData = homeContent.hero;
+  const langKey = isEn ? "en" : "ar";
+  const currentSlide = heroData.slides[activeSlide] || heroData.slides[0];
 
   useEffect(() => {
+    let tl: gsap.core.Timeline | null = null;
+
     const ctx = gsap.context(() => {
-      // Initial GSAP states exactly matching original site
-      gsap.set(".reveal-line", { yPercent: 130 });
-      gsap.set([".reveal-eyebrow", ".reveal-sub", ".reveal-cta", ".reveal-meta"], {
-        y: 24,
-        autoAlpha: 0,
-      });
-      gsap.set(".reveal-image-mask", {
-        clipPath: "inset(100% 0 0 0)",
-      });
-      gsap.set(".reveal-image-inner", { scale: 1.18 });
+      const lines = containerRef.current?.querySelectorAll(".reveal-line");
 
-      // Exact GSAP Timeline Choreography
-      const tl = gsap.timeline({ defaults: { ease: "expo.out" }, delay: 0.15 });
+      if (!isCurtainGone) {
+        if (lines) gsap.set(lines, { yPercent: 130 });
+        gsap.set([".reveal-eyebrow", ".reveal-sub", ".reveal-cta", ".reveal-meta"], {
+          y: 24,
+          autoAlpha: 0,
+        });
+        gsap.set(".reveal-image-mask", { clipPath: "inset(100% 0 0 0)" });
+        gsap.set(".reveal-image-inner", { scale: 1.18 });
+      } else {
+        tl = gsap.timeline({ defaults: { ease: "expo.out" }, delay: 0.15 });
 
-      tl.to(".reveal-eyebrow", { y: 0, autoAlpha: 1, duration: 0.8 })
-        .to(
-          ".reveal-line",
-          { yPercent: 0, duration: 1.2, stagger: 0.06, ease: "expo.out" },
-          "-=0.5"
-        )
-        .to(".reveal-sub", { y: 0, autoAlpha: 1, duration: 0.9 }, "-=0.8")
-        .to(".reveal-cta", { y: 0, autoAlpha: 1, duration: 0.7 }, "-=0.6")
-        .to(".reveal-meta", { y: 0, autoAlpha: 1, duration: 0.7 }, "-=0.5")
-        .to(
-          ".reveal-image-mask",
-          { clipPath: "inset(0% 0 0 0)", duration: 1.8, ease: "expo.out" },
-          "-=1.6"
-        )
-        .to(
-          ".reveal-image-inner",
-          { scale: 1, duration: 2.2, ease: "expo.out" },
-          "<"
-        );
+        tl.to(".reveal-eyebrow", { y: 0, autoAlpha: 1, duration: 0.8 })
+          .to(
+            lines || [],
+            { yPercent: 0, duration: 1.2, stagger: 0.045, ease: "expo.out" },
+            "-=0.8"
+          )
+          .to(".reveal-sub", { y: 0, autoAlpha: 1, duration: 0.8 }, "-=0.8")
+          .to(".reveal-cta", { y: 0, autoAlpha: 1, duration: 0.7 }, "-=0.6")
+          .to(".reveal-meta", { y: 0, autoAlpha: 1, duration: 0.7 }, "-=0.5")
+          .to(
+            ".reveal-image-mask",
+            { clipPath: "inset(0% 0 0 0)", duration: 1.8, ease: "expo.out" },
+            "-=1.6"
+          )
+          .to(".reveal-image-inner", { scale: 1, duration: 2.2, ease: "expo.out" }, "<");
+      }
     }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+    return () => {
+      tl?.kill();
+      ctx.revert();
+    };
+  }, [isCurtainGone]);
 
   return (
     <section
@@ -58,90 +66,120 @@ export default function Hero({ isEn = false }: HeroProps) {
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-[100svh] flex-col overflow-clip bg-[#faf8f5] text-[#171410]"
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-28 pb-10 sm:px-10 sm:pt-32 sm:pb-12 lg:px-14 lg:pt-36">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-24 pb-10 sm:px-10 sm:pt-28 sm:pb-12 lg:px-14 lg:pt-32">
         {/* Main Text Content */}
         <div className="mx-auto w-full max-w-3xl text-center">
-          <p className="reveal-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-[#736d65] sm:text-xs">
-            {isEn ? "Madinet Masr · Est. 1959" : "مدينة مصر · تأسست ١٩٥٩"}
+          <p className="reveal-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500 sm:text-xs">
+            {heroData.eyebrow[langKey]}
           </p>
 
           <h1
             id="hero-title"
-            aria-label={isEn ? "Building the Future For 65 Years." : "نبني المستقبل منذ ٦٥ عاماً."}
-            className="mt-6 text-[clamp(2.5rem,6.5vw,5.5rem)] font-bold leading-[1.0] tracking-tight text-[#171410] rtl:leading-[1.2] sm:mt-8 font-display"
+            aria-label={`${heroData.titleLine1[langKey]} ${heroData.titleLine2[langKey]}`}
+            className="font-display mt-6 text-[clamp(2.5rem,6.5vw,6rem)] leading-[1.0] tracking-tight text-[#171410] rtl:leading-[1.2] sm:mt-8"
           >
-            <span className="block overflow-hidden py-[0.1em]">
+            <span className="block overflow-hidden py-[0.2em]">
               <span className="reveal-line block">
-                {isEn ? "Building the Future" : "نبني المستقبل"}
+                {heroData.titleLine1[langKey]}
               </span>
             </span>
-            <span className="block overflow-hidden py-[0.1em]">
-              <span
-                className="reveal-line block italic text-[#980f0f]"
-                style={{ fontStyle: "italic" }}
-              >
-                {isEn ? "For 65 Years." : "منذ ٦٥ عاماً."}
+            <span className="block overflow-hidden py-[0.2em]">
+              <span className="reveal-line block italic text-[#980f0f]" style={{ fontStyle: "italic" }}>
+                {heroData.titleLine2[langKey]}
               </span>
             </span>
           </h1>
 
-          <p className="reveal-sub mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[#4a453e] sm:mt-8 sm:text-base">
-            {isEn
-              ? "Since 1959, we build communities, not just units. Discover our premier developments in New Cairo, Mostakbal City, and New Heliopolis."
-              : "منذ عام 1959، نبني مجتمعات لا مجرد وحدات. اكتشف أرقى مشاريعنا في قلب القاهرة الجديدة، مدينة المستقبل، وهليوبوليس الجديدة."}
+          <p className="reveal-sub mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-neutral-700 sm:mt-8 sm:text-base">
+            {heroData.description[langKey]}
           </p>
 
           <div className="reveal-cta mt-8 flex justify-center sm:mt-10">
             <a
-              href="#projects"
-              className="group inline-flex items-center gap-3 border-b border-[#171410]/80 pb-1.5 text-sm font-medium tracking-wide text-[#171410] transition-colors hover:border-[#980f0f] hover:text-[#980f0f]"
+              href={heroData.ctaLink}
+              className="group inline-flex items-center gap-3 border-b border-[#171410]/80 pb-1.5 text-sm font-medium tracking-wide text-[#171410] transition-colors hover:border-[#980f0f] hover:text-[#980f0f] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#980f0f]"
             >
-              <span>{isEn ? "Discover Projects" : "اكتشف المشاريع"}</span>
+              <span>{heroData.ctaText[langKey]}</span>
               <svg
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:-scale-x-100"
-                fill="none"
+                width="22"
                 height="10"
                 viewBox="0 0 22 10"
-                width="22"
+                fill="none"
+                aria-hidden="true"
+                className={`transition-transform duration-300 ${
+                  isEn ? "group-hover:translate-x-1" : "-scale-x-100 group-hover:-translate-x-1"
+                }`}
               >
                 <path
                   d="M1 5h20m0 0L17 1m4 4l-4 4"
                   stroke="currentColor"
+                  strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="1.5"
                 />
               </svg>
             </a>
           </div>
         </div>
 
-        {/* Hero Architectural Framed Image Showcase */}
+        {/* Bottom Hero Preview Figure matching original */}
         <div className="mt-12 sm:mt-16 lg:mt-20">
           <figure className="relative">
-            <div className="reveal-image-mask group relative block aspect-[16/9] w-full overflow-hidden rounded-xl shadow-2xl bg-[#eae5de]">
+            <div className="reveal-image-mask group relative block aspect-[16/9] w-full overflow-hidden rounded-sm bg-neutral-100 shadow-sm">
               <div className="reveal-image-inner absolute inset-0">
                 <Image
-                  src="https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp"
-                  alt={isEn ? "Taj City — New Cairo" : "تاج سيتي — القاهرة الجديدة"}
+                  src={currentSlide.image}
+                  alt={currentSlide.title[langKey]}
                   fill
                   priority
-                  sizes="(min-width: 1280px) 1200px, 100vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(min-width: 1280px) 1200px, (min-width: 1024px) 90vw, 100vw"
+                  className="object-cover transition-opacity duration-700 ease-out"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#14110f]/30 via-transparent to-transparent"
                 />
               </div>
             </div>
 
-            <figcaption className="reveal-meta mt-4 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-[#736d65]">
-              <span className="font-semibold text-[#171410]">
-                {isEn ? "Taj City — New Cairo" : "تاج سيتي — القاهرة الجديدة"}
-              </span>
-              <span className="font-mono text-[10px] tracking-wider text-[#980f0f]">
-                {isEn ? "Live Community" : "مجتمع سكني متكامل"}
-              </span>
+            {/* Slide Navigation Bars */}
+            <div className="reveal-meta mt-4 flex gap-1.5" role="tablist" aria-label="أبرز المشاريع">
+              {heroData.slides.map((s, idx) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeSlide === idx}
+                  aria-label={s.title[langKey]}
+                  onClick={() => setActiveSlide(idx)}
+                  className="group relative h-[3px] flex-1 overflow-hidden rounded-full bg-neutral-200 transition-colors hover:bg-neutral-300"
+                >
+                  <span
+                    className={`block h-full origin-left rtl:origin-right transition-transform duration-500 ${
+                      activeSlide === idx ? "bg-[#980f0f] scale-x-100" : "bg-transparent scale-x-0"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Caption & Counter */}
+            <figcaption className="reveal-meta mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+              <span className="font-medium text-foreground">{currentSlide.title[langKey]}</span>
+              <span className="font-mono text-[10px] tracking-normal">{currentSlide.counter}</span>
             </figcaption>
           </figure>
+        </div>
+
+        {/* Hero Footer Meta */}
+        <div className="reveal-meta mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-neutral-200 pt-6 text-[11px] uppercase tracking-[0.22em] text-neutral-500 sm:mt-16">
+          <span className="font-mono text-[10px] tracking-normal text-neutral-400">
+            © <span className="text-neutral-600">{heroData.copyright}</span>
+          </span>
+          <span className="inline-flex items-center gap-3">
+            <span className="h-px w-8 bg-neutral-300" aria-hidden="true" />
+            {heroData.scrollHint[langKey]}
+          </span>
         </div>
       </div>
     </section>

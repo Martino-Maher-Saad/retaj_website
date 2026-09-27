@@ -1,68 +1,149 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLoader } from "@/components/LoaderContext";
 
 export default function Preloader() {
-  const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isDone, setIsDone] = useState(false);
+  const { setReady, setCurtainGone } = useLoader();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progressFillRef = useRef<HTMLSpanElement>(null);
+  const counterNumRef = useRef<HTMLSpanElement>(null);
+  const progressTweenRef = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
-    // محاكاة تحميل سلسة وسريعة للعداد من 0 إلى 100 خلال 1.5 ثانية
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => setIsLoading(false), 300); // إخفاء بعد الاكتمال
-          return 100;
-        }
-        const diff = Math.floor(Math.random() * 15) + 5;
-        return Math.min(prev + diff, 100);
-      });
-    }, 60);
+    gsap.registerPlugin(ScrollTrigger);
+    const container = containerRef.current;
+    if (!container) return;
 
-    return () => clearInterval(interval);
-  }, []);
+    const counterObj = { val: 0 };
 
-  if (!isLoading) return null;
+    const updateProgress = () => {
+      const rounded = Math.floor(counterObj.val);
+      if (counterNumRef.current) {
+        counterNumRef.current.textContent = String(rounded).padStart(2, "0");
+      }
+      if (progressFillRef.current) {
+        progressFillRef.current.style.transform = `scaleX(${rounded / 100})`;
+      }
+    };
+
+    // Initial state matching original site
+    gsap.set(".loader-logo", { autoAlpha: 0, scale: 0.94, y: 8 });
+    gsap.set(".loader-bottom > *", { autoAlpha: 0, y: 8 });
+    gsap.set(".loader-progress-fill", { scaleX: 0 });
+
+    const introTl = gsap.timeline({ defaults: { ease: "expo.out" } });
+    introTl
+      .to(".loader-logo", { autoAlpha: 1, scale: 1, y: 0, duration: 1.1 }, 0)
+      .to(".loader-bottom > *", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.08 }, 0.35);
+
+    // Subtle gentle breathing pulse on logo
+    const pulseTween = gsap.to(".loader-logo", {
+      scale: 1.015,
+      duration: 2.4,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+
+    // Smooth counter to 92
+    progressTweenRef.current = gsap.to(counterObj, {
+      val: 92,
+      duration: 1.8,
+      ease: "power2.out",
+      onUpdate: updateProgress,
+      onComplete: () => {
+        // Complete to 100 and exit
+        const exitTl = gsap.timeline();
+        exitTl
+          .to(counterObj, {
+            val: 100,
+            duration: 0.45,
+            ease: "expo.out",
+            onUpdate: updateProgress,
+          })
+          .to({}, { duration: 0.15 })
+          .add(() => {
+            setReady();
+            window.dispatchEvent(new CustomEvent("preloaderComplete"));
+          })
+          .to(".loader-logo", { autoAlpha: 0, y: -16, duration: 0.6, ease: "power2.in" }, "+=0")
+          .to(
+            ".loader-bottom > *",
+            { autoAlpha: 0, y: -10, duration: 0.5, stagger: 0.05, ease: "power2.in" },
+            "<"
+          )
+          .to(
+            container,
+            {
+              yPercent: -100,
+              duration: 1.25,
+              ease: "expo.inOut",
+              onComplete: () => {
+                setCurtainGone();
+                setIsDone(true);
+                ScrollTrigger.refresh();
+              },
+            },
+            "-=0.25"
+          );
+      },
+    });
+
+    return () => {
+      introTl.kill();
+      pulseTween.kill();
+      progressTweenRef.current?.kill();
+    };
+  }, [setReady, setCurtainGone]);
+
+  if (isDone) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)] transition-all duration-700 ${
-        progress === 100
-          ? "opacity-0 pointer-events-none -translate-y-4"
-          : "opacity-100"
-      }`}
+      ref={containerRef}
+      role="status"
+      aria-live="polite"
+      aria-label="مدينة مصر"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#faf8f5] text-[#171410] will-change-transform select-none"
     >
-      {/* 1. اللوجو في منتصف الشاشة */}
-      <div className="flex items-center justify-center px-6">
+      {/* Centered Brand Logo */}
+      <div className="loader-logo flex items-center justify-center px-6">
         <Image
           src="/logo-dark.svg"
           alt="مدينة مصر"
           width={260}
           height={94}
-          className="h-14 sm:h-16 lg:h-20 w-auto object-contain"
           priority
+          className="h-14 w-auto sm:h-16 lg:h-20 object-contain"
         />
       </div>
 
-      {/* 2. شريط التحميل والعداد في الأسفل تماماً مثل الموقع الأصلي */}
-      <div className="absolute inset-x-6 bottom-8 sm:inset-x-10 sm:bottom-10 lg:inset-x-14 lg:bottom-12 flex items-center gap-4 max-w-7xl mx-auto">
+      {/* Bottom Loading Bar and Numbers matching original exact DOM */}
+      <div className="loader-bottom absolute inset-x-6 bottom-8 flex items-center gap-4 sm:inset-x-10 sm:bottom-10 lg:inset-x-14 lg:bottom-12 max-w-7xl mx-auto">
         <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-neutral-500">
-          مدينة مصر
+          Madinet Masr · 2026
         </span>
 
-        {/* شريط التقدم */}
+        {/* Progress Line */}
         <div className="relative h-[1.5px] flex-1 overflow-hidden bg-neutral-200">
           <span
-            className="loader-progress-fill block h-full origin-right bg-brand transition-all duration-150 ease-out"
-            style={{ width: `${progress}%` }}
+            ref={progressFillRef}
+            className="loader-progress-fill block h-full origin-left rtl:origin-right bg-[#980f0f] will-change-transform"
+            style={{ transform: "scaleX(0)" }}
           />
         </div>
 
-        {/* العداد الرقمي */}
-        <span className="font-mono text-[12px] tabular-nums tracking-normal text-[var(--text-primary)] w-7 text-left">
-          {progress.toString().padStart(2, "0")}
+        {/* Tabular Digits */}
+        <span
+          ref={counterNumRef}
+          className="font-mono text-[11px] tabular-nums tracking-wider text-neutral-500 w-6 text-end"
+        >
+          00
         </span>
       </div>
     </div>

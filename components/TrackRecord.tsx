@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { CheckCircle2, MapPin } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Draggable } from "gsap/Draggable";
+import WordScrubText from "@/components/WordScrubText";
+import homeContent from "@/data/home_content.json";
 
 interface TrackRecordProps {
   isEn?: boolean;
@@ -12,11 +14,52 @@ interface TrackRecordProps {
 
 export default function TrackRecord({ isEn = false }: TrackRecordProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const draggableRef = useRef<any>(null);
+
+  const trackData = homeContent.trackRecord;
+  const langKey = isEn ? "en" : "ar";
+
+  const calculateBounds = useCallback(() => {
+    const el = sliderRef.current;
+    if (!el || !el.parentElement) return null;
+    const maxDrag = Math.max(0, el.scrollWidth - el.parentElement.clientWidth);
+    return isEn ? { minX: -maxDrag, maxX: 0 } : { minX: 0, maxX: maxDrag };
+  }, [isEn]);
+
+  const initDraggable = useCallback(() => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const bounds = calculateBounds();
+    if (!bounds) return;
+
+    if (draggableRef.current) draggableRef.current.kill();
+
+    const instances = Draggable.create(el, {
+      type: "x",
+      inertia: true,
+      bounds: bounds,
+      edgeResistance: 0.85,
+      cursor: "grab",
+      activeCursor: "grabbing",
+      allowNativeTouchScrolling: false,
+    });
+
+    draggableRef.current = instances[0];
+  }, [calculateBounds]);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, Draggable);
+
+    const onResize = () => {
+      requestAnimationFrame(initDraggable);
+    };
+
+    window.addEventListener("resize", onResize);
+    requestAnimationFrame(initDraggable);
 
     const ctx = gsap.context(() => {
+      // Eyebrow reveal
       gsap.fromTo(
         ".track-eyebrow",
         { y: 16, autoAlpha: 0 },
@@ -26,160 +69,134 @@ export default function TrackRecord({ isEn = false }: TrackRecordProps) {
           duration: 0.7,
           ease: "expo.out",
           scrollTrigger: {
-            trigger: ".track-eyebrow",
+            trigger: sectionRef.current,
             start: "top 85%",
             once: true,
           },
         }
       );
 
-      gsap.fromTo(
-        ".track-title",
-        { y: 24, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          ease: "expo.out",
+      // Card reveals matching original chunk
+      const cards = sectionRef.current?.querySelectorAll(".track-card-item");
+      cards?.forEach((card) => {
+        const mask = card.querySelector(".track-image-mask");
+        const inner = card.querySelector(".track-image-inner");
+        const caption = card.querySelector(".track-caption");
+
+        const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: ".track-title",
-            start: "top 85%",
+            trigger: card,
+            start: "top 82%",
             once: true,
           },
-        }
-      );
+        });
 
-      gsap.fromTo(
-        ".track-description",
-        { y: 24, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: ".track-description",
-            start: "top 85%",
-            once: true,
-          },
+        if (mask) {
+          tl.fromTo(
+            mask,
+            { clipPath: "inset(100% 0 0 0)" },
+            { clipPath: "inset(0% 0 0 0)", duration: 1.6, ease: "expo.out" }
+          );
         }
-      );
-
-      const cards = sectionRef.current?.querySelectorAll(".track-card");
-      if (cards && cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          { y: 40, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.9,
-            stagger: 0.12,
-            ease: "expo.out",
-            scrollTrigger: {
-              trigger: cards[0],
-              start: "top 82%",
-              once: true,
-            },
-          }
-        );
-      }
+        if (inner) {
+          tl.fromTo(
+            inner,
+            { scale: 1.15 },
+            { scale: 1, duration: 2, ease: "expo.out" },
+            "<"
+          );
+        }
+        if (caption) {
+          tl.fromTo(
+            caption,
+            { y: 24, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.8, ease: "expo.out" },
+            "-=1.0"
+          );
+        }
+      });
     }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
-
-  const communities = [
-    {
-      num: "01",
-      name: isEn ? "Taj Sultan" : "تاج سلطان",
-      location: isEn ? "Madinet Nasr" : "مدينة نصر",
-      status: isEn ? "Delivered" : "متسلّم",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/0IdzqYKISj-H.webp",
-      desc: isEn
-        ? "A premier community handed over and fully vibrant with residents enjoying full lifestyle amenities."
-        : "مجتمع متكامل الخدمات متسلم بالكامل ومأهول بالسكان يعيشون فيه أرقى مستويات الحياة.",
-    },
-    {
-      num: "02",
-      name: isEn ? "Taj Real" : "تاج ريال",
-      location: isEn ? "Madinet Nasr" : "مدينة نصر",
-      status: isEn ? "Delivered" : "متسلّم",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp",
-      desc: isEn
-        ? "Luxury residential clusters delivered with exceptional architectural aesthetics and lush landscapes."
-        : "أحياء سكنية راقية تم تسليمها بتصميمات معمارية فريدة ومساحات خضراء واسعة.",
-    },
-    {
-      num: "03",
-      name: isEn ? "Sarai" : "سراي",
-      location: isEn ? "New Cairo — Suez Road" : "القاهرة الجديدة — طريق السويس",
-      status: isEn ? "Delivered Phases" : "مراحل متسلمة",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/0__TDByYu7hx.webp",
-      desc: isEn
-        ? "Handed-over phases around the Crystal Lagoon with active community clubs and families living peacefully."
-        : "مراحل سكنية متسلمة حول الكريستال لاجون ونوادٍ مفعلة وعائلات تعيش باستقرار وفخر.",
-    },
-  ];
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (draggableRef.current) draggableRef.current.kill();
+      ctx.revert();
+    };
+  }, [initDraggable]);
 
   return (
-    <section ref={sectionRef} id="track" className="relative py-24 sm:py-32 lg:py-40 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-14 sm:mb-20">
-          <p className="track-eyebrow text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#980f0f] mb-3">
-            {isEn ? "Track Record" : "سابقة الأعمال"}
+    <section
+      id="track"
+      ref={sectionRef}
+      aria-labelledby="track-headline"
+      className="relative overflow-hidden bg-[#faf8f5] py-32 sm:py-48 lg:py-56 text-[#171410]"
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
+        {/* Section Header */}
+        <div className="max-w-3xl">
+          <p className="track-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500 sm:text-xs">
+            {trackData.eyebrow[langKey]}
           </p>
-          <h2 className="track-title text-3xl sm:text-4xl lg:text-5xl font-bold text-[#171410] tracking-tight mb-4">
-            {isEn
-              ? "Our promises have addresses and names. Communities pulsing with life."
-              : "وعودنا لها عناوين وأسماء. مجتمعات تنبض بالحياة."}
-          </h2>
-          <p className="track-description text-base sm:text-lg text-[#736d65]">
-            {isEn
-              ? "A celebrated record of delivered projects that became real communities — homes to thousands of proud families."
-              : "سجل حافل من المشاريع المتسلمة التي أصبحت مجتمعات حقيقية يعيش فيها آلاف العائلات بفخر."}
+
+          <WordScrubText
+            id="track-headline"
+            as="h2"
+            className="mt-4 font-display text-[clamp(2.2rem,5vw,4.5rem)] font-bold leading-[1.08] tracking-tight text-[#171410]"
+          >
+            {trackData.title[langKey]}
+          </WordScrubText>
+
+          <p className="mt-6 max-w-xl text-[15px] sm:text-[17px] leading-relaxed text-neutral-600">
+            {trackData.description[langKey]}
           </p>
         </div>
+      </div>
 
-        {/* Communities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {communities.map((item) => (
+      {/* Draggable Track Record Cards Slider */}
+      <div className="relative mt-14 sm:mt-20 overflow-hidden">
+        <div
+          ref={sliderRef}
+          data-cursor="drag"
+          className="flex cursor-grab gap-6 px-6 will-change-transform select-none active:cursor-grabbing sm:gap-8 sm:px-10 lg:px-14"
+          style={{ touchAction: "pan-y" }}
+        >
+          {trackData.communities.map((comm) => (
             <div
-              key={item.num}
-              className="track-card group rounded-2xl overflow-hidden border border-[#171410]/08 bg-[#faf8f5] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+              key={comm.num}
+              className="track-card-item flex-shrink-0 w-[84vw] max-w-[620px] sm:w-[500px] lg:w-[580px]"
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#eae5de]">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute top-4 start-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-md">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    {item.status}
-                  </span>
+              {/* Card Image Mask */}
+              <div className="track-image-mask relative aspect-[16/10] overflow-hidden rounded-sm bg-neutral-100">
+                <div className="track-image-inner relative h-full w-full">
+                  <Image
+                    src={comm.image}
+                    alt={comm.name[langKey]}
+                    fill
+                    sizes="(min-width: 1024px) 580px, 84vw"
+                    className="object-cover"
+                    draggable={false}
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#14110f]/40 via-transparent to-transparent"
+                  />
                 </div>
               </div>
 
-              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-2xl font-bold text-[#171410]">{item.name}</h3>
-                    <span className="text-xs font-bold text-[#980f0f] tracking-widest">
-                      {item.num}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs text-[#736d65] mb-4">
-                    <MapPin className="w-3.5 h-3.5 text-[#980f0f]" />
-                    <span>{item.location}</span>
-                  </div>
-                  <p className="text-sm text-[#4a453e] leading-relaxed">
-                    {item.desc}
-                  </p>
+              {/* Caption Below Image */}
+              <div className="track-caption mt-4 flex items-baseline justify-between gap-4">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-mono text-xs font-semibold text-[#980f0f]">
+                    {comm.num} · {comm.status[langKey]}
+                  </span>
+                  <h3 className="font-display text-2xl font-bold tracking-tight text-[#171410]">
+                    {comm.name[langKey]}
+                  </h3>
                 </div>
+
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+                  {comm.location[langKey]}
+                </span>
               </div>
             </div>
           ))}

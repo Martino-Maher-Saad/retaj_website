@@ -50,6 +50,17 @@
   --glass-border: rgba(255, 255, 255, 0.08);
 }
 
+/* Selection Styling matching original site */
+::selection {
+  background-color: #980f0f;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #980f0f;
+  color: #ffffff;
+}
+
 body {
   font-family: var(--font-arabic), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
@@ -131,4 +142,40 @@ div:has(> a[href*="nextjs.org"]) {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* Original Site Contact Button Bloom Aura & Call Ring Animations */
+.cta-bloom {
+  animation: 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite cta-bloom;
+  box-shadow: 0 0 rgba(152, 15, 15, 0.5);
+}
+
+@keyframes cta-bloom {
+  0% {
+    box-shadow: 0 0 rgba(152, 15, 15, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(152, 15, 15, 0);
+  }
+  100% {
+    box-shadow: 0 0 rgba(152, 15, 15, 0);
+  }
+}
+
+.call-ring {
+  transform-origin: 50%;
+  animation: 2.4s ease-in-out infinite call-ring;
+}
+
+@keyframes call-ring {
+  0%, 55%, 100% {
+    transform: rotate(0);
+  }
+  60%, 70%, 80% {
+    transform: rotate(11deg);
+  }
+  65%, 75%, 85% {
+    transform: rotate(-11deg);
+  }
+}
+
 
