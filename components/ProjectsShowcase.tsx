@@ -1,141 +1,318 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Draggable } from "gsap/Draggable";
+import WordScrubText from "@/components/WordScrubText";
+import LeadModal from "@/components/LeadModal";
+import homeContent from "@/data/home_content.json";
 
 interface ProjectsShowcaseProps {
   isEn?: boolean;
 }
 
+interface ProjectData {
+  id: string;
+  category: string;
+  tag: string;
+  name: string;
+  location: string;
+  price: string;
+  priceLabelKey: string;
+  payment: string;
+  unitTypes: string[];
+  description: string;
+  image: string;
+  href: string;
+}
+
+function ProjectCard({
+  project,
+  isEn,
+  labels,
+  onBook,
+}: {
+  project: ProjectData;
+  isEn: boolean;
+  labels: typeof homeContent.projectsSection.labels;
+  onBook: (projectId: string) => void;
+}) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const langKey = isEn ? "en" : "ar";
+  const isCommercial = project.category === "commercial";
+  const pricePrefix =
+    project.priceLabelKey === "perMeter"
+      ? labels.perMeter[langKey]
+      : labels.from[langKey];
+
+  return (
+    <article
+      className="project-card group flex-shrink-0"
+      data-category={project.category}
+      data-project-id={project.id}
+    >
+      <div className="relative w-[86vw] max-w-[760px] sm:w-[560px] lg:w-[680px] xl:w-[760px]">
+        {/* Main Image Box */}
+        <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-neutral-100">
+          <Image
+            src={project.image}
+            alt={project.name}
+            fill
+            sizes="(min-width: 1280px) 760px, (min-width: 1024px) 680px, (min-width: 640px) 560px, 86vw"
+            className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+            draggable={false}
+          />
+
+          {/* Hover Book Button in Center matching video */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onBook(project.id);
+              }}
+              className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-[#980f0f] px-5 py-2 text-xs font-bold text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span>{labels.book?.[langKey] || (isEn ? "Book" : "احجز")}</span>
+            </button>
+          </div>
+
+          {/* Category Tag Top-Start */}
+          <span
+            className={`absolute top-4 start-4 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] backdrop-blur-md ${
+              isCommercial
+                ? "bg-[#171410]/85 text-white"
+                : "bg-white/85 text-[#171410]"
+            }`}
+          >
+            {project.tag}
+          </span>
+
+          {/* 3D Flip Card Bottom-End */}
+          <div
+            className="absolute bottom-3 end-3 w-[54%] max-w-[260px] sm:bottom-4 sm:end-4 sm:w-[44%]"
+            style={{ perspective: "900px" }}
+            onMouseEnter={() => setIsFlipped(true)}
+            onMouseLeave={() => setIsFlipped(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setIsFlipped((prev) => !prev)}
+              aria-label={labels.tapForMore[langKey]}
+              aria-pressed={isFlipped}
+              className="block w-full text-start focus:outline-none"
+            >
+              <div
+                className="relative aspect-[1.5/1] w-full transition-transform duration-700 sm:aspect-[1.7/1]"
+                style={{
+                  transformStyle: "preserve-3d",
+                  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                  transitionTimingFunction: "cubic-bezier(0.5, 0, 0.1, 1)",
+                }}
+              >
+                {/* Front Face: Starting Price & Payment */}
+                <div
+                  className="absolute inset-0 flex flex-col justify-between rounded-sm bg-white/95 backdrop-blur-md p-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.08)] sm:p-4"
+                  style={{ backfaceVisibility: "hidden" }}
+                >
+                  <div>
+                    <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-neutral-500 sm:text-[10px]">
+                      {pricePrefix}
+                    </p>
+                    <p className="font-display mt-0.5 text-[clamp(1.05rem,2.2vw,1.75rem)] leading-none tracking-tight text-[#171410] sm:mt-1 font-bold">
+                      {project.price}
+                    </p>
+                    <p className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-neutral-500 sm:mt-1 sm:text-[10px]">
+                      {labels.currency[langKey]}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-neutral-200 pt-1.5 sm:pt-2">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-neutral-500 sm:text-[10px]">
+                      {labels.paymentSystem[langKey]}
+                    </p>
+                    <p className="mt-0.5 text-[11px] font-medium text-[#171410] sm:text-xs">
+                      {project.payment}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Back Face: Unit Types & Quick Action */}
+                <div
+                  className="absolute inset-0 flex flex-col justify-between rounded-sm bg-[#171410] p-2.5 text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] sm:p-4"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                  }}
+                >
+                  <div>
+                    <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-[#980f0f] sm:text-[10px]">
+                      {labels.unitTypes[langKey]}
+                    </p>
+                    <ul className="mt-1 space-y-0.5 text-[10px] text-white/90 sm:text-xs">
+                      {project.unitTypes.map((u, i) => (
+                        <li key={i} className="truncate">
+                          · {u}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <span className="text-[9px] font-medium uppercase tracking-[0.18em] text-neutral-400">
+                    {labels.tapForMore[langKey]} ↗
+                  </span>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Content Below Image */}
+        <div className="mt-5 flex flex-col gap-3">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="leading-none tracking-tight text-[#171410] font-display text-[clamp(1.75rem,3vw,2.5rem)] font-bold">
+              {project.name}
+            </h3>
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+              {project.location}
+            </span>
+          </div>
+
+          <p className="text-[14px] leading-relaxed text-neutral-700 sm:text-[15px]">
+            {project.description}
+          </p>
+
+          <Link
+            href={isEn ? `/en${project.href}` : project.href}
+            className="group/cta mt-2 inline-flex items-center gap-3 self-start border-b border-[#171410]/30 pb-1.5 text-[13px] font-medium tracking-tight text-[#171410] transition-colors hover:border-[#980f0f] hover:text-[#980f0f]"
+          >
+            <span>{labels.discover[langKey]}</span>
+            <svg
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover/cta:translate-x-1 rtl:-scale-x-100 rtl:group-hover/cta:-translate-x-1"
+              fill="none"
+              height="10"
+              viewBox="0 0 22 10"
+              width="20"
+            >
+              <path
+                d="M1 5h20m0 0L17 1m4 4l-4 4"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function ProjectsShowcase({ isEn = false }: ProjectsShowcaseProps) {
   const [filter, setFilter] = useState<"all" | "residential" | "commercial">("all");
+  const [showDragHint, setShowDragHint] = useState(true);
+  const [filterTick, setFilterTick] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [modalProject, setModalProject] = useState<string | null>(null);
+
   const sectionRef = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const draggableRef = useRef<Draggable | null>(null);
 
-  const projects = [
-    {
-      id: "taj-city",
-      name: isEn ? "Taj City" : "تاج سيتي",
-      category: "residential",
-      location: isEn ? "New Cairo — Suez Road" : "القاهرة الجديدة — طريق السويس",
-      price: isEn ? "6,250,000" : "6,250,000",
-      plan: isEn ? "1.5% down / 12 years" : "1.5% مقدم / 12 سنة",
-      unitTypes: isEn ? ["Apartments", "Town houses", "Offices"] : ["شقق", "تاون هاوس", "مكاتب"],
-      description: isEn
-        ? "More than a compound — an integrated city in the heart of New Cairo, with delivered phases and new developments."
-        : "ليست مجرد كمبوند — إنها مدينة متكاملة في قلب القاهرة الجديدة، بمشاريع متسلمة وأخرى قيد التطوير بأرقى المعايير.",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/yWWTX7lN__oJ.webp",
-      href: isEn ? "/en/taj-city" : "/taj-city",
-    },
-    {
-      id: "sarai",
-      name: isEn ? "Sarai" : "سراي",
-      category: "residential",
-      location: isEn ? "New Cairo — Suez Road" : "القاهرة الجديدة — طريق السويس",
-      price: isEn ? "3,600,000" : "3,600,000",
-      plan: isEn ? "1.5% down / 12 years" : "1.5% / 12 سنة",
-      unitTypes: isEn ? ["Apartments", "Villas", "Town houses"] : ["شقق", "فيلات", "تاون هاوس"],
-      description: isEn
-        ? "1,400 acres, the largest Crystal Lagoon in the region, an international university, and an integrated community on Hope Axis."
-        : "1,400 فدان، أكبر Crystal Lagoon في المنطقة، جامعة دولية، ومجتمع متكامل على محور الأمل.",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/0IdzqYKISj-H.webp",
-      href: isEn ? "/en/sarai" : "/sarai",
-    },
-    {
-      id: "talala",
-      name: isEn ? "Talala" : "تلالا",
-      category: "residential",
-      location: isEn ? "New Heliopolis" : "هليوبوليس الجديدة",
-      price: isEn ? "4,600,000" : "4,600,000",
-      plan: isEn ? "4% down / 15 years" : "4% مقدم / 15 سنة",
-      unitTypes: isEn
-        ? ["Apartments", "Standalone villas", "Town houses", "S-Villas"]
-        : ["شقق", "فيلات مستقلة", "تاون هاوس", "فيلات S"],
-      description: isEn
-        ? "550 acres of fully-finished units — the smartest choice for a turnkey home with guaranteed investment."
-        : "550 فدان بتشطيب كامل — الخيار الأذكى لمن يريد منزلاً جاهزاً باستثمار مضمون.",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/0__TDByYu7hx.webp",
-      href: isEn ? "/en/talala" : "/talala",
-    },
-    {
-      id: "butterfly",
-      name: isEn ? "Butterfly" : "بترفلاي",
-      category: "residential",
-      location: isEn ? "Mostakbal City" : "مستقبل سيتي",
-      price: isEn ? "4,000,000" : "4,000,000",
-      plan: isEn ? "1.5% down / 12 years" : "1.5% مقدم / 12 سنة",
-      unitTypes: isEn
-        ? ["Apartments", "Standalone villas", "Town houses"]
-        : ["شقق", "فيلات مستقلة", "تاون هاوس"],
-      description: isEn
-        ? "235 acres of premium villas and apartments with 1.5% down and instalments up to 12 years."
-        : "235 فدان من الفيلات والشقق الفاخرة بمقدم 1.5% وأقساط تصل لـ 12 سنة.",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/-C7GOU192Xka.webp",
-      href: isEn ? "/en/butterfly" : "/butterfly",
-    },
-    {
-      id: "d2n",
-      name: isEn ? "D2N" : "D2N",
-      category: "commercial",
-      location: isEn ? "Hope Axis — Inside Sarai" : "محور الأمل — داخل سراي",
-      price: isEn ? "7,200,000" : "7,200,000",
-      plan: isEn ? "10% down / 15 years" : "10% مقدم / 15 سنة",
-      unitTypes: isEn ? ["Offices", "Clinics"] : ["أوفيسات", "عيادات"],
-      description: isEn
-        ? "The first fully-integrated commercial mall on the Hope Axis — a commercial, administrative, and medical opportunity."
-        : "أول مول تجاري متكامل على محور الأمل — فرصة استثمارية تجارية وإدارية وطبية.",
-      image: "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/1U7w-3GzG9aB.webp",
-      href: isEn ? "/en/d2n" : "/d2n",
-    },
-  ];
+  const sectionData = homeContent.projectsSection;
+  const langKey = isEn ? "en" : "ar";
 
-  const filteredProjects = projects.filter((p) => {
-    if (filter === "all") return true;
-    return p.category === filter;
-  });
+  // Map projects data from json
+  const allProjects: ProjectData[] = sectionData.projects.map((p) => ({
+    id: p.id,
+    category: p.category,
+    tag: p.tag[langKey],
+    name: p.name[langKey],
+    location: p.location[langKey],
+    price: p.price,
+    priceLabelKey: p.priceLabelKey,
+    payment: p.payment[langKey],
+    unitTypes: p.unitTypes[langKey],
+    description: p.description[langKey],
+    image: p.image,
+    href: p.href,
+  }));
 
+  const filteredProjects =
+    filter === "all" ? allProjects : allProjects.filter((p) => p.category === filter);
+
+  // Exact bounds calculation from original site
+  const calculateBounds = useCallback(() => {
+    const el = sliderRef.current;
+    if (!el || !el.parentElement) return null;
+    const maxDrag = Math.max(0, el.scrollWidth - el.parentElement.clientWidth);
+    return isEn ? { minX: -maxDrag, maxX: 0 } : { minX: 0, maxX: maxDrag };
+  }, [isEn]);
+
+  // Create / Re-init Draggable
+  const initDraggable = useCallback(() => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const bounds = calculateBounds();
+    if (!bounds) return;
+
+    if (draggableRef.current) {
+      draggableRef.current.kill();
+    }
+
+    const instances = Draggable.create(el, {
+      type: "x",
+      inertia: true,
+      bounds: bounds,
+      edgeResistance: 0.85,
+      cursor: "grab",
+      activeCursor: "grabbing",
+      allowNativeTouchScrolling: false,
+      onPress: () => setShowDragHint(false),
+    });
+
+    draggableRef.current = instances[0];
+  }, [calculateBounds]);
+
+  // Register GSAP plugins & Initial Draggable setup
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, Draggable);
 
+    const onResize = () => {
+      requestAnimationFrame(initDraggable);
+    };
+
+    window.addEventListener("resize", onResize);
+    requestAnimationFrame(initDraggable);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (draggableRef.current) draggableRef.current.kill();
+    };
+  }, [initDraggable]);
+
+  // Initial scroll reveal for project cards
+  useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".projects-header",
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
+      const cards = sectionRef.current?.querySelectorAll(".project-card");
+      if (cards && cards.length > 0) {
+        gsap.from(cards, {
+          y: 60,
+          autoAlpha: 0,
+          duration: 0.9,
+          stagger: 0.08,
           ease: "expo.out",
           scrollTrigger: {
-            trigger: ".projects-header",
+            trigger: sectionRef.current,
             start: "top 85%",
             once: true,
           },
-        }
-      );
-
-      const cards = gridRef.current?.querySelectorAll(".project-card");
-      if (cards && cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          { y: 35, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.85,
-            stagger: 0.1,
-            ease: "expo.out",
-            scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top 80%",
-              once: true,
-            },
-          }
-        );
+        });
       }
     }, sectionRef);
 
@@ -143,161 +320,161 @@ export default function ProjectsShowcase({ isEn = false }: ProjectsShowcaseProps
   }, []);
 
   // Filter change animation
+  const handleFilterChange = (newFilter: "all" | "residential" | "commercial") => {
+    if (newFilter === filter || isTransitioning) return;
+    setIsTransitioning(true);
+
+    const slider = sliderRef.current;
+    const cards = slider?.querySelectorAll(".project-card");
+
+    if (cards && cards.length > 0) {
+      gsap.to(cards, {
+        y: -24,
+        autoAlpha: 0,
+        duration: 0.32,
+        stagger: 0.025,
+        ease: "power2.in",
+        onComplete: () => {
+          setFilter(newFilter);
+          setFilterTick((t) => t + 1);
+        },
+      });
+    } else {
+      setFilter(newFilter);
+      setFilterTick((t) => t + 1);
+    }
+  };
+
+  // Re-animate new cards after filter change
   useEffect(() => {
-    const cards = gridRef.current?.querySelectorAll(".project-card");
+    if (filterTick === 0) return;
+
+    const slider = sliderRef.current;
+    const cards = slider?.querySelectorAll(".project-card");
+
     if (cards && cards.length > 0) {
       gsap.fromTo(
         cards,
-        { scale: 0.96, autoAlpha: 0 },
+        { y: 28, autoAlpha: 0 },
         {
-          scale: 1,
+          y: 0,
           autoAlpha: 1,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: "power2.out",
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "expo.out",
+          onComplete: () => {
+            setIsTransitioning(false);
+            requestAnimationFrame(() => {
+              const bounds = calculateBounds();
+              if (bounds && draggableRef.current) {
+                draggableRef.current.applyBounds(bounds);
+              }
+              if (slider) {
+                gsap.to(slider, { x: 0, duration: 0.5, ease: "expo.out" });
+              }
+            });
+          },
         }
       );
+    } else {
+      setIsTransitioning(false);
     }
-  }, [filter]);
-
-  const ArrowIcon = isEn ? ArrowRight : ArrowLeft;
+  }, [filterTick, calculateBounds]);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative py-24 sm:py-32 lg:py-40 bg-[#faf8f5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="projects"
+      ref={sectionRef}
+      aria-labelledby="projects-title"
+      className="relative py-24 sm:py-32 lg:py-40 bg-[#faf8f5] text-[#171410] overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
         {/* Section Header */}
-        <div className="projects-header max-w-3xl mb-12 sm:mb-16">
-          <p className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#980f0f] mb-3">
-            {isEn ? "Projects" : "المشاريع"}
-          </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#171410] tracking-tight mb-4">
-            {isEn ? "Choose your next home with Madinet Masr" : "اختر مشروعك القادم مع مدينة مصر"}
-          </h2>
-          <p className="text-base sm:text-lg text-[#736d65]">
-            {isEn ? "Five communities. One that fits you." : "خمسة مجتمعات. واحد يليق بك."}
+        <div className="flex flex-col gap-4">
+          <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500 sm:text-xs">
+            {sectionData.eyebrow[langKey]}
           </p>
 
-          {/* Filter Tabs */}
-          <div className="flex items-center gap-2 mt-8 p-1.5 bg-[#eae5de]/60 rounded-full w-fit">
-            <button
-              onClick={() => setFilter("all")}
-              className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${
-                filter === "all"
-                  ? "bg-[#980f0f] text-white shadow-sm"
-                  : "text-[#4a453e] hover:text-[#171410]"
-              }`}
-            >
-              {isEn ? "All" : "الكل"}
-            </button>
-            <button
-              onClick={() => setFilter("residential")}
-              className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${
-                filter === "residential"
-                  ? "bg-[#980f0f] text-white shadow-sm"
-                  : "text-[#4a453e] hover:text-[#171410]"
-              }`}
-            >
-              {isEn ? "Residential" : "سكني"}
-            </button>
-            <button
-              onClick={() => setFilter("commercial")}
-              className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${
-                filter === "commercial"
-                  ? "bg-[#980f0f] text-white shadow-sm"
-                  : "text-[#4a453e] hover:text-[#171410]"
-              }`}
-            >
-              {isEn ? "Commercial" : "تجاري"}
-            </button>
-          </div>
+          <WordScrubText
+            id="projects-title"
+            as="h2"
+            className="font-display text-[clamp(2rem,5vw,4.5rem)] font-bold leading-[1.05] tracking-tight text-[#171410]"
+          >
+            {sectionData.title[langKey]}
+          </WordScrubText>
+
+          <p className="mt-2 text-base text-neutral-600 sm:text-lg">
+            {sectionData.subtitle[langKey]}
+          </p>
         </div>
 
-        {/* Project Cards Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="project-card group flex flex-col bg-white rounded-2xl overflow-hidden border border-[#171410]/08 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5"
-            >
-              {/* Image Container */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#eae5de]">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute top-4 start-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-md text-[#171410] shadow-sm">
-                    <MapPin className="w-3.5 h-3.5 text-[#980f0f]" />
-                    {project.location}
-                  </span>
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold text-[#171410] mb-2">{project.name}</h3>
-                  <p className="text-sm text-[#736d65] line-clamp-2 mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Financial & Plan Highlights */}
-                  <div className="grid grid-cols-2 gap-4 py-4 border-y border-[#171410]/08 mb-6">
-                    <div>
-                      <p className="text-xs text-[#736d65] mb-1">
-                        {isEn ? "From" : "يبدأ من"}
-                      </p>
-                      <p className="text-xl font-bold text-[#980f0f]">
-                        {project.price}{" "}
-                        <span className="text-xs font-normal text-[#171410]">
-                          {isEn ? "EGP" : "جنيه"}
-                        </span>
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-[#736d65] mb-1">
-                        {isEn ? "Payment plan" : "نظام السداد"}
-                      </p>
-                      <p className="text-sm font-semibold text-[#171410]">
-                        {project.plan}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Unit Types Tags */}
-                  <div className="mb-6">
-                    <p className="text-xs text-[#736d65] mb-2">
-                      {isEn ? "Unit types" : "أنواع الوحدات"}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.unitTypes.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="text-xs px-2.5 py-1 bg-[#faf8f5] text-[#4a453e] rounded-md border border-[#171410]/05"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card CTA */}
-                <Link
-                  href={project.href}
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#171410] hover:bg-[#980f0f] text-white text-sm font-semibold transition-colors shadow-sm"
+        {/* Filters and Drag Hint Header Row */}
+        <div className="mt-12 flex items-center justify-between gap-4 border-b border-neutral-200 pb-6 sm:mt-16">
+          {/* Filter Pills */}
+          <div
+            role="tablist"
+            aria-label="Filter projects"
+            className="inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-white p-1 shadow-sm"
+          >
+            {(["all", "residential", "commercial"] as const).map((key) => {
+              const isActive = filter === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => handleFilterChange(key)}
+                  className={`relative inline-flex items-center justify-center rounded-full px-5 py-2 text-[13px] font-medium tracking-tight transition-colors duration-300 ${
+                    isActive
+                      ? "bg-[#980f0f] text-white"
+                      : "text-neutral-700 hover:text-[#980f0f]"
+                  }`}
                 >
-                  <span>{isEn ? "Discover project" : "اكتشف المشروع"}</span>
-                  <ArrowIcon className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
+                  {sectionData.filters[key][langKey]}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Drag Indicator */}
+          <span
+            className={`font-mono text-[11px] uppercase tracking-[0.22em] text-neutral-500 transition-opacity duration-500 select-none ${
+              showDragHint ? "opacity-100" : "opacity-0"
+            }`}
+            aria-hidden={!showDragHint}
+          >
+            ← {sectionData.dragHint[langKey]} →
+          </span>
+        </div>
+      </div>
+
+      {/* Draggable Projects Slider */}
+      <div className="relative mt-8 sm:mt-12 overflow-hidden">
+        <div
+          ref={sliderRef}
+          data-cursor="drag"
+          className="flex cursor-grab gap-6 px-6 will-change-transform select-none active:cursor-grabbing sm:gap-8 sm:px-10 lg:px-14"
+          style={{ touchAction: "pan-y" }}
+        >
+          {filteredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              isEn={isEn}
+              labels={sectionData.labels}
+              onBook={(id) => setModalProject(id)}
+            />
           ))}
         </div>
       </div>
+
+      <LeadModal
+        isOpen={modalProject !== null}
+        onClose={() => setModalProject(null)}
+        isEn={isEn}
+        initialProject={modalProject || "taj-city"}
+      />
     </section>
   );
 }

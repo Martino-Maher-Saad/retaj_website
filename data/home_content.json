@@ -1,0 +1,574 @@
+{
+  "hero": {
+    "eyebrow": {
+      "ar": "مدينة مصر · تأسست ١٩٥٩",
+      "en": "MADINET MASR · EST. 1959"
+    },
+    "titleLine1": {
+      "ar": "نبني المستقبل",
+      "en": "Building the future"
+    },
+    "titleLine2": {
+      "ar": "منذ 70 عاماً.",
+      "en": "for 65 years."
+    },
+    "description": {
+      "ar": "منذ عام 1959، نبني مجتمعات لا مجرد وحدات. اكتشف ألق مشاريعنا في قلب القاهرة الجديدة، مدينة المستقبل، وهليوبوليس الجديدة.",
+      "en": "Since 1959, we build communities - not just units. Discover our flagship developments across New Cairo, Madinet Al Mostakbal and New Heliopolis."
+    },
+    "ctaText": {
+      "ar": "اكتشف المشاريع",
+      "en": "Discover projects"
+    },
+    "ctaLink": "#projects",
+    "slides": [
+      {
+        "id": "taj-city",
+        "title": {
+          "ar": "تاج سيتي — القاهرة الجديدة",
+          "en": "Taj City — New Cairo"
+        },
+        "counter": "01 / 04",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Taj.webp"
+      },
+      {
+        "id": "sarai",
+        "title": {
+          "ar": "سراي — القاهرة الجديدة",
+          "en": "Sarai — New Cairo"
+        },
+        "counter": "02 / 04",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp"
+      },
+      {
+        "id": "talala",
+        "title": {
+          "ar": "تلالا فيلات — هليوبوليس الجديدة",
+          "en": "Talala Villas — New Heliopolis"
+        },
+        "counter": "03 / 04",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Talala.webp"
+      },
+      {
+        "id": "d2n",
+        "title": {
+          "ar": "D2N مول — سراي",
+          "en": "D2N Mall — Sarai"
+        },
+        "counter": "04 / 04",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/D2N.webp"
+      }
+    ],
+    "copyright": "Madinet Masr · 2026",
+    "scrollHint": {
+      "ar": "اسحب للأسفل",
+      "en": "Scroll Down"
+    }
+  },
+  "projectsSection": {
+    "eyebrow": {
+      "ar": "المشاريع",
+      "en": "Projects"
+    },
+    "title": {
+      "ar": "اختر مشروعك القادم مع مدينة مصر",
+      "en": "Choose Your Next Project with Madinet Masr"
+    },
+    "subtitle": {
+      "ar": "خمسة مجتمعات، واحد يليق بك.",
+      "en": "Five communities, one that fits you."
+    },
+    "dragHint": {
+      "ar": "اسحب",
+      "en": "Drag"
+    },
+    "filters": {
+      "all": {
+        "ar": "الكل",
+        "en": "All"
+      },
+      "residential": {
+        "ar": "سكني",
+        "en": "Residential"
+      },
+      "commercial": {
+        "ar": "تجاري",
+        "en": "Commercial"
+      }
+    },
+    "labels": {
+      "from": {
+        "ar": "يبدأ من",
+        "en": "Starts from"
+      },
+      "perMeter": {
+        "ar": "متوسط سعر المتر",
+        "en": "Average price"
+      },
+      "currency": {
+        "ar": "جنيه",
+        "en": "EGP"
+      },
+      "paymentSystem": {
+        "ar": "نظام السداد",
+        "en": "Payment Plan"
+      },
+      "unitTypes": {
+        "ar": "أنواع الوحدات",
+        "en": "Unit Types"
+      },
+      "discover": {
+        "ar": "اكتشف المشروع",
+        "en": "Discover project"
+      },
+      "book": {
+        "ar": "احجز",
+        "en": "Book"
+      },
+      "tapForMore": {
+        "ar": "اضغط للتفاصيل",
+        "en": "Tap for details"
+      }
+    },
+    "projects": [
+      {
+        "id": "taj-city",
+        "category": "residential",
+        "tag": {
+          "ar": "سكني",
+          "en": "Residential"
+        },
+        "name": {
+          "ar": "تاج سيتي",
+          "en": "Taj City"
+        },
+        "location": {
+          "ar": "القاهرة الجديدة",
+          "en": "New Cairo"
+        },
+        "price": "6,250,000",
+        "priceLabelKey": "from",
+        "payment": {
+          "ar": "1.5% مقدم / 12 سنة",
+          "en": "1.5% down / 12 years"
+        },
+        "unitTypes": {
+          "ar": ["شقق", "تاون هاوس", "مكاتب"],
+          "en": ["Apartments", "Townhouses", "Offices"]
+        },
+        "description": {
+          "ar": "ليست مجرد كمبوند — إنها مدينة متكاملة في قلب القاهرة الجديدة، بمشاريع متسلمة وأخرى قيد التطوير بأرقى المعايير.",
+          "en": "More than a compound — an integrated city in the heart of New Cairo, with delivered phases and new developments."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Taj.webp",
+        "href": "/taj-city"
+      },
+      {
+        "id": "sarai",
+        "category": "residential",
+        "tag": {
+          "ar": "سكني",
+          "en": "Residential"
+        },
+        "name": {
+          "ar": "سراي",
+          "en": "Sarai"
+        },
+        "location": {
+          "ar": "القاهرة الجديدة",
+          "en": "New Cairo"
+        },
+        "price": "3,600,000",
+        "priceLabelKey": "from",
+        "payment": {
+          "ar": "1.5% مقدم / 10 سنوات",
+          "en": "1.5% down / 10 years"
+        },
+        "unitTypes": {
+          "ar": ["شقق", "فيلات", "تاون هاوس"],
+          "en": ["Apartments", "Villas", "Townhouses"]
+        },
+        "description": {
+          "ar": "1,400 فدان، أكبر Crystal Lagoon في المنطقة، جامعة دولية، ومجتمع متكامل على محور الأمل.",
+          "en": "1,400 acres, the largest Crystal Lagoon in the region, an international university, and an integrated community on Hope Axis."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp",
+        "href": "/sarai"
+      },
+      {
+        "id": "talala",
+        "category": "residential",
+        "tag": {
+          "ar": "سكني",
+          "en": "Residential"
+        },
+        "name": {
+          "ar": "تلالا",
+          "en": "Talala"
+        },
+        "location": {
+          "ar": "هليوبوليس الجديدة",
+          "en": "New Heliopolis"
+        },
+        "price": "4,600,000",
+        "priceLabelKey": "from",
+        "payment": {
+          "ar": "4% مقدم / 15 سنة",
+          "en": "4% down / 15 years"
+        },
+        "unitTypes": {
+          "ar": ["شقق", "فيلات مستقلة", "تاون هاوس"],
+          "en": ["Apartments", "Standalone Villas", "Townhouses"]
+        },
+        "description": {
+          "ar": "550 فدان بتشطيب كامل — الخيار الأذكى لمن يريد منزلاً جاهزاً باستثمار مضمون.",
+          "en": "550 acres of fully-finished units — the smartest choice for a turnkey home with guaranteed investment."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Talala.webp",
+        "href": "/talala"
+      },
+      {
+        "id": "butterfly",
+        "category": "residential",
+        "tag": {
+          "ar": "سكني",
+          "en": "Residential"
+        },
+        "name": {
+          "ar": "بترفلاي",
+          "en": "Butterfly"
+        },
+        "location": {
+          "ar": "مدينة المستقبل",
+          "en": "Mostakbal City"
+        },
+        "price": "4,000,000",
+        "priceLabelKey": "from",
+        "payment": {
+          "ar": "1.5% مقدم / 10 سنوات",
+          "en": "1.5% down / 10 years"
+        },
+        "unitTypes": {
+          "ar": ["شقق", "فيلات مستقلة", "تاون هاوس"],
+          "en": ["Apartments", "Standalone Villas", "Townhouses"]
+        },
+        "description": {
+          "ar": "235 فدان من الفيلات والشقق الفاخرة بمقدم 1.5% وأقساط تصل لـ 10 سنوات.",
+          "en": "235 acres of premium villas and apartments with 1.5% down and installments up to 10 years."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/butterfly.webp",
+        "href": "/butterfly"
+      },
+      {
+        "id": "d2n",
+        "category": "commercial",
+        "tag": {
+          "ar": "تجاري",
+          "en": "Commercial"
+        },
+        "name": {
+          "ar": "D2N",
+          "en": "D2N"
+        },
+        "location": {
+          "ar": "سراي",
+          "en": "Sarai"
+        },
+        "price": "7,200,000",
+        "priceLabelKey": "perMeter",
+        "payment": {
+          "ar": "10% مقدم / 15 سنة",
+          "en": "10% down / 15 years"
+        },
+        "unitTypes": {
+          "ar": ["أوفيسات", "عيادات"],
+          "en": ["Offices", "Clinics"]
+        },
+        "description": {
+          "ar": "أول مول تجاري متكامل على محور الأمل — فرصة استثمارية تجارية وإدارية وطبية.",
+          "en": "The first fully-integrated commercial mall on Hope Axis — a premier commercial opportunity."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/D2N.webp",
+        "href": "/d2n"
+      }
+    ]
+  },
+  "butterflySpotlight": {
+    "eyebrow": {
+      "ar": "العرض الأقوى",
+      "en": "Exclusive Offer"
+    },
+    "titleLine": {
+      "ar": "العرض الأقوى في السوق",
+      "en": "The Strongest Offer in the Market"
+    },
+    "title": {
+      "ar": "بترفلاي",
+      "en": "Butterfly"
+    },
+    "description": {
+      "ar": "في بترَفلاي، السعر بيحكيك بجد... كاش واستمتع بأكبر خصم في السوق 54%، أو ابدأ بـ 1.5% مقدم وعيش في 235 فدان من الفيلات والمناظر النادرة بمدينة المستقبل.",
+      "en": "At Butterfly, the price truly speaks... Pay cash and enjoy the market's biggest discount of 54%, or start with just 1.5% down across 235 acres of rare villas and landscapes in Mostakbal City."
+    },
+    "stats": [
+      {
+        "value": "1.5% مقدم",
+        "sub": "10 سنوات",
+        "value_en": "1.5% Down",
+        "sub_en": "10 Years"
+      },
+      {
+        "value": "54%",
+        "sub": "خصم عند الدفع كاش",
+        "value_en": "54%",
+        "sub_en": "Cash Discount"
+      }
+    ],
+    "tags": [
+      { "label": { "ar": "235 فدان", "en": "235 Acres" }, "highlight": true },
+      { "label": { "ar": "فلل", "en": "Villas" } },
+      { "label": { "ar": "فريدة ومستقلة", "en": "Standalone" } },
+      { "label": { "ar": "تاون هاوس", "en": "Townhouses" } }
+    ],
+    "cta": {
+      "text": {
+        "ar": "اعرف تفاصيل بترَفلاي",
+        "en": "Discover Butterfly Details"
+      },
+      "href": "/butterfly"
+    },
+    "images": {
+      "img1": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Butterfly1.webp",
+      "img2": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Butterfly2.webp"
+    }
+  },
+  "whyMadinetMasr": {
+    "eyebrow": {
+      "ar": "ليه مدينة مصر؟",
+      "en": "Why Madinet Masr?"
+    },
+    "title": {
+      "ar": "لماذا يثق آلاف المستثمرين في مدينة مصر؟",
+      "en": "Why do thousands of investors trust Madinet Masr?"
+    },
+    "pillars": [
+      {
+        "num": "01",
+        "title": {
+          "ar": "الخبرة",
+          "en": "Experience"
+        },
+        "content": {
+          "ar": "أكثر من 65 عاماً في التطوير العقاري. بدأت بمدينة نصر وتواصل اليوم في أول مواقع القاهرة الجديدة وهليوبوليس الجديدة ومدينة المستقبل.",
+          "en": "Over 65 years of real-estate excellence - begun in Madinet Nasr in 1959 and continuing today across prime locations in New Cairo, Mostakbal City, and New Heliopolis."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Talal.webp"
+      },
+      {
+        "num": "02",
+        "title": {
+          "ar": "الشفافية",
+          "en": "Transparency"
+        },
+        "content": {
+          "ar": "شركة مساهمة مدرجة في البورصة المصرية - أرقامنا علنية وسجلنا واضح.",
+          "en": "A publicly-listed joint-stock company on the Egyptian Exchange (EGX) - our audited financial figures are transparent and public."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/SaraiTaval.webp"
+      },
+      {
+        "num": "03",
+        "title": {
+          "ar": "التسليم الحقيقي",
+          "en": "Real Delivery"
+        },
+        "content": {
+          "ar": "مشاريع مستلمة وناس عايشة فيها فعلاً - مش وعود، ده واقع.",
+          "en": "Delivered communities where families actually live - not distant promises, an established living reality."
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp",
+        "badges": ["Park Residence", "Lake Park", "Shalya", "Taj Sultan"]
+      }
+    ]
+  },
+  "trackRecord": {
+    "eyebrow": {
+      "ar": "سابقة الأعمال",
+      "en": "Track Record"
+    },
+    "titleLine1": {
+      "ar": "وعودنا لها عناوين وأسماء.",
+      "en": "Our promises have addresses and names."
+    },
+    "titleLine2": {
+      "ar": "مجتمعات تنبض بالحياة.",
+      "en": "Communities vibrant with life."
+    },
+    "description": {
+      "ar": "سجل حافل من المشاريع المستلمة التي أصبحت مجتمعات حقيقية يعيش فيها آلاف العائلات بمصر.",
+      "en": "A proven record of delivered developments that have become thriving real communities where thousands of families live."
+    },
+    "communities": [
+      {
+        "num": "01",
+        "status": {
+          "ar": "متسلّم",
+          "en": "Delivered"
+        },
+        "name": {
+          "ar": "تاج سلطان",
+          "en": "Taj Sultan"
+        },
+        "location": {
+          "ar": "مدينة نصر",
+          "en": "Madinet Nasr"
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Tag_Sultan.webp"
+      },
+      {
+        "num": "02",
+        "status": {
+          "ar": "متسلّم",
+          "en": "Delivered"
+        },
+        "name": {
+          "ar": "تاج ريال",
+          "en": "Tag Real"
+        },
+        "location": {
+          "ar": "مدينة نصر",
+          "en": "Madinet Nasr"
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Tag_Real.webp"
+      },
+      {
+        "num": "03",
+        "status": {
+          "ar": "مراحل متسلمة",
+          "en": "Delivered Phases"
+        },
+        "name": {
+          "ar": "سراي",
+          "en": "Sarai"
+        },
+        "location": {
+          "ar": "القاهرة الجديدة",
+          "en": "New Cairo"
+        },
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp"
+      }
+    ]
+  },
+  "lifestyleFeatures": {
+    "eyebrow": {
+      "ar": "المميزات",
+      "en": "Features"
+    },
+    "title": {
+      "ar": "أكثر من مجرد سكن. أسلوب حياة صُمم لأجلك.",
+      "en": "More than housing. A lifestyle designed for you."
+    },
+    "features": [
+      {
+        "id": "security",
+        "title": {
+          "ar": "الأمان الاستثماري",
+          "en": "Investment Security"
+        },
+        "desc": {
+          "ar": "اسم مدينة مصر يضمن لك قيمة استثمارية حقيقية، وأعلى عائد استثماري لأي عقار تشتريه داخل مشاريعنا.",
+          "en": "The Madinet Masr name ensures genuine investment value and optimal returns on every property."
+        },
+        "icon": "ShieldCheck",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/feature-security.webp"
+      },
+      {
+        "id": "finishing",
+        "title": {
+          "ar": "التشطيب",
+          "en": "Finishing"
+        },
+        "desc": {
+          "ar": "نسلمك وحدتك بأعلى معايير التشطيب العالمية، لتبدأ حياتك من اليوم الأول.",
+          "en": "We deliver your unit to world-class finishing standards, ready to welcome you from day one."
+        },
+        "icon": "Key",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/feature-finishing.webp"
+      },
+      {
+        "id": "design",
+        "title": {
+          "ar": "تصميم عالمي",
+          "en": "World-Class Design"
+        },
+        "desc": {
+          "ar": "تعاون مع أرقى المكاتب الاستشارية العالمية لتقديم معمار يجمع بين الجمال والابتكار.",
+          "en": "Collaborations with world-renowned architectural firms blending timeless aesthetics and modern innovation."
+        },
+        "icon": "Building2",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/feature-design.webp"
+      },
+      {
+        "id": "community",
+        "title": {
+          "ar": "مجتمع متكامل",
+          "en": "Integrated Community"
+        },
+        "desc": {
+          "ar": "مدارس دولية، نوادي، مراكز طبية، ومناطق تجارية - كل احتياجاتك على بُعد خطوات.",
+          "en": "International schools, sports clubs, medical facilities, and retail centers - all within moments."
+        },
+        "icon": "Users",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/feature-community.webp"
+      }
+    ]
+  },
+  "floating": {
+    "phone": "+201070020054",
+    "whatsapp": "01146659065",
+    "bookNow": {
+      "ar": "احجز الآن",
+      "en": "Register"
+    },
+    "whatsappMessage": {
+      "ar": "مرحباً، أود الاستفسار عن مشاريع مدينة مصر وأسعار 2026",
+      "en": "Hello, I would like to inquire about Madinet Masr developments and 2026 offers"
+    },
+    "callLabel": {
+      "ar": "اتصل بنا",
+      "en": "Call Us"
+    },
+    "whatsappLabel": {
+      "ar": "تواصل عبر واتساب",
+      "en": "Chat on WhatsApp"
+    }
+  },
+  "footer": {
+    "about": {
+      "ar": "منصة متخصصة لعرض وتسويق مشاريع مدينة مصر للتطوير العقاري. هدفنا تزويد عملائنا بكافة المعلومات والاستشارات في أرقى مشاريع القاهرة الجديدة وهليوبوليس الجديدة ومدينة المستقبل.",
+      "en": "Dedicated platform showcasing and marketing Madinet Masr developments. We provide clients with full insights and advisory across prime New Cairo, Mostakbal City, and New Heliopolis projects."
+    },
+    "quickLinksTitle": {
+      "ar": "روابط سريعة",
+      "en": "Quick Links"
+    },
+    "contactTitle": {
+      "ar": "معلومات التواصل",
+      "en": "Contact Information"
+    },
+    "phone": "+201070020054",
+    "email": "sales@madinetmasr-sales.com",
+    "address": {
+      "ar": "القاهرة، جمهورية مصر العربية",
+      "en": "Cairo, Arab Republic of Egypt"
+    },
+    "copyright": {
+      "ar": "جميع الحقوق محفوظة لمنصة مبيعات مدينة مصر للتطوير العقاري",
+      "en": "All rights reserved. Madinet Masr Sales Platform"
+    },
+    "disclaimer": {
+      "ar": "تنويه قانوني: موقع تسويقي تابع لـ Madinet Masr Sales Guide. جميع المشروعات والعلامات التجارية مملوكة لشركة مدينة مصر للإسكان والتعمير.",
+      "en": "Legal Disclaimer: Marketing website by Madinet Masr Sales Guide. All trademarks belong to Madinet Masr Housing and Development."
+    }
+  }
+}

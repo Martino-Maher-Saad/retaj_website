@@ -63,6 +63,8 @@ export const metadata: Metadata = {
 
 import SmoothScroll from "@/components/SmoothScroll";
 
+import { LoaderProvider } from "@/components/LoaderContext";
+
 export default function RootLayout({
   children,
 }: {
@@ -75,11 +77,13 @@ export default function RootLayout({
       >
         <SmoothScroll />
         <DirectionManager />
-        <main className="min-h-screen flex flex-col">
-          <Preloader />
-          <Header />
-          {children}
-        </main>
+        <LoaderProvider>
+          <main className="min-h-screen flex flex-col">
+            <Preloader />
+            <Header />
+            {children}
+          </main>
+        </LoaderProvider>
       </body>
     </html>
   );
