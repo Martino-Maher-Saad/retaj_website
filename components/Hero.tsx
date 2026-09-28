@@ -20,6 +20,13 @@ export default function Hero({ isEn = false }: HeroProps) {
   const currentSlide = heroData.slides[activeSlide] || heroData.slides[0];
 
   useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroData.slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [heroData.slides.length]);
+
+  useEffect(() => {
     let tl: gsap.core.Timeline | null = null;
 
     const ctx = gsap.context(() => {

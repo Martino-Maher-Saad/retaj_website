@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
 import WordScrubText from "@/components/WordScrubText";
+import LeadModal from "@/components/LeadModal";
 import homeContent from "@/data/home_content.json";
 
 interface ProjectsShowcaseProps {
@@ -32,10 +33,12 @@ function ProjectCard({
   project,
   isEn,
   labels,
+  onBook,
 }: {
   project: ProjectData;
   isEn: boolean;
   labels: typeof homeContent.projectsSection.labels;
+  onBook: (projectId: string) => void;
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const langKey = isEn ? "en" : "ar";
@@ -62,6 +65,20 @@ function ProjectCard({
             className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
             draggable={false}
           />
+
+          {/* Hover Book Button in Center matching video */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onBook(project.id);
+              }}
+              className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-[#980f0f] px-5 py-2 text-xs font-bold text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span>{labels.book?.[langKey] || (isEn ? "Book" : "احجز")}</span>
+            </button>
+          </div>
 
           {/* Category Tag Top-Start */}
           <span
@@ -201,10 +218,11 @@ export default function ProjectsShowcase({ isEn = false }: ProjectsShowcaseProps
   const [showDragHint, setShowDragHint] = useState(true);
   const [filterTick, setFilterTick] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [modalProject, setModalProject] = useState<string | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const draggableRef = useRef<any>(null);
+  const draggableRef = useRef<Draggable | null>(null);
 
   const sectionData = homeContent.projectsSection;
   const langKey = isEn ? "en" : "ar";
@@ -445,10 +463,18 @@ export default function ProjectsShowcase({ isEn = false }: ProjectsShowcaseProps
               project={project}
               isEn={isEn}
               labels={sectionData.labels}
+              onBook={(id) => setModalProject(id)}
             />
           ))}
         </div>
       </div>
+
+      <LeadModal
+        isOpen={modalProject !== null}
+        onClose={() => setModalProject(null)}
+        isEn={isEn}
+        initialProject={modalProject || "taj-city"}
+      />
     </section>
   );
 }

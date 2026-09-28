@@ -20,13 +20,18 @@ export default function WhyMadinetMasr({ isEn = false }: WhyMadinetMasrProps) {
   const langKey = isEn ? "en" : "ar";
   const activePillar = whyData.pillars[activeTab] || whyData.pillars[0];
 
-  // Exact image swap animation from original chunk
+  // Image and text swap animation on tab switch
   useEffect(() => {
     if (!imgRef.current) return;
     gsap.fromTo(
       imgRef.current,
-      { autoAlpha: 0, y: 14 },
-      { autoAlpha: 1, y: 0, duration: 0.55, ease: "expo.out" }
+      { autoAlpha: 0, y: 16 },
+      { autoAlpha: 1, y: 0, duration: 0.5, ease: "expo.out" }
+    );
+    gsap.fromTo(
+      ".why-content-text",
+      { autoAlpha: 0, y: 12 },
+      { autoAlpha: 1, y: 0, duration: 0.45, ease: "expo.out" }
     );
   }, [activeTab]);
 
@@ -51,7 +56,7 @@ export default function WhyMadinetMasr({ isEn = false }: WhyMadinetMasrProps) {
         }
       );
 
-      // Left Image mask reveal
+      // Image container reveal
       gsap.fromTo(
         ".why-image-mask",
         { clipPath: "inset(100% 0 0 0)" },
@@ -76,12 +81,12 @@ export default function WhyMadinetMasr({ isEn = false }: WhyMadinetMasrProps) {
       id="why"
       ref={sectionRef}
       aria-labelledby="why-headline"
-      className="relative overflow-hidden bg-[#171410] py-32 sm:py-48 lg:py-56 text-[#faf8f5]"
+      className="relative overflow-hidden bg-[#0d0c0b] py-28 sm:py-36 lg:py-48 text-[#faf8f5]"
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
-        {/* Header */}
+        {/* Header matching video */}
         <div className="max-w-3xl">
-          <p className="why-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-[#b8b0a5] sm:text-xs">
+          <p className="why-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-400 sm:text-xs">
             {whyData.eyebrow[langKey]}
           </p>
 
@@ -94,30 +99,46 @@ export default function WhyMadinetMasr({ isEn = false }: WhyMadinetMasrProps) {
           </WordScrubText>
         </div>
 
-        {/* 2-Column Interactive Pillars Layout */}
+        {/* 2-Column Layout matching video at 01:11 - 01:16 */}
         <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 lg:items-center">
-          {/* Left Column: Dynamic Swapping Image & Content */}
-          <div className="lg:col-span-6 flex flex-col gap-6">
-            <div className="why-image-mask relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#221d18]">
+          {/* Dynamic Display Side (Left in RTL, Right in LTR) */}
+          <div className="lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1">
+            <div className="why-image-mask relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#221d18] shadow-2xl border border-white/10">
               <div ref={imgRef} className="relative h-full w-full">
                 <Image
                   src={activePillar.image}
                   alt={activePillar.title[langKey]}
                   fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 60vw, 100vw"
                   className="object-cover"
                 />
               </div>
             </div>
 
             {/* Description Text */}
-            <p className="text-[15px] sm:text-[16px] leading-relaxed text-[#b8b0a5] min-h-[4.5rem]">
-              {activePillar.content[langKey]}
-            </p>
+            <div className="why-content-text flex flex-col gap-4">
+              <p className="text-[15px] sm:text-[17px] leading-relaxed text-neutral-300">
+                {activePillar.content[langKey]}
+              </p>
+
+              {/* Delivered Community Badges (Shown when badges array exists, e.g. Pillar 3) */}
+              {"badges" in activePillar && Array.isArray((activePillar as any).badges) && (
+                <div className="flex flex-wrap items-center gap-2 pt-2">
+                  {((activePillar as any).badges as string[]).map((badge, bIdx) => (
+                    <span
+                      key={bIdx}
+                      className="rounded-full border border-white/15 bg-white/05 px-3.5 py-1 text-xs font-medium text-neutral-300 backdrop-blur-sm"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Right Column: 3 Clickable Pillar Titles */}
-          <div className="lg:col-span-6 flex flex-col divide-y divide-white/10">
+          {/* Interactive Clean Tabs Side (Right in RTL, Left in LTR) */}
+          <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-8 order-1 lg:order-2">
             {whyData.pillars.map((pillar, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -125,46 +146,26 @@ export default function WhyMadinetMasr({ isEn = false }: WhyMadinetMasrProps) {
                   key={pillar.num}
                   type="button"
                   onClick={() => setActiveTab(idx)}
-                  className="group flex w-full items-start justify-between py-8 text-start transition-colors duration-300 focus:outline-none"
+                  className="group relative flex items-center justify-between text-start transition-all duration-300 focus:outline-none cursor-pointer py-2"
                 >
-                  <div className="flex items-start gap-6 sm:gap-8">
+                  <div className="flex items-center gap-4">
                     <span
-                      className={`font-mono text-xs sm:text-sm font-semibold tracking-wider transition-colors duration-300 ${
-                        isActive ? "text-[#980f0f]" : "text-white/30 group-hover:text-white/60"
+                      className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                        isActive
+                          ? "bg-[#980f0f] scale-100 shadow-[0_0_12px_#980f0f]"
+                          : "bg-transparent scale-0"
+                      }`}
+                    />
+                    <h3
+                      className={`font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight transition-all duration-300 ${
+                        isActive
+                          ? "text-white"
+                          : "text-neutral-500 hover:text-neutral-300"
                       }`}
                     >
-                      {pillar.num}
-                    </span>
-
-                    <div>
-                      <h3
-                        className={`font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight transition-all duration-300 ${
-                          isActive
-                            ? "text-white translate-x-1 rtl:-translate-x-1"
-                            : "text-white/30 group-hover:text-white/70"
-                        }`}
-                      >
-                        {pillar.title[langKey]}
-                      </h3>
-
-                      {/* Mobile inline content */}
-                      {isActive && (
-                        <p className="mt-4 text-sm leading-relaxed text-[#b8b0a5] lg:hidden">
-                          {pillar.content[langKey]}
-                        </p>
-                      )}
-                    </div>
+                      {pillar.title[langKey]}
+                    </h3>
                   </div>
-
-                  <span
-                    className={`text-lg transition-transform duration-300 ${
-                      isActive
-                        ? "text-[#980f0f] rotate-45"
-                        : "text-white/20 group-hover:text-white/50"
-                    }`}
-                  >
-                    +
-                  </span>
                 </button>
               );
             })}

@@ -18,7 +18,7 @@ export default function FloatingActionBar({ isEn = false }: FloatingActionBarPro
   const langKey = isEn ? "en" : "ar";
 
   const phone = floatData.phone;
-  const rawPhone = `+20${phone.replace(/^0/, "")}`;
+  const rawPhone = phone.startsWith("+") ? phone : `+20${phone.replace(/^0/, "")}`;
   const whatsapp = floatData.whatsapp.replace(/[^0-9]/g, "");
   const waText = encodeURIComponent(floatData.whatsappMessage[langKey]);
 

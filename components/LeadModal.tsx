@@ -128,26 +128,21 @@ export default function LeadModal({
         ) : (
           <>
             <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500">
-              {isEn ? "Register your interest" : "سجّل بياناتك للحصول على التفاصيل"}
+              {isEn ? "Register your interest" : "سجل بياناتك للحصول على التفاصيل"}
             </p>
             <h3 className="font-display mt-3 text-3xl font-bold leading-tight tracking-tight text-[#171410] sm:text-4xl">
               {isEn ? "Book Now" : "احجز الآن"}
             </h3>
-            <p className="mt-2 text-sm text-[#4a453e]">
-              {isEn
-                ? "Leave your contact details and our certified sales team will call you within 24 hours."
-                : "اترك بياناتك وسيتواصل معك فريق المبيعات المعتمد بأحدث قوائم الأسعار والعروض."}
-            </p>
 
-            <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-5">
               <div>
-                <label className="block text-[11px] font-medium uppercase tracking-[0.18em] text-[#736d65] mb-1">
-                  {isEn ? "Full Name" : "الاسم بالكامل"}
+                <label className="block text-xs font-medium text-neutral-600 mb-1.5">
+                  {isEn ? "Full Name" : "اسمك بالكامل"}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder={isEn ? "Your Name" : "الاسم الثلاثي"}
+                  placeholder={isEn ? "Full Name" : "اسمك بالكامل"}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full border-b border-neutral-300 bg-transparent py-2.5 text-sm text-[#171410] placeholder:text-neutral-400 focus:border-[#980f0f] focus:outline-none transition-colors"
@@ -155,14 +150,14 @@ export default function LeadModal({
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium uppercase tracking-[0.18em] text-[#736d65] mb-1">
-                  {isEn ? "Phone Number" : "رقم الهاتف"}
+                <label className="block text-xs font-medium text-neutral-600 mb-1.5">
+                  {isEn ? "Phone Number" : "رقم الموبايل"}
                 </label>
                 <input
                   type="tel"
                   required
                   dir="ltr"
-                  placeholder={isEn ? "010..." : "010..."}
+                  placeholder="01XXXXXXXXX"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full border-b border-neutral-300 bg-transparent py-2.5 text-sm text-[#171410] placeholder:text-neutral-400 focus:border-[#980f0f] focus:outline-none transition-colors"
@@ -170,28 +165,28 @@ export default function LeadModal({
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium uppercase tracking-[0.18em] text-[#736d65] mb-1">
-                  {isEn ? "Preferred Project" : "المشروع المفضل"}
+                <label className="block text-xs font-medium text-neutral-600 mb-1.5">
+                  {isEn ? "Interested Project" : "المشروع المهتم به"}
                 </label>
                 <select
                   value={formData.project}
                   onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                  className="w-full border-b border-neutral-300 bg-transparent py-2.5 text-sm text-[#171410] focus:border-[#980f0f] focus:outline-none transition-colors"
+                  className="w-full border-b border-neutral-300 bg-transparent py-2.5 text-sm text-[#171410] focus:border-[#980f0f] focus:outline-none transition-colors cursor-pointer"
                 >
-                  <option value="taj-city">{isEn ? "Taj City (New Cairo)" : "تاج سيتي (القاهرة الجديدة)"}</option>
-                  <option value="sarai">{isEn ? "Sarai (Suez Road)" : "سراي (طريق السويس)"}</option>
-                  <option value="butterfly">{isEn ? "Butterfly (Mostakbal City)" : "بترفلاي (مستقبل سيتي)"}</option>
-                  <option value="talala">{isEn ? "Talala (New Heliopolis)" : "تلالا (هليوبوليس الجديدة)"}</option>
-                  <option value="d2n">{isEn ? "D2N Commercial Mall" : "داي تو نايت D2N (تجاري وإداري)"}</option>
+                  <option value="">{isEn ? "Choose a project" : "اختر مشروعاً"}</option>
+                  <option value="taj-city">{isEn ? "Taj City" : "تاج سيتي"}</option>
+                  <option value="sarai">{isEn ? "Sarai" : "سراي"}</option>
+                  <option value="butterfly">{isEn ? "Butterfly" : "بترفلاي"}</option>
+                  <option value="talala">{isEn ? "Talala" : "تلالا"}</option>
+                  <option value="d2n">{isEn ? "D2N" : "D2N"}</option>
                 </select>
               </div>
 
               <button
                 type="submit"
-                className="mt-4 w-full py-3.5 rounded-xl bg-[#980f0f] hover:bg-[#7b0c0c] text-white font-bold text-sm tracking-wide transition-all hover:shadow-[0_8px_25px_rgba(152,15,15,0.35)] flex items-center justify-center gap-2"
+                className="mt-4 w-full py-3.5 rounded-xl bg-[#980f0f] hover:bg-[#7b0c0c] text-white font-bold text-sm tracking-wide transition-all shadow-[0_4px_18px_rgba(152,15,15,0.35)] flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
               >
-                <PhoneCall className="w-4 h-4" />
-                <span>{isEn ? "Confirm & Contact Now" : "تأكيد الطلب والتواصل فوراً"}</span>
+                <span>{isEn ? "Submit Request" : "إرسال الطلب"}</span>
               </button>
             </form>
           </>

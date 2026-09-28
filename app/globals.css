@@ -51,14 +51,16 @@
 }
 
 /* Selection Styling matching original site */
-::selection {
-  background-color: #980f0f;
-  color: #ffffff;
+::selection,
+*::selection {
+  background-color: #980f0f !important;
+  color: #ffffff !important;
 }
 
-::-moz-selection {
-  background-color: #980f0f;
-  color: #ffffff;
+::-moz-selection,
+*::-moz-selection {
+  background-color: #980f0f !important;
+  color: #ffffff !important;
 }
 
 body {

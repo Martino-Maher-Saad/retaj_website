@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { ShieldCheck, Compass, Building2, Paintbrush } from "lucide-react";
+import { ShieldCheck, Key, Building2, Users } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import WordScrubText from "@/components/WordScrubText";
@@ -13,10 +13,10 @@ interface LifestyleFeaturesProps {
 }
 
 const ICONS = {
-  Paintbrush,
   ShieldCheck,
+  Key,
   Building2,
-  Compass,
+  Users,
 };
 
 export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesProps) {
@@ -46,36 +46,25 @@ export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesPro
         }
       );
 
-      // Card reveals matching original chunk
+      // Card reveals
       const cardEls = sectionRef.current?.querySelectorAll(".feature-card-item");
       cardEls?.forEach((card, idx) => {
-        const mask = card.querySelector(".features-image-mask");
-        const content = card.querySelector(".features-content");
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            once: true,
-          },
-          delay: 0.08 * (idx % 2 !== 0 ? 1 : 0),
-        });
-
-        if (mask) {
-          tl.fromTo(
-            mask,
-            { clipPath: "inset(100% 0 0 0)" },
-            { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.out" }
-          );
-        }
-        if (content) {
-          tl.fromTo(
-            content,
-            { y: 24, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 0.7, ease: "expo.out" },
-            "-=0.6"
-          );
-        }
+        gsap.fromTo(
+          card,
+          { y: 35, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.8,
+            delay: idx * 0.1,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
       });
     }, sectionRef);
 
@@ -87,7 +76,7 @@ export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesPro
       id="features"
       ref={sectionRef}
       aria-labelledby="features-headline"
-      className="relative overflow-hidden bg-[#faf8f5] py-32 sm:py-48 lg:py-56 text-[#171410]"
+      className="relative overflow-hidden bg-[#faf8f5] py-28 sm:py-36 lg:py-48 text-[#171410]"
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
         {/* Header */}
@@ -105,38 +94,41 @@ export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesPro
           </WordScrubText>
         </div>
 
-        {/* 2x2 Feature Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-12">
+        {/* 2x2 Feature Grid Matching Video at 01:26 - 01:31 */}
+        <div className="mt-14 sm:mt-18 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
           {featData.features.map((feat) => {
             const Icon = ICONS[feat.icon as keyof typeof ICONS] || ShieldCheck;
             return (
-              <div key={feat.id} className="feature-card-item flex flex-col gap-4">
-                {/* Image Box */}
-                <div className="features-image-mask relative aspect-[16/10] overflow-hidden rounded-sm bg-neutral-100">
-                  <Image
-                    src={feat.image}
-                    alt={feat.title[langKey]}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out hover:scale-105"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#14110f]/60 via-transparent to-transparent"
-                  />
+              <div
+                key={feat.id}
+                className="feature-card-item group relative aspect-[16/11] sm:aspect-[16/10] overflow-hidden rounded-2xl bg-neutral-900 shadow-xl border border-neutral-200"
+              >
+                {/* Background Image */}
+                <Image
+                  src={feat.image}
+                  alt={feat.title[langKey]}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
 
-                  {/* Icon badge top-start */}
-                  <div className="absolute top-4 start-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#980f0f] shadow-md backdrop-blur-sm">
-                    <Icon size={20} strokeWidth={2} />
-                  </div>
+                {/* Subtle Gradient Overlays */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"
+                />
+
+                {/* Red Circular Icon Badge at Top-End Corner matching video */}
+                <div className="absolute top-5 end-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#980f0f] text-white shadow-lg shadow-[#980f0f]/40 transition-transform duration-300 group-hover:scale-110">
+                  <Icon size={20} strokeWidth={2.2} />
                 </div>
 
-                {/* Content */}
-                <div className="features-content mt-2 flex flex-col gap-2">
-                  <h3 className="font-display text-2xl font-bold tracking-tight text-[#171410]">
+                {/* Bottom Content Overlaid on Card */}
+                <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8 text-white flex flex-col gap-2">
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white drop-shadow-md">
                     {feat.title[langKey]}
                   </h3>
-                  <p className="text-[15px] leading-relaxed text-neutral-600">
+                  <p className="text-[13px] sm:text-[14px] leading-relaxed text-neutral-200/90 max-w-lg">
                     {feat.desc[langKey]}
                   </p>
                 </div>
