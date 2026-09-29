@@ -85,7 +85,7 @@ export default function Hero({ isEn = false }: HeroProps) {
           <h1
             id="hero-title"
             aria-label={`${heroData.titleLine1[langKey]} ${heroData.titleLine2[langKey]}`}
-            className="font-display mt-6 text-[clamp(2.5rem,6.5vw,6rem)] leading-[1.0] tracking-tight text-foreground rtl:leading-[1.2] sm:mt-8"
+            className="font-display mt-6 text-[clamp(2.5rem,6.5vw,5.75rem)] leading-[1.02] tracking-tight text-foreground rtl:leading-[1.22] sm:mt-8 font-medium sm:font-semibold"
           >
             <span className="block overflow-hidden py-[0.2em]">
               <span className="reveal-line block">
@@ -99,14 +99,14 @@ export default function Hero({ isEn = false }: HeroProps) {
             </span>
           </h1>
 
-          <p className="reveal-sub mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-neutral-700 sm:mt-8 sm:text-base">
+          <p className="reveal-sub mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-neutral-600 sm:mt-8 sm:text-base">
             {heroData.description[langKey]}
           </p>
 
           <div className="reveal-cta mt-8 flex justify-center sm:mt-10">
             <a
               href={heroData.ctaLink}
-              className="group inline-flex items-center gap-3 border-b border-foreground/80 pb-1.5 text-sm font-medium tracking-wide text-foreground transition-colors hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand cursor-pointer"
+              className="group inline-flex items-center gap-3 border-b border-foreground/70 pb-1.5 text-sm font-medium tracking-wide text-foreground transition-colors hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand cursor-pointer"
             >
               <span>{heroData.ctaText[langKey]}</span>
               <svg
@@ -164,7 +164,7 @@ export default function Hero({ isEn = false }: HeroProps) {
                   aria-selected={activeSlide === idx}
                   aria-label={s.title[langKey]}
                   onClick={() => setActiveSlide(idx)}
-                  className="group relative h-[3px] flex-1 overflow-hidden rounded-full bg-neutral-100 transition-colors hover:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-brand cursor-pointer"
+                  className="group relative h-[3px] flex-1 overflow-hidden rounded-full bg-neutral-200/80 transition-colors hover:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-brand cursor-pointer"
                 >
                   <span
                     className={`block h-full origin-left rtl:origin-right transition-transform duration-500 ${

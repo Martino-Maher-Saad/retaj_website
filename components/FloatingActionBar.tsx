@@ -4,6 +4,7 @@ import { useState } from "react";
 import { UserPlus, Phone } from "lucide-react";
 import LeadModal from "@/components/LeadModal";
 import homeContent from "@/data/home_content.json";
+import siteConfig from "@/data/site_config.json";
 
 interface FloatingActionBarProps {
   isEn?: boolean;
@@ -15,9 +16,10 @@ export default function FloatingActionBar({ isEn = false }: FloatingActionBarPro
   const floatData = homeContent.floating;
   const langKey = isEn ? "en" : "ar";
 
-  const phone = floatData.phone;
+  const phone = siteConfig.contact?.phone || floatData.phone;
   const rawPhone = phone.startsWith("+") ? phone : `+20${phone.replace(/^0/, "")}`;
-  const whatsapp = floatData.whatsapp.replace(/[^0-9]/g, "");
+  const rawWa = (siteConfig.contact?.whatsapp || floatData.whatsapp).replace(/[^0-9]/g, "");
+  const whatsapp = rawWa.startsWith("20") ? rawWa : (rawWa.startsWith("0") ? `2${rawWa}` : `20${rawWa}`);
   const waText = encodeURIComponent(floatData.whatsappMessage[langKey]);
 
   return (
@@ -42,7 +44,7 @@ export default function FloatingActionBar({ isEn = false }: FloatingActionBarPro
 
             {/* WhatsApp Direct Circle */}
             <a
-              href={`https://wa.me/2${whatsapp}?text=${waText}`}
+              href={`https://wa.me/${whatsapp}?text=${waText}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={floatData.whatsappLabel[langKey]}

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 
 interface FaqItem {
@@ -14,71 +13,61 @@ interface ProjectFAQProps {
 }
 
 export default function ProjectFAQ({ faqs, isEn = false }: ProjectFAQProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const langKey = isEn ? "en" : "ar";
 
   if (!faqs || faqs.length === 0) return null;
 
   return (
-    <section className="relative py-24 sm:py-32 lg:py-40 bg-white text-[#171410] border-t border-neutral-200/60">
-      <div className="mx-auto max-w-4xl px-6 sm:px-10 lg:px-14">
-        {/* Section Header */}
-        <div className="text-center">
-          <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-neutral-500">
-            FAQ
-          </span>
-          <h2 className="font-display mt-4 text-[clamp(2.2rem,5vw,3.75rem)] font-bold leading-[1.1] tracking-tight text-[#171410]">
+    <section
+      id="quick_faq"
+      aria-labelledby="quick-faq-heading"
+      className="relative bg-background py-24 sm:py-28 lg:py-32"
+    >
+      <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-14">
+        <div className="mx-auto max-w-3xl">
+          <h2
+            id="quick-faq-heading"
+            className="font-display text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.08] tracking-tight text-foreground rtl:leading-[1.24] font-semibold"
+          >
             {isEn ? "Frequently Asked Questions" : "أسئلة شائعة"}
           </h2>
-        </div>
 
-        {/* Accordion List Matching Reference Video */}
-        <div className="mt-14 space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
-
-            return (
-              <div
+          <div className="mt-8 sm:mt-10 flex flex-col gap-3">
+            {faqs.map((faq, idx) => (
+              <details
                 key={idx}
-                className="overflow-hidden rounded-sm border border-neutral-200 bg-white transition-colors"
+                open={idx === 0}
+                className="group rounded-sm border border-black/[0.06] bg-white px-6 py-5 transition-all duration-300 open:border-brand/40 hover:border-black/15 shadow-xs"
               >
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between p-6 text-start text-base sm:text-lg font-bold text-[#171410] transition-colors hover:text-brand focus:outline-none cursor-pointer"
-                >
-                  <span>{faq.question[langKey]}</span>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                  <h3 className="text-[15px] font-medium text-foreground sm:text-[17px] tracking-tight">
+                    {faq.question[langKey]}
+                  </h3>
                   <span
-                    className={`ms-4 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-neutral-300 text-sm font-semibold transition-transform duration-300 ${
-                      isOpen ? "rotate-45 border-brand text-brand" : "text-neutral-500"
-                    }`}
+                    aria-hidden="true"
+                    className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand text-sm transition-transform duration-300 group-open:rotate-45"
                   >
                     +
                   </span>
-                </button>
+                </summary>
+                <p className="mt-3 whitespace-pre-line text-[14px] sm:text-[15px] leading-relaxed text-neutral-600 font-normal">
+                  {faq.answer[langKey]}
+                </p>
+              </details>
+            ))}
+          </div>
 
-                {isOpen && (
-                  <div className="border-t border-neutral-100 px-6 pb-6 pt-4 text-sm leading-relaxed text-neutral-600 sm:text-base">
-                    {faq.answer[langKey]}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom Link to Full FAQ */}
-        <div className="mt-10 text-center">
-          <Link
-            href="/faq"
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-6 py-3 text-xs font-semibold text-neutral-700 transition-colors hover:border-brand hover:text-brand"
-          >
-            <span>{isEn ? "View All Questions" : "كل الأسئلة"}</span>
-            <span aria-hidden="true" className="rtl:-scale-x-100">
-              ←
-            </span>
-          </Link>
+          <div className="mt-8">
+            <Link
+              href={isEn ? "/en/faq" : "/faq"}
+              className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-2.5 text-xs font-medium uppercase tracking-wider text-foreground transition-all duration-300 hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand cursor-pointer"
+            >
+              <span>{isEn ? "All Questions" : "كل الأسئلة"}</span>
+              <span aria-hidden="true" className="rtl:rotate-180">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

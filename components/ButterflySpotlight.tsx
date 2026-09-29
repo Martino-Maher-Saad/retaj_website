@@ -108,31 +108,31 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
 
       {/* Top Header Content */}
       <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col items-center px-6 text-center sm:px-10">
-        <p className="butterfly-beat text-[11px] font-medium uppercase tracking-[0.32em] text-current/60">
+        <p className="butterfly-beat text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-current/60">
           {bfData.eyebrow[langKey]}
         </p>
 
-        <p className="butterfly-beat mt-20 font-display text-[clamp(2rem,5vw,3.75rem)] italic leading-tight text-brand sm:mt-28">
+        <p className="butterfly-beat mt-12 font-display text-[clamp(1.75rem,4vw,3rem)] italic leading-tight text-brand sm:mt-16 font-normal">
           {bfData.titleLine?.[langKey] || (isEn ? "The Strongest Offer in the Market" : "العرض الأقوى في السوق")}
         </p>
 
         <h2
           id="butterfly-name"
-          className="butterfly-name butterfly-beat mt-24 font-display text-[clamp(4.5rem,14vw,11rem)] leading-[1.0] tracking-tight rtl:leading-[1.2] sm:mt-32 font-bold text-white"
+          className="butterfly-name butterfly-beat mt-8 font-display text-[clamp(3.5rem,10vw,8rem)] leading-[0.98] tracking-tight rtl:leading-[1.18] sm:mt-12 font-semibold text-white"
         >
           {bfData.title[langKey]}
         </h2>
 
-        <p className="butterfly-beat mt-16 max-w-xl text-[15px] leading-relaxed text-current/80 sm:mt-24 sm:text-base">
+        <p className="butterfly-beat mt-8 max-w-xl text-[15px] leading-relaxed text-current/75 sm:mt-10 sm:text-base font-normal">
           {bfData.description[langKey]}
         </p>
       </div>
 
       {/* Overlapping Images with Badge Matching Reference Site */}
-      <div className="relative z-10 mx-auto mt-24 w-full max-w-4xl px-6 sm:mt-32 sm:px-10">
+      <div className="relative z-10 mx-auto mt-20 w-full max-w-4xl px-6 sm:mt-28 sm:px-10">
         <figure ref={figureRef} className="butterfly-figure butterfly-beat relative">
           {/* Main Image 1 */}
-          <div className="butterfly-image-1 relative aspect-[16/9] w-full overflow-hidden rounded-sm bg-[#221d18]">
+          <div className="butterfly-image-1 relative aspect-[16/9] w-full overflow-hidden rounded-sm bg-[#221d18] border border-white/10">
             <Image
               src={bfData.images.img1}
               alt={bfData.title[langKey]}
@@ -148,7 +148,7 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
           </div>
 
           {/* Overlapping Image 2 */}
-          <div className="butterfly-image-2 absolute -bottom-8 end-[-1rem] aspect-[16/9] w-[58%] overflow-hidden rounded-sm shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:-bottom-12 sm:end-[-2rem] sm:w-[54%] bg-[#221d18] border border-white/10">
+          <div className="butterfly-image-2 absolute -bottom-8 end-[-1rem] aspect-[16/9] w-[58%] overflow-hidden rounded-sm shadow-[0_24px_60px_rgba(0,0,0,0.55)] sm:-bottom-12 sm:end-[-2rem] sm:w-[54%] bg-[#221d18] border border-white/15">
             <Image
               src={bfData.images.img2}
               alt={`${bfData.title[langKey]} interior`}
@@ -160,10 +160,10 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
 
           {/* Circular Discount Badge */}
           <div
-            className="butterfly-badge absolute -top-8 start-[-12px] flex h-32 w-32 items-center justify-center rounded-full bg-brand text-center text-white shadow-[0_18px_50px_rgba(152,15,15,0.45)] sm:-top-10 sm:start-[-24px] sm:h-40 sm:w-40 z-20"
+            className="butterfly-badge absolute -top-8 start-[-12px] flex h-28 w-28 items-center justify-center rounded-full bg-brand text-center text-white shadow-[0_18px_50px_rgba(152,15,15,0.40)] sm:-top-10 sm:start-[-24px] sm:h-36 sm:w-36 z-20 border border-white/20"
             style={{ transformOrigin: "center" }}
           >
-            <span className="font-display px-3 text-[clamp(0.95rem,1.6vw,1.25rem)] leading-tight font-bold">
+            <span className="font-display px-3 text-[clamp(0.9rem,1.4vw,1.15rem)] leading-tight font-medium">
               {isEn ? "54% Cash Discount" : "خصم 54% كاش"}
             </span>
           </div>
@@ -172,16 +172,16 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
 
       {/* Stats Box & Pills & CTA Matching Reference Site */}
       <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col items-center px-6 text-center sm:px-10">
-        <div className="butterfly-beat mt-32 w-full max-w-2xl sm:mt-40">
-          <div className="flex items-stretch rounded-sm border border-current/15 bg-current/[0.04] backdrop-blur-sm">
+        <div className="butterfly-beat mt-24 w-full max-w-2xl sm:mt-32">
+          <div className="flex items-stretch rounded-sm border border-white/10 bg-white/[0.03] backdrop-blur-md">
             {/* Cash Discount Column */}
             <div className="flex flex-1 flex-col items-start justify-between gap-6 p-6 text-start sm:p-8">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-current/60">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-white/60">
                 {isEn ? "Cash Discount" : "خصم عند الدفع كاش"}
               </p>
               <p className="font-display leading-none tracking-tight text-brand">
                 <span
-                  className="butterfly-discount-counter text-[clamp(3.5rem,9vw,6rem)] tabular-nums font-bold"
+                  className="butterfly-discount-counter text-[clamp(3rem,8vw,5.5rem)] tabular-nums font-semibold"
                   aria-label="54%"
                 >
                   54%
@@ -189,18 +189,18 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
               </p>
             </div>
 
-            <div className="mx-2 w-px self-stretch bg-current/20 sm:mx-4" />
+            <div className="mx-2 w-px self-stretch bg-white/10 sm:mx-4" />
 
             {/* Payment Plan Column */}
             <div className="flex flex-1 flex-col items-start justify-between gap-6 p-6 text-start sm:p-8">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-current/60">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-white/60">
                 {isEn ? "Payment Plan" : "نظام السداد"}
               </p>
               <div>
-                <p className="font-display text-[clamp(1.5rem,3vw,2.25rem)] leading-none tracking-tight font-bold">
+                <p className="font-display text-[clamp(1.4rem,2.8vw,2.15rem)] leading-none tracking-tight font-semibold text-white">
                   {isEn ? "1.5% Down" : "1.5% مقدم"}
                 </p>
-                <p className="mt-2 text-[11px] uppercase tracking-[0.28em] text-current/70">
+                <p className="mt-2 text-[11px] uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-white/70">
                   {isEn ? "12 Years" : "12 سنة"}
                 </p>
               </div>
@@ -209,16 +209,16 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
 
           {/* Tags */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-brand px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white shadow-sm">
+            <span className="inline-flex items-center rounded-full bg-brand px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] rtl:tracking-[0.06em] text-white shadow-xs">
               {isEn ? "235 Acres" : "235 فدان"}
             </span>
-            <span className="inline-flex items-center rounded-full border border-current/20 px-4 py-1.5 text-[11px] font-medium tracking-tight text-current/85">
+            <span className="inline-flex items-center rounded-full border border-white/15 px-4 py-1.5 text-[11px] font-medium tracking-[0.04em] text-white/85 bg-white/[0.02]">
               {isEn ? "Apartments" : "شقق"}
             </span>
-            <span className="inline-flex items-center rounded-full border border-current/20 px-4 py-1.5 text-[11px] font-medium tracking-tight text-current/85">
+            <span className="inline-flex items-center rounded-full border border-white/15 px-4 py-1.5 text-[11px] font-medium tracking-[0.04em] text-white/85 bg-white/[0.02]">
               {isEn ? "Standalone Villas" : "فيلات مستقلة"}
             </span>
-            <span className="inline-flex items-center rounded-full border border-current/20 px-4 py-1.5 text-[11px] font-medium tracking-tight text-current/85">
+            <span className="inline-flex items-center rounded-full border border-white/15 px-4 py-1.5 text-[11px] font-medium tracking-[0.04em] text-white/85 bg-white/[0.02]">
               {isEn ? "Townhouses" : "تاون هاوس"}
             </span>
           </div>

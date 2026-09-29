@@ -1,136 +1,124 @@
 {
-  "title": {
-    "ar": "معرض صور وفيديوهات مشاريع مدينة مصر 2026",
-    "en": "Madinet Masr Projects Gallery 2026"
-  },
-  "description": {
-    "ar": "جولة مرئية شاملة لمشاريع تاج سيتي، سراي، بترفلاي، تلالا، و D2N بالصور والمخططات الحصرية والفيديوهات الحية.",
-    "en": "Visual showcase of Taj City, Sarai, The Butterfly, Talala, and D2N with high-resolution imagery and videos."
-  },
+  "filters": [
+    { "id": "all", "name": { "ar": "جميع المشاريع", "en": "All Projects" } },
+    { "id": "taj-city", "name": { "ar": "تاج سيتي", "en": "Taj City" } },
+    { "id": "sarai", "name": { "ar": "سراي", "en": "Sarai" } },
+    { "id": "butterfly", "name": { "ar": "بترفلاي", "en": "The Butterfly" } },
+    { "id": "talala", "name": { "ar": "تلالا", "en": "Talala" } },
+    { "id": "d2n", "name": { "ar": "D2N", "en": "D2N" } }
+  ],
   "items": [
     {
-      "type": "video",
-      "src": "https://res.cloudinary.com/izrnyvya/video/upload/DTWWRxSHa5a6.mp4"
+      "id": "gal-1",
+      "project": "taj-city",
+      "projectName": { "ar": "تاج سيتي", "en": "Taj City" },
+      "title": { "ar": "المخطط العام والواجهة الرئيسية", "en": "Masterplan & Main Entrance" },
+      "tag": { "ar": "مخطط عام", "en": "Masterplan" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Taj.webp"
     },
     {
-      "type": "video",
-      "src": "https://res.cloudinary.com/izrnyvya/video/upload/aQkoqtdN-FNR.mp4"
+      "id": "gal-2",
+      "project": "taj-city",
+      "projectName": { "ar": "تاج سيتي", "en": "Taj City" },
+      "title": { "ar": "شقق بريميوم أحدث طرح", "en": "New Launch Premium Apartments" },
+      "tag": { "ar": "شقق سكنية", "en": "Apartments" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/A_moJSTqGdIe.webp"
     },
     {
-      "type": "video",
-      "src": "https://res.cloudinary.com/izrnyvya/video/upload/WGyi_bQmN4WF.mp4"
+      "id": "gal-3",
+      "project": "taj-city",
+      "projectName": { "ar": "تاج سيتي", "en": "Taj City" },
+      "title": { "ar": "إطلالة أوريجامي جولف الخضراء", "en": "Origami Golf Panoramic View" },
+      "tag": { "ar": "إطلالات ومساحات خضراء", "en": "Golf Views" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/vUWlKkw0naD3.webp"
     },
     {
-      "type": "video",
-      "src": "https://res.cloudinary.com/izrnyvya/video/upload/Fmb_9DIJQWVw.mp4"
+      "id": "gal-4",
+      "project": "taj-city",
+      "projectName": { "ar": "تاج سيتي", "en": "Taj City" },
+      "title": { "ar": "تاون هاوس بتصميم معماري عصري", "en": "Contemporary Townhouses" },
+      "tag": { "ar": "تاون هاوس", "en": "Townhouses" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_15.webp"
     },
     {
-      "type": "video",
-      "src": "https://res.cloudinary.com/izrnyvya/video/upload/bKhTfP5Wevy7.mp4"
+      "id": "gal-5",
+      "project": "taj-city",
+      "projectName": { "ar": "تاج سيتي", "en": "Taj City" },
+      "title": { "ar": "مرحلة تاج سلطان المتسلمة", "en": "Delivered Taj Sultan Community" },
+      "tag": { "ar": "مراحل متسلمة", "en": "Delivered" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_03.webp"
     },
     {
-      "type": "video",
-      "src": "https://res.cloudinary.com/izrnyvya/video/upload/PMS1JV84I6E1.mp4"
+      "id": "gal-6",
+      "project": "sarai",
+      "projectName": { "ar": "سراي", "en": "Sarai" },
+      "title": { "ar": "بحيرات الكريستال لاجون وسراي", "en": "Crystal Lagoons & Waterfront" },
+      "tag": { "ar": "كريستال لاجون", "en": "Crystal Lagoons" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/-C7GOU192Xka.webp"
+      "id": "gal-7",
+      "project": "sarai",
+      "projectName": { "ar": "سراي", "en": "Sarai" },
+      "title": { "ar": "فيلات كافانا سبرينجز المستقلة", "en": "Cavana Springs Standalone Villas" },
+      "tag": { "ar": "فيلات مستقلة", "en": "Villas" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/A_moJSTqGdIe.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/0IdzqYKISj-H.webp"
+      "id": "gal-8",
+      "project": "sarai",
+      "projectName": { "ar": "سراي", "en": "Sarai" },
+      "title": { "ar": "شقق مرحلة إيلان وبنوي الفاخرة", "en": "Elan & Banwe Luxury Apartments" },
+      "tag": { "ar": "شقق سكنية", "en": "Apartments" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/vUWlKkw0naD3.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/0__TDByYu7hx.webp"
+      "id": "gal-9",
+      "project": "butterfly",
+      "projectName": { "ar": "بترفلاي", "en": "The Butterfly" },
+      "title": { "ar": "المشهد البانورامي لكمبوند بترفلاي", "en": "The Butterfly Master Vision" },
+      "tag": { "ar": "مخطط عام", "en": "Masterplan" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Butterfly.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/1z5JguzVFLtq.webp"
+      "id": "gal-10",
+      "project": "butterfly",
+      "projectName": { "ar": "بترفلاي", "en": "The Butterfly" },
+      "title": { "ar": "فيلات ومنازل التاون هاوس في بترفلاي", "en": "Townhouses & Villas" },
+      "tag": { "ar": "فيلات وتاون هاوس", "en": "Villas & Townhouses" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_19.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/5j5qbs19fRhH.webp"
+      "id": "gal-11",
+      "project": "talala",
+      "projectName": { "ar": "تلالا", "en": "Talala" },
+      "title": { "ar": "واجهات تلالا هليوبوليس الجديدة بتشطيب كامل", "en": "Talala Fully Finished Architecture" },
+      "tag": { "ar": "تشطيب كامل", "en": "Fully Finished" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Talala.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/9DB5DWpkCx_-.webp"
+      "id": "gal-12",
+      "project": "talala",
+      "projectName": { "ar": "تلالا", "en": "Talala" },
+      "title": { "ar": "نماذج S-Villa وتاون هاوس تلالا", "en": "S-Villa & Townhouses" },
+      "tag": { "ar": "S-Villa", "en": "S-Villa" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Taj_City_22.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/AX8yTb5PmO3E.webp"
+      "id": "gal-13",
+      "project": "d2n",
+      "projectName": { "ar": "D2N", "en": "D2N" },
+      "title": { "ar": "واجهات مول D2N التجاري والإداري", "en": "D2N Commercial & Administrative Complex" },
+      "tag": { "ar": "تجاري وإداري", "en": "Commercial & Offices" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/D2N.webp"
     },
     {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/BIkXcO58jXTJ.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/FkE3n_qtA2oW.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/H2RaZLyCjAea.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/ILYzOCKhAbU9.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/NEu7N_8F6DwT.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/NuLQ7nCUQun3.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/PJtGVKSpZE8i.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/SL-bXjV482P-.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/TDNjmF4qTIfu.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/TJal0iqUYwqa.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Vxs0qk6QHRe4.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/Yy2h7P17WJOk.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/dzC_9q4HeIdQ.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/hUdvWT07S478.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/hck8k2_Gr6uf.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/kjFgCTGp7UCk.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/u3qpB4aVeZ-3.webp"
-    },
-    {
-      "type": "image",
-      "src": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/zGS67LrfZJLw.webp"
+      "id": "gal-14",
+      "project": "d2n",
+      "projectName": { "ar": "D2N", "en": "D2N" },
+      "title": { "ar": "الممشى والساحات المفتوحة في D2N", "en": "Plaza & Promenade" },
+      "tag": { "ar": "ممشى وتجارة", "en": "Plaza & Retail" },
+      "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/82rS6BRH-IDP.webp"
     }
   ]
 }

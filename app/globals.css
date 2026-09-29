@@ -63,6 +63,13 @@
   color: #ffffff !important;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   font-family: var(--font-arabic), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
@@ -70,26 +77,47 @@ body {
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 [dir="ltr"], [dir="ltr"] body {
   font-family: var(--font-english), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
 }
 
 .font-display {
-  font-family: var(--font-display-ar), var(--font-arabic), serif;
+  font-family: var(--font-arabic), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "kern" 1;
 }
 
 [dir="ltr"] .font-display, .font-display:lang(en) {
-  font-family: var(--font-display-en), var(--font-english), serif;
+  font-family: var(--font-english), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.02em;
 }
 
-/* Glassmorphism*/
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-color);
+/* Architectural Fine Detail Utilities */
+.eyebrow-tag {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+[dir="rtl"] .eyebrow-tag {
+  letter-spacing: 0.08em; /* Arabic letter spacing should not be over-stretched */
+}
+
+/* Refined architectural hairline borders & soft ambient shadows */
+.card-premium {
+  border: 1px solid rgba(23, 20, 16, 0.07);
+  box-shadow: 0 16px 40px -20px rgba(20, 17, 15, 0.06);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-premium:hover {
+  border-color: rgba(152, 15, 15, 0.25);
+  box-shadow: 0 24px 50px -20px rgba(20, 17, 15, 0.1);
 }
 
 .btn-primary {

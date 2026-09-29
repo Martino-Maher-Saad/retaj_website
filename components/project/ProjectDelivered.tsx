@@ -19,7 +19,6 @@ interface ProjectDeliveredProps {
 }
 
 export default function ProjectDelivered({
-  projectName,
   deliveredTrackRecord,
   fallbackImages,
   isEn = false,
@@ -31,16 +30,16 @@ export default function ProjectDelivered({
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const cards = sectionRef.current?.querySelectorAll(".delivered-block");
-      if (cards && cards.length > 0) {
+      const tiles = sectionRef.current?.querySelectorAll(".delivered-tile");
+      if (tiles && tiles.length > 0) {
         gsap.fromTo(
-          cards,
+          tiles,
           { y: 35, autoAlpha: 0 },
           {
             y: 0,
             autoAlpha: 1,
             duration: 0.8,
-            stagger: 0.1,
+            stagger: 0.12,
             ease: "expo.out",
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -61,29 +60,34 @@ export default function ProjectDelivered({
 
   return (
     <section
+      id="delivered"
       ref={sectionRef}
-      className="relative py-24 sm:py-32 lg:py-36 bg-[#faf8f5] text-[#171410] border-t border-neutral-200/70"
+      aria-labelledby="delivered-heading"
+      className="relative py-32 sm:py-40 lg:py-48"
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
-        {/* Section Header Matching 13.PNG */}
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="text-xs font-semibold text-brand tracking-wider">
-            {isEn ? `Delivered in ${projectName.en}` : `المستلم فعلاً في ${projectName.ar}`}
-          </span>
-
-          <h2 className="font-display mt-3 text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.08] tracking-tight text-[#171410]">
-            {isEn ? "Our Promises Have Addresses and Names" : "وعودنا لها عناوين وأسماء"}
-          </h2>
-
-          <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:text-lg">
-            {isEn
-              ? "Delivered developments and settled families — the true standard of success for Madinet Masr."
-              : "مشاريع اكتملت وأُسر استقرت — هذا هو معيار النجاح الحقيقي لمدينة مصر."}
+      <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-14">
+        {/* Header */}
+        <header className="mx-auto max-w-3xl text-center">
+          <p className="delivered-eyebrow text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-neutral-500">
+            {isEn ? "Delivered" : "المتسلم فعلاً"}
           </p>
-        </div>
+          <h2
+            id="delivered-heading"
+            className="delivered-heading font-display mt-4 text-[clamp(2.2rem,5vw,3.75rem)] leading-[1.08] tracking-tight text-foreground rtl:leading-[1.24] font-semibold"
+          >
+            {isEn
+              ? "Our Promises Have Addresses and Names"
+              : "وعودنا لها عناوين وأسماء"}
+          </h2>
+          <p className="delivered-body mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-neutral-600 sm:text-base font-normal">
+            {isEn
+              ? "Projects completed and families settled — this is the true standard of success."
+              : "مشاريع اكتملت وأسر استقرت — هذا هو معيار النجاح الحقيقي لمدينة مصر."}
+          </p>
+        </header>
 
-        {/* 2x2 Grid of Delivered Communities Matching 14.PNG */}
-        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-12">
+        {/* 2x2 Grid */}
+        <ul className="mt-14 grid grid-cols-1 gap-10 sm:mt-18 sm:grid-cols-2 sm:gap-x-7 sm:gap-y-12 lg:mt-20 lg:gap-x-9 lg:gap-y-14">
           {deliveredTrackRecord.map((item, idx) => {
             const imageSrc =
               item.image ||
@@ -91,25 +95,29 @@ export default function ProjectDelivered({
               "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Tag_Sultan.webp";
 
             return (
-              <div key={idx} className="delivered-block flex flex-col items-center">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-200/80 bg-neutral-100 shadow-sm">
-                  <Image
-                    src={imageSrc}
-                    alt={item.name[langKey]}
-                    fill
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out hover:scale-105"
-                  />
-                </div>
-
-                {/* Name Centered Below Matching 14.PNG */}
-                <h3 className="font-display mt-5 text-2xl sm:text-3xl font-bold text-[#171410] text-center">
-                  {item.name[langKey]}
-                </h3>
-              </div>
+              <li key={idx} className="delivered-tile">
+                <figure>
+                  <div className="delivered-mask group relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-neutral-100 shadow-[0_16px_40px_rgba(0,0,0,0.06)] border border-black/[0.06]">
+                    <div className="delivered-image absolute inset-0 transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]">
+                      <Image
+                        src={imageSrc}
+                        alt={item.name[langKey]}
+                        fill
+                        sizes="(min-width: 640px) 46vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <figcaption className="delivered-name mt-4">
+                    <p className="font-display text-[clamp(1.4rem,2.5vw,2rem)] leading-tight tracking-tight text-foreground rtl:leading-[1.2] font-semibold">
+                      {item.name[langKey]}
+                    </p>
+                  </figcaption>
+                </figure>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

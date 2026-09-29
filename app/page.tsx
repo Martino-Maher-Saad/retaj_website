@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import ButterflySpotlight from "@/components/ButterflySpotlight";
@@ -6,6 +7,9 @@ import TrackRecord from "@/components/TrackRecord";
 import LifestyleFeatures from "@/components/LifestyleFeatures";
 import Footer from "@/components/Footer";
 import FloatingActionBar from "@/components/FloatingActionBar";
+import { getPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = getPageMetadata("ar", "home");
 
 export default function Home() {
   return (
