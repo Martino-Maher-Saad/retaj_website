@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X, CheckCircle, PhoneCall } from "lucide-react";
+import { X, CheckCircle } from "lucide-react";
 import { gsap } from "gsap";
 import siteConfig from "@/data/site_config.json";
 
@@ -23,14 +23,16 @@ export default function LeadModal({
     phone: "",
     project: initialProject,
   });
+  const [prevInitial, setPrevInitial] = useState(initialProject);
   const [submitted, setSubmitted] = useState(false);
+
+  if (prevInitial !== initialProject) {
+    setPrevInitial(initialProject);
+    setFormData((prev) => ({ ...prev, project: initialProject }));
+  }
 
   const backdropRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setFormData((prev) => ({ ...prev, project: initialProject }));
-  }, [initialProject]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

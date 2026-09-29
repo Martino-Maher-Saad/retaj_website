@@ -6,7 +6,6 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
-import WordScrubText from "@/components/WordScrubText";
 import LeadModal from "@/components/LeadModal";
 import homeContent from "@/data/home_content.json";
 
@@ -390,23 +389,22 @@ export default function ProjectsShowcase({ isEn = false }: ProjectsShowcaseProps
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
         {/* Section Header */}
-        <div className="flex flex-col gap-4">
-          <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500 sm:text-xs">
-            {sectionData.eyebrow[langKey]}
-          </p>
-
-          <WordScrubText
-            id="projects-title"
-            as="h2"
-            className="font-display text-[clamp(2rem,5vw,4.5rem)] font-bold leading-[1.05] tracking-tight text-[#171410]"
-          >
-            {sectionData.title[langKey]}
-          </WordScrubText>
-
-          <p className="mt-2 text-base text-neutral-600 sm:text-lg">
+        <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500">
+              {sectionData.eyebrow[langKey]}
+            </p>
+            <h2
+              id="projects-title"
+              className="font-display mt-4 max-w-2xl text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.05] tracking-tight text-[#171410] font-bold"
+            >
+              {sectionData.title[langKey]}
+            </h2>
+          </div>
+          <p className="font-display text-lg italic text-[#980f0f] sm:max-w-xs sm:text-right rtl:sm:text-left">
             {sectionData.subtitle[langKey]}
           </p>
-        </div>
+        </header>
 
         {/* Filters and Drag Hint Header Row */}
         <div className="mt-12 flex items-center justify-between gap-4 border-b border-neutral-200 pb-6 sm:mt-16">

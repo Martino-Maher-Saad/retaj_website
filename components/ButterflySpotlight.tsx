@@ -13,7 +13,7 @@ interface ButterflySpotlightProps {
 
 export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const figureRef = useRef<HTMLDivElement>(null);
+  const figureRef = useRef<HTMLElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
 
   const bfData = homeContent.butterflySpotlight;
@@ -23,123 +23,41 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Eyebrow and text reveal
-      gsap.fromTo(
-        ".bf-eyebrow",
-        { y: 20, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
+      // Staggered beat entrance
+      const beats = sectionRef.current?.querySelectorAll(".butterfly-beat");
+      if (beats && beats.length > 0) {
+        gsap.from(beats, {
+          y: 40,
+          autoAlpha: 0,
+          duration: 1,
+          stagger: 0.15,
           ease: "expo.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 82%",
+            start: "top 75%",
             once: true,
           },
-        }
-      );
-
-      // Title clipped reveal
-      gsap.fromTo(
-        ".bf-title",
-        { yPercent: 120 },
-        {
-          yPercent: 0,
-          duration: 1.2,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-
-      // Subtitle
-      gsap.fromTo(
-        ".bf-description",
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.9,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            once: true,
-          },
-        }
-      );
-
-      // Setup initial image states
-      gsap.set(".butterfly-image-1", { clipPath: "inset(100% 0 0 0)" });
-      gsap.set(".butterfly-image-2", { clipPath: "inset(0 0 100% 0)", autoAlpha: 0 });
-
-      // Figure images reveal
-      if (figureRef.current) {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: figureRef.current,
-              start: "top 80%",
-              once: true,
-            },
-          })
-          .to(".butterfly-image-1", {
-            clipPath: "inset(0% 0 0 0)",
-            duration: 1.5,
-            ease: "expo.out",
-          })
-          .to(
-            ".butterfly-image-2",
-            {
-              clipPath: "inset(0 0 0% 0)",
-              autoAlpha: 1,
-              duration: 1.2,
-              ease: "expo.out",
-            },
-            "-=0.9"
-          );
+        });
       }
 
-      // Stats and pills reveal
-      gsap.fromTo(
-        ".bf-stat-card",
-        { y: 35, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "expo.out",
+      // Figure reveal & badge bounce
+      if (figureRef.current) {
+        gsap.from(".butterfly-badge", {
+          scale: 0,
+          rotation: -25,
+          autoAlpha: 0,
+          duration: 1.2,
+          ease: "back.out(1.8)",
+          delay: 0.4,
           scrollTrigger: {
-            trigger: ".bf-stats-container",
-            start: "top 88%",
+            trigger: figureRef.current,
+            start: "top 75%",
             once: true,
           },
-        }
-      );
+        });
+      }
 
-      gsap.fromTo(
-        ".bf-pill-tag",
-        { scale: 0.85, autoAlpha: 0 },
-        {
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: "back.out(1.5)",
-          scrollTrigger: {
-            trigger: ".bf-pills-container",
-            start: "top 90%",
-            once: true,
-          },
-        }
-      );
-
-      // Red Arc SVG draw animation on scroll
+      // Draw SVG serpentine line along scroll
       if (pathRef.current) {
         const length = pathRef.current.getTotalLength();
         gsap.set(pathRef.current, {
@@ -152,9 +70,9 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
-            end: "bottom 25%",
-            scrub: 1,
+            start: "top 80%",
+            end: "bottom 20%",
+            scrub: 1.2,
           },
         });
       }
@@ -168,140 +86,175 @@ export default function ButterflySpotlight({ isEn = false }: ButterflySpotlightP
       id="butterfly"
       ref={sectionRef}
       aria-labelledby="butterfly-name"
-      className="butterfly-section relative isolate overflow-hidden bg-[#0d0c0b] py-28 sm:py-36 lg:py-44 text-[#faf8f5]"
+      className="butterfly-section relative isolate overflow-hidden bg-[#14110f] py-40 sm:py-56 lg:py-72 text-[#faf8f5]"
     >
-      {/* Dynamic Animated Red Arc Path */}
-      <div className="pointer-events-none absolute inset-0 h-full w-full overflow-hidden opacity-60">
-        <svg
-          viewBox="0 0 1440 900"
+      {/* Exact Serpentine Red Path from Reference Site */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 block h-full w-full"
+        preserveAspectRatio="none"
+        viewBox="0 0 100 100"
+      >
+        <path
+          ref={pathRef}
+          d="M 50 0 C 95 12, 92 24, 50 32 C 8 40, 5 52, 50 60 C 95 68, 92 80, 50 88 L 50 100"
+          stroke="var(--brand-primary)"
+          strokeWidth="1.5"
           fill="none"
-          preserveAspectRatio="none"
-          className="h-full w-full"
-          aria-hidden="true"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+
+      {/* Top Header Content */}
+      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col items-center px-6 text-center sm:px-10">
+        <p className="butterfly-beat text-[11px] font-medium uppercase tracking-[0.32em] text-current/60">
+          {bfData.eyebrow[langKey]}
+        </p>
+
+        <p className="butterfly-beat mt-20 font-display text-[clamp(2rem,5vw,3.75rem)] italic leading-tight text-brand sm:mt-28">
+          {bfData.titleLine?.[langKey] || (isEn ? "The Strongest Offer in the Market" : "العرض الأقوى في السوق")}
+        </p>
+
+        <h2
+          id="butterfly-name"
+          className="butterfly-name butterfly-beat mt-24 font-display text-[clamp(4.5rem,14vw,11rem)] leading-[1.0] tracking-tight rtl:leading-[1.2] sm:mt-32 font-bold text-white"
         >
-          <path
-            ref={pathRef}
-            d="M -100,200 C 400,600 900,-100 1540,750"
-            stroke="#980f0f"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </svg>
+          {bfData.title[langKey]}
+        </h2>
+
+        <p className="butterfly-beat mt-16 max-w-xl text-[15px] leading-relaxed text-current/80 sm:mt-24 sm:text-base">
+          {bfData.description[langKey]}
+        </p>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
-        {/* Top Text Content matching video at 01:03 - 01:05 */}
-        <div className="text-center mx-auto max-w-3xl">
-          <p className="bf-eyebrow text-[11px] font-medium uppercase tracking-[0.34em] text-neutral-400">
-            {bfData.eyebrow[langKey]}
-          </p>
-
-          <div className="mt-3 overflow-hidden py-1">
-            <h3 className="bf-eyebrow font-display text-2xl sm:text-3xl text-[#980f0f] font-semibold">
-              {bfData.titleLine?.[langKey] || (isEn ? "The Strongest Offer in the Market" : "العرض الأقوى في السوق")}
-            </h3>
-          </div>
-
-          <div className="mt-1 overflow-hidden py-1">
-            <h2
-              id="butterfly-name"
-              className="bf-title font-display text-[clamp(3.5rem,10vw,8.5rem)] font-bold leading-[0.95] tracking-tight text-white"
-            >
-              {bfData.title[langKey]}
-            </h2>
-          </div>
-
-          <p className="bf-description mt-6 text-[15px] sm:text-[17px] leading-relaxed text-neutral-300">
-            {bfData.description[langKey]}
-          </p>
-        </div>
-
-        {/* 2-Image Grid Layout Matching Video at 01:06 */}
-        <div ref={figureRef} className="butterfly-figure relative z-10 mt-12 sm:mt-16">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8 max-w-5xl mx-auto">
-            <div className="butterfly-image-1 relative aspect-[16/11] overflow-hidden rounded-xl bg-[#221d18] shadow-2xl border border-white/10">
-              <Image
-                src={bfData.images.img1}
-                alt={bfData.title[langKey]}
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-
-            <div className="butterfly-image-2 relative aspect-[16/11] overflow-hidden rounded-xl bg-[#221d18] shadow-2xl border border-white/10">
-              <Image
-                src={bfData.images.img2}
-                alt={`${bfData.title[langKey]} interior`}
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Stats Cards Matching Video at 01:07 - 01:08 */}
-        <div className="bf-stats-container mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-          {bfData.stats.map((st, idx) => (
+      {/* Overlapping Images with Badge Matching Reference Site */}
+      <div className="relative z-10 mx-auto mt-24 w-full max-w-4xl px-6 sm:mt-32 sm:px-10">
+        <figure ref={figureRef} className="butterfly-figure butterfly-beat relative">
+          {/* Main Image 1 */}
+          <div className="butterfly-image-1 relative aspect-[16/9] w-full overflow-hidden rounded-sm bg-[#221d18]">
+            <Image
+              src={bfData.images.img1}
+              alt={bfData.title[langKey]}
+              fill
+              sizes="(min-width: 1024px) 880px, 90vw"
+              className="object-cover"
+              priority
+            />
             <div
-              key={idx}
-              className="bf-stat-card flex flex-col items-center justify-center min-w-[170px] sm:min-w-[200px] rounded-2xl border border-white/10 bg-[#171410]/80 px-6 py-4 backdrop-blur-md"
-            >
-              <span
-                className={`text-2xl sm:text-3xl font-extrabold ${
-                  st.value === "54%" ? "text-[#f24155]" : "text-white"
-                }`}
-              >
-                {isEn ? st.value_en || st.value : st.value}
-              </span>
-              <span className="mt-1 text-xs text-neutral-400 font-medium">
-                {isEn ? st.sub_en || st.sub : st.sub}
-              </span>
-            </div>
-          ))}
-        </div>
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(20,17,15,0.40)] via-transparent to-transparent"
+            />
+          </div>
 
-        {/* Feature Pills Matching Video at 01:08 */}
-        <div className="bf-pills-container mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-          {bfData.tags.map((tag, idx) => (
-            <span
-              key={idx}
-              className={`bf-pill-tag rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide transition-transform hover:scale-105 ${
-                tag.highlight
-                  ? "bg-[#980f0f] text-white shadow-md shadow-[#980f0f]/30"
-                  : "bg-white/10 text-white/90 border border-white/15"
-              }`}
-            >
-              {tag.label[langKey]}
+          {/* Overlapping Image 2 */}
+          <div className="butterfly-image-2 absolute -bottom-8 end-[-1rem] aspect-[16/9] w-[58%] overflow-hidden rounded-sm shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:-bottom-12 sm:end-[-2rem] sm:w-[54%] bg-[#221d18] border border-white/10">
+            <Image
+              src={bfData.images.img2}
+              alt={`${bfData.title[langKey]} interior`}
+              fill
+              sizes="(min-width: 1024px) 480px, 55vw"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Circular Discount Badge */}
+          <div
+            className="butterfly-badge absolute -top-8 start-[-12px] flex h-32 w-32 items-center justify-center rounded-full bg-brand text-center text-white shadow-[0_18px_50px_rgba(152,15,15,0.45)] sm:-top-10 sm:start-[-24px] sm:h-40 sm:w-40 z-20"
+            style={{ transformOrigin: "center" }}
+          >
+            <span className="font-display px-3 text-[clamp(0.95rem,1.6vw,1.25rem)] leading-tight font-bold">
+              {isEn ? "54% Cash Discount" : "خصم 54% كاش"}
             </span>
-          ))}
+          </div>
+        </figure>
+      </div>
+
+      {/* Stats Box & Pills & CTA Matching Reference Site */}
+      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col items-center px-6 text-center sm:px-10">
+        <div className="butterfly-beat mt-32 w-full max-w-2xl sm:mt-40">
+          <div className="flex items-stretch rounded-sm border border-current/15 bg-current/[0.04] backdrop-blur-sm">
+            {/* Cash Discount Column */}
+            <div className="flex flex-1 flex-col items-start justify-between gap-6 p-6 text-start sm:p-8">
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-current/60">
+                {isEn ? "Cash Discount" : "خصم عند الدفع كاش"}
+              </p>
+              <p className="font-display leading-none tracking-tight text-brand">
+                <span
+                  className="butterfly-discount-counter text-[clamp(3.5rem,9vw,6rem)] tabular-nums font-bold"
+                  aria-label="54%"
+                >
+                  54%
+                </span>
+              </p>
+            </div>
+
+            <div className="mx-2 w-px self-stretch bg-current/20 sm:mx-4" />
+
+            {/* Payment Plan Column */}
+            <div className="flex flex-1 flex-col items-start justify-between gap-6 p-6 text-start sm:p-8">
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-current/60">
+                {isEn ? "Payment Plan" : "نظام السداد"}
+              </p>
+              <div>
+                <p className="font-display text-[clamp(1.5rem,3vw,2.25rem)] leading-none tracking-tight font-bold">
+                  {isEn ? "1.5% Down" : "1.5% مقدم"}
+                </p>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.28em] text-current/70">
+                  {isEn ? "12 Years" : "12 سنة"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <span className="inline-flex items-center rounded-full bg-brand px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white shadow-sm">
+              {isEn ? "235 Acres" : "235 فدان"}
+            </span>
+            <span className="inline-flex items-center rounded-full border border-current/20 px-4 py-1.5 text-[11px] font-medium tracking-tight text-current/85">
+              {isEn ? "Apartments" : "شقق"}
+            </span>
+            <span className="inline-flex items-center rounded-full border border-current/20 px-4 py-1.5 text-[11px] font-medium tracking-tight text-current/85">
+              {isEn ? "Standalone Villas" : "فيلات مستقلة"}
+            </span>
+            <span className="inline-flex items-center rounded-full border border-current/20 px-4 py-1.5 text-[11px] font-medium tracking-tight text-current/85">
+              {isEn ? "Townhouses" : "تاون هاوس"}
+            </span>
+          </div>
         </div>
 
-        {/* Red CTA Button Matching Video at 01:09 */}
-        <div className="mt-8 sm:mt-10 flex justify-center">
+        {/* CTA Button with Sliding Text Animation */}
+        <div className="butterfly-beat mt-20 sm:mt-28">
           <Link
             href={isEn ? `/en${bfData.cta.href}` : bfData.cta.href}
-            className="group inline-flex items-center gap-3 rounded-full bg-[#980f0f] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#980f0f]/30 transition-all hover:bg-[#7b0c0c] hover:scale-105 active:scale-95"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-brand px-8 py-4 text-sm font-medium text-white transition-[background-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.5,0,0.1,1)] hover:-translate-y-[2px] hover:bg-brand-hover hover:shadow-[0_18px_40px_-12px_rgba(152,15,15,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand cursor-pointer"
           >
-            <span>{bfData.cta.text[langKey]}</span>
+            <span className="relative block overflow-hidden leading-[1.2]">
+              <span className="block transition-transform duration-500 ease-[cubic-bezier(0.5,0,0.1,1)] group-hover:-translate-y-full">
+                {bfData.cta.text[langKey]}
+              </span>
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.5,0,0.1,1)] group-hover:translate-y-0"
+              >
+                {bfData.cta.text[langKey]}
+              </span>
+            </span>
             <svg
-              aria-hidden="true"
-              className={`transition-transform duration-300 ${
-                isEn ? "group-hover:translate-x-1" : "group-hover:-translate-x-1 -scale-x-100"
-              }`}
-              fill="none"
+              width="22"
               height="10"
               viewBox="0 0 22 10"
-              width="22"
+              fill="none"
+              aria-hidden="true"
+              className="transition-transform duration-500 ease-[cubic-bezier(0.5,0,0.1,1)] group-hover:translate-x-2 rtl:-scale-x-100 rtl:group-hover:-translate-x-2"
             >
               <path
                 d="M1 5h20m0 0L17 1m4 4l-4 4"
                 stroke="currentColor"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="1.5"
               />
             </svg>
           </Link>

@@ -9,7 +9,7 @@
       "en": "Building the future"
     },
     "titleLine2": {
-      "ar": "منذ 70 عاماً.",
+      "ar": "منذ ٦٥ عاماً.",
       "en": "for 65 years."
     },
     "description": {
@@ -34,8 +34,8 @@
       {
         "id": "sarai",
         "title": {
-          "ar": "سراي — القاهرة الجديدة",
-          "en": "Sarai — New Cairo"
+          "ar": "كريستال لاجونز — سراي",
+          "en": "Crystal Lagoons — Sarai"
         },
         "counter": "02 / 04",
         "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp"
@@ -43,8 +43,8 @@
       {
         "id": "talala",
         "title": {
-          "ar": "تلالا فيلات — هليوبوليس الجديدة",
-          "en": "Talala Villas — New Heliopolis"
+          "ar": "تلالا فيلات",
+          "en": "Talala Villas"
         },
         "counter": "03 / 04",
         "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Talala.webp"
@@ -52,8 +52,8 @@
       {
         "id": "d2n",
         "title": {
-          "ar": "D2N مول — سراي",
-          "en": "D2N Mall — Sarai"
+          "ar": "D2N — سراي",
+          "en": "D2N — Sarai"
         },
         "counter": "04 / 04",
         "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/D2N.webp"
@@ -160,7 +160,7 @@
           "ar": "ليست مجرد كمبوند — إنها مدينة متكاملة في قلب القاهرة الجديدة، بمشاريع متسلمة وأخرى قيد التطوير بأرقى المعايير.",
           "en": "More than a compound — an integrated city in the heart of New Cairo, with delivered phases and new developments."
         },
-        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Taj.webp",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/v1790674561/Taj.avif",
         "href": "/taj-city"
       },
       {
@@ -181,8 +181,8 @@
         "price": "3,600,000",
         "priceLabelKey": "from",
         "payment": {
-          "ar": "1.5% مقدم / 10 سنوات",
-          "en": "1.5% down / 10 years"
+          "ar": "1.5% مقدم / 12 سنوات",
+          "en": "1.5% down / 12 years"
         },
         "unitTypes": {
           "ar": ["شقق", "فيلات", "تاون هاوس"],
@@ -192,7 +192,7 @@
           "ar": "1,400 فدان، أكبر Crystal Lagoon في المنطقة، جامعة دولية، ومجتمع متكامل على محور الأمل.",
           "en": "1,400 acres, the largest Crystal Lagoon in the region, an international university, and an integrated community on Hope Axis."
         },
-        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Sarai.webp",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/v1790674560/Sarai.avif",
         "href": "/sarai"
       },
       {
@@ -224,7 +224,7 @@
           "ar": "550 فدان بتشطيب كامل — الخيار الأذكى لمن يريد منزلاً جاهزاً باستثمار مضمون.",
           "en": "550 acres of fully-finished units — the smartest choice for a turnkey home with guaranteed investment."
         },
-        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/Talala.webp",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/v1790674563/Talala.avif",
         "href": "/talala"
       },
       {
@@ -245,7 +245,7 @@
         "price": "4,000,000",
         "priceLabelKey": "from",
         "payment": {
-          "ar": "1.5% مقدم / 10 سنوات",
+          "ar": "1.5% مقدم / 12 سنة",
           "en": "1.5% down / 10 years"
         },
         "unitTypes": {
@@ -256,7 +256,7 @@
           "ar": "235 فدان من الفيلات والشقق الفاخرة بمقدم 1.5% وأقساط تصل لـ 10 سنوات.",
           "en": "235 acres of premium villas and apartments with 1.5% down and installments up to 10 years."
         },
-        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/butterfly.webp",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/v1790674562/butterfly.avif",
         "href": "/butterfly"
       },
       {
@@ -288,7 +288,7 @@
           "ar": "أول مول تجاري متكامل على محور الأمل — فرصة استثمارية تجارية وإدارية وطبية.",
           "en": "The first fully-integrated commercial mall on Hope Axis — a premier commercial opportunity."
         },
-        "image": "https://res.cloudinary.com/izrnyvya/image/upload/f_auto,q_auto/v1790080111/D2N.webp",
+        "image": "https://res.cloudinary.com/izrnyvya/image/upload/v1790674561/D2N.avif",
         "href": "/d2n"
       }
     ]
@@ -307,8 +307,8 @@
       "en": "Butterfly"
     },
     "description": {
-      "ar": "في بترَفلاي، السعر بيحكيك بجد... كاش واستمتع بأكبر خصم في السوق 54%، أو ابدأ بـ 1.5% مقدم وعيش في 235 فدان من الفيلات والمناظر النادرة بمدينة المستقبل.",
-      "en": "At Butterfly, the price truly speaks... Pay cash and enjoy the market's biggest discount of 54%, or start with just 1.5% down across 235 acres of rare villas and landscapes in Mostakbal City."
+      "ar": "في بترفلاي، السعر بيتكيف معاك. ادفع كاش واستمتع بأكبر خصم في السوق 54%، أو ابدأ بـ 4% مقدم وعيش في 235 فدان من الفيلات والشقق الفاخرة بمدينة المستقبل.",
+      "en": "At Butterfly, the price adapts to you. Pay cash and enjoy the market's biggest discount — 54% — or start with 1.5% down and live across 235 acres of premium villas and apartments in Madinet Al Mostakbal."
     },
     "stats": [
       {
@@ -405,8 +405,8 @@
       "en": "Communities vibrant with life."
     },
     "description": {
-      "ar": "سجل حافل من المشاريع المستلمة التي أصبحت مجتمعات حقيقية يعيش فيها آلاف العائلات بمصر.",
-      "en": "A proven record of delivered developments that have become thriving real communities where thousands of families live."
+      "ar": "سجل حافل من المشاريع المتسلمة التي أصبحت مجتمعات حقيقية يعيش فيها آلاف العائلات بفخر.",
+      "en": "A celebrated record of delivered projects that became real communities — homes to thousands of proud families."
     },
     "communities": [
       {

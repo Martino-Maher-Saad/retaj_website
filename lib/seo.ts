@@ -14,11 +14,21 @@ export type StandardPageKey =
   | "blog"
   | "faq";
 
+interface PageSeo {
+  title: string;
+  description?: string;
+  keywords?: string | string[];
+  path?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+}
+
 // Single source of truth for base URL (easily changed in site_config.json or via env var)
 export function getBaseSiteUrl(): string {
   const url =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    (siteConfig as any)?.contact?.site_url ||
+    (siteConfig as { contact?: { site_url?: string } })?.contact?.site_url ||
     "https://www.madinetmasr-sales.com";
   return url.replace(/\/$/, "");
 }
@@ -33,7 +43,7 @@ export function getPageMetadata(
   lang: SupportedLang,
   pageKey: StandardPageKey
 ): Metadata {
-  const langData = seoData[lang] as Record<string, any>;
+  const langData = seoData[lang] as unknown as Record<string, PageSeo>;
   const page = langData?.[pageKey] || langData?.home;
 
   if (!page) {
@@ -73,7 +83,7 @@ export function getBlogPostMetadata(
   lang: SupportedLang,
   slug: string
 ): Metadata {
-  const langData = seoData[lang] as any;
+  const langData = seoData[lang] as unknown as { blog_posts?: Record<string, PageSeo> };
   const post = langData?.blog_posts?.[slug];
 
   if (!post) {

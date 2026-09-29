@@ -19,6 +19,7 @@ export default function Hero({ isEn = false }: HeroProps) {
   const langKey = isEn ? "en" : "ar";
   const currentSlide = heroData.slides[activeSlide] || heroData.slides[0];
 
+  // Auto-advance slides every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % heroData.slides.length);
@@ -26,6 +27,7 @@ export default function Hero({ isEn = false }: HeroProps) {
     return () => clearInterval(timer);
   }, [heroData.slides.length]);
 
+  // Exact reveal timeline matching reference site
   useEffect(() => {
     let tl: gsap.core.Timeline | null = null;
 
@@ -71,7 +73,7 @@ export default function Hero({ isEn = false }: HeroProps) {
     <section
       ref={containerRef}
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-clip bg-[#faf8f5] text-[#171410]"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-clip bg-background text-foreground"
     >
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-24 pb-10 sm:px-10 sm:pt-28 sm:pb-12 lg:px-14 lg:pt-32">
         {/* Main Text Content */}
@@ -83,7 +85,7 @@ export default function Hero({ isEn = false }: HeroProps) {
           <h1
             id="hero-title"
             aria-label={`${heroData.titleLine1[langKey]} ${heroData.titleLine2[langKey]}`}
-            className="font-display mt-6 text-[clamp(2.5rem,6.5vw,6rem)] leading-[1.0] tracking-tight text-[#171410] rtl:leading-[1.2] sm:mt-8"
+            className="font-display mt-6 text-[clamp(2.5rem,6.5vw,6rem)] leading-[1.0] tracking-tight text-foreground rtl:leading-[1.2] sm:mt-8"
           >
             <span className="block overflow-hidden py-[0.2em]">
               <span className="reveal-line block">
@@ -91,7 +93,7 @@ export default function Hero({ isEn = false }: HeroProps) {
               </span>
             </span>
             <span className="block overflow-hidden py-[0.2em]">
-              <span className="reveal-line block italic text-[#980f0f]" style={{ fontStyle: "italic" }}>
+              <span className="reveal-line block italic text-brand" style={{ fontStyle: "italic" }}>
                 {heroData.titleLine2[langKey]}
               </span>
             </span>
@@ -104,7 +106,7 @@ export default function Hero({ isEn = false }: HeroProps) {
           <div className="reveal-cta mt-8 flex justify-center sm:mt-10">
             <a
               href={heroData.ctaLink}
-              className="group inline-flex items-center gap-3 border-b border-[#171410]/80 pb-1.5 text-sm font-medium tracking-wide text-[#171410] transition-colors hover:border-[#980f0f] hover:text-[#980f0f] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#980f0f]"
+              className="group inline-flex items-center gap-3 border-b border-foreground/80 pb-1.5 text-sm font-medium tracking-wide text-foreground transition-colors hover:border-brand hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand cursor-pointer"
             >
               <span>{heroData.ctaText[langKey]}</span>
               <svg
@@ -129,7 +131,7 @@ export default function Hero({ isEn = false }: HeroProps) {
           </div>
         </div>
 
-        {/* Bottom Hero Preview Figure matching original */}
+        {/* Bottom Hero Preview Figure matching reference site */}
         <div className="mt-12 sm:mt-16 lg:mt-20">
           <figure className="relative">
             <div className="reveal-image-mask group relative block aspect-[16/9] w-full overflow-hidden rounded-sm bg-neutral-100 shadow-sm">
@@ -144,7 +146,10 @@ export default function Hero({ isEn = false }: HeroProps) {
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#14110f]/30 via-transparent to-transparent"
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background: "linear-gradient(to top, rgba(20,17,15,0.18) 0%, transparent 35%)",
+                  }}
                 />
               </div>
             </div>
@@ -159,11 +164,11 @@ export default function Hero({ isEn = false }: HeroProps) {
                   aria-selected={activeSlide === idx}
                   aria-label={s.title[langKey]}
                   onClick={() => setActiveSlide(idx)}
-                  className="group relative h-[3px] flex-1 overflow-hidden rounded-full bg-neutral-200 transition-colors hover:bg-neutral-300"
+                  className="group relative h-[3px] flex-1 overflow-hidden rounded-full bg-neutral-100 transition-colors hover:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-brand cursor-pointer"
                 >
                   <span
                     className={`block h-full origin-left rtl:origin-right transition-transform duration-500 ${
-                      activeSlide === idx ? "bg-[#980f0f] scale-x-100" : "bg-transparent scale-x-0"
+                      activeSlide === idx ? "bg-brand scale-x-100" : "bg-transparent scale-x-0"
                     }`}
                   />
                 </button>
@@ -179,9 +184,9 @@ export default function Hero({ isEn = false }: HeroProps) {
         </div>
 
         {/* Hero Footer Meta */}
-        <div className="reveal-meta mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-neutral-200 pt-6 text-[11px] uppercase tracking-[0.22em] text-neutral-500 sm:mt-16">
-          <span className="font-mono text-[10px] tracking-normal text-neutral-400">
-            © <span className="text-neutral-600">{heroData.copyright}</span>
+        <div className="reveal-meta mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-neutral-100 pt-6 text-[11px] uppercase tracking-[0.22em] text-neutral-500 sm:mt-16">
+          <span className="font-mono text-[10px] tracking-normal text-neutral-300">
+            © <span className="text-neutral-500">{heroData.copyright}</span>
           </span>
           <span className="inline-flex items-center gap-3">
             <span className="h-px w-8 bg-neutral-300" aria-hidden="true" />
