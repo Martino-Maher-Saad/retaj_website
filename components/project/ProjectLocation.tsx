@@ -19,6 +19,29 @@ interface ProjectLocationProps {
   isEn?: boolean;
 }
 
+// Format time matching 3.PNG: "دقائق او دقيقة" in Arabic and "mins" in English
+function formatMinutes(timeStr: string, isEn: boolean): string {
+  const num = parseInt(timeStr.replace(/[^0-9]/g, "")) || 0;
+  if (isEn) {
+    return `${num} mins`;
+  }
+  if (num >= 3 && num <= 10) {
+    return `${num} دقائق`;
+  }
+  return `${num} دقيقة`;
+}
+
+// Exact percentage coordinates matched to 3.PNG
+const radarCoordinates = [
+  { left: "50%", top: "20%" }, // 5 دقائق العاصمة الإدارية
+  { left: "75%", top: "33%" }, // 10 دقائق الكوربة
+  { left: "78%", top: "54%" }, // 10 دقائق المطار
+  { left: "54%", top: "82%" }, // 12 دقيقة الرحاب
+  { left: "20%", top: "72%" }, // 12 دقيقة كايرو فيستيفال
+  { left: "10%", top: "34%" }, // 17 دقيقة AUC
+  { left: "26%", top: "8%" },  // 20 دقيقة المعادي
+];
+
 export default function ProjectLocation({
   projectName,
   locationSection,
@@ -32,29 +55,10 @@ export default function ProjectLocation({
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Text reveal
-      gsap.fromTo(
-        ".loc-text-elem",
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            once: true,
-          },
-        }
-      );
+      const rings = radarRef.current?.querySelectorAll("[data-ring='true']");
+      const chips = radarRef.current?.querySelectorAll("[data-chip='true']");
 
-      // Radar rings pulse in
-      const rings = radarRef.current?.querySelectorAll(".radar-ring");
-      const tags = radarRef.current?.querySelectorAll(".radar-landmark");
-
-      if (rings && tags) {
+      if (rings && rings.length > 0) {
         gsap.fromTo(
           rings,
           { scale: 0.6, autoAlpha: 0 },
@@ -62,7 +66,7 @@ export default function ProjectLocation({
             scale: 1,
             autoAlpha: 1,
             duration: 1,
-            stagger: 0.1,
+            stagger: 0.12,
             ease: "expo.out",
             scrollTrigger: {
               trigger: radarRef.current,
@@ -71,9 +75,11 @@ export default function ProjectLocation({
             },
           }
         );
+      }
 
+      if (chips && chips.length > 0) {
         gsap.fromTo(
-          tags,
+          chips,
           { y: 15, autoAlpha: 0 },
           {
             y: 0,
@@ -81,7 +87,7 @@ export default function ProjectLocation({
             duration: 0.7,
             stagger: 0.08,
             ease: "power2.out",
-            delay: 0.3,
+            delay: 0.25,
             scrollTrigger: {
               trigger: radarRef.current,
               start: "top 80%",
@@ -95,92 +101,109 @@ export default function ProjectLocation({
     return () => ctx.revert();
   }, []);
 
-  // Pre-calculated orbital positions matching reference screenshot 3.PNG
-  const orbitalPositions = [
-    "top-[8%] start-[20%]",
-    "top-[22%] end-[16%]",
-    "top-[50%] end-[12%]",
-    "bottom-[14%] end-[22%]",
-    "bottom-[22%] start-[10%]",
-    "top-[32%] start-[2%]",
-    "top-[0%] start-[38%]",
-  ];
-
   return (
     <section
-      ref={sectionRef}
       id="location"
-      className="relative py-24 sm:py-32 lg:py-40 bg-[#faf8f5] text-[#171410] overflow-hidden"
+      ref={sectionRef}
+      aria-labelledby="location-heading"
+      className="relative overflow-hidden bg-[#faf8f5] py-24 sm:py-32 lg:py-40"
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Radar Circles Visual Matching 3.PNG - 6 Cols */}
-          <div
-            ref={radarRef}
-            className="order-2 lg:order-1 lg:col-span-6 flex items-center justify-center"
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-x-16 gap-y-14 px-6 sm:px-10 lg:grid-cols-2 lg:px-14">
+        {/* Text Column (Right in RTL, Left in LTR) */}
+        <div>
+          <p
+            data-copy="true"
+            className="text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-brand"
           >
-            <div className="relative aspect-square w-full max-w-[500px] flex items-center justify-center">
-              {/* Concentric Orbit Rings with delicate borders */}
-              <div className="radar-ring absolute inset-0 rounded-full border border-neutral-300/60 shadow-xs" />
-              <div className="radar-ring absolute inset-[12%] rounded-full border border-neutral-300/70" />
-              <div className="radar-ring absolute inset-[24%] rounded-full border border-neutral-300/80" />
-              <div className="radar-ring absolute inset-[36%] rounded-full border border-neutral-300/90" />
-              <div className="radar-ring absolute inset-[48%] rounded-full border border-neutral-300" />
+            {isEn ? "Location" : "الموقع"}
+          </p>
 
-              {/* Center Core Circle with Project Name and Shadow */}
-              <div className="relative z-20 flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-full bg-[#171410] p-3 text-center text-white shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
-                <span className="font-display text-sm font-bold sm:text-base leading-tight">
-                  {projectName[langKey]}
-                </span>
-              </div>
+          <h2
+            id="location-heading"
+            data-copy="true"
+            className="font-display mt-4 text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.1] tracking-tight text-foreground rtl:leading-[1.24] font-semibold"
+          >
+            {locationSection.headline[langKey]}
+          </h2>
 
-              {/* Orbiting Landmark Cards Matching 3.PNG */}
-              {locationSection.landmarks.map((landmark, idx) => {
-                const posClass = orbitalPositions[idx % orbitalPositions.length];
+          <p
+            data-copy="true"
+            className="mt-5 max-w-xl text-[15px] leading-relaxed text-neutral-600 sm:text-base font-normal"
+          >
+            {locationSection.description[langKey]}
+          </p>
 
-                return (
-                  <div
-                    key={idx}
-                    className={`radar-landmark absolute z-10 flex flex-col items-center rounded-sm bg-white/95 px-3 py-2 shadow-sm border border-neutral-200/80 backdrop-blur-xs text-center transition-transform hover:scale-105 ${posClass}`}
-                  >
-                    <span className="font-display text-sm font-bold text-brand leading-none">
-                      {landmark.time}
+          <div data-copy="true" className="mt-8">
+            <a
+              href="#apartments-pricing"
+              className="inline-flex items-center gap-3 rounded-full bg-brand px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-brand-hover hover:scale-105 shadow-md cursor-pointer"
+            >
+              <span>{isEn ? "Explore Prices" : "اعرف الأسعار"}</span>
+              <span aria-hidden="true" className="rtl:rotate-180">
+                →
+              </span>
+            </a>
+          </div>
+        </div>
+
+        {/* Radar Map Column (Left in RTL, Right in LTR) matching 3.PNG */}
+        <div
+          ref={radarRef}
+          className="relative mx-auto aspect-square w-full max-w-[20rem] sm:max-w-[28rem] md:max-w-[34rem]"
+        >
+          {/* 3 Concentric Rings */}
+          <div
+            data-ring="true"
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-300/70 pointer-events-none"
+            style={{ width: "44%", height: "44%" }}
+          />
+          <div
+            data-ring="true"
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-300/70 pointer-events-none"
+            style={{ width: "70%", height: "70%" }}
+          />
+          <div
+            data-ring="true"
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-300/70 pointer-events-none"
+            style={{ width: "96%", height: "96%" }}
+          />
+
+          {/* Center Black Circle matching 3.PNG */}
+          <div
+            data-center="true"
+            className="absolute left-1/2 top-1/2 flex size-[4.75rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#171410] text-white shadow-[0_20px_50px_rgba(0,0,0,0.35)] sm:size-28 md:size-32 z-10"
+          >
+            <span className="font-display px-2 text-center text-xs sm:text-base md:text-lg font-medium">
+              {projectName[langKey]}
+            </span>
+          </div>
+
+          {/* Orbiting White Landmark Cards matching 3.PNG */}
+          <ul>
+            {locationSection.landmarks.map((landmark, idx) => {
+              const pos = radarCoordinates[idx % radarCoordinates.length];
+              return (
+                <li
+                  key={idx}
+                  data-chip="true"
+                  className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
+                  style={{ left: pos.left, top: pos.top }}
+                >
+                  <div className="flex flex-col items-center rounded-md border border-neutral-100/90 bg-white px-3.5 py-2 text-center shadow-[0_6px_22px_rgba(0,0,0,0.08)] sm:px-4 sm:py-2.5 min-w-[95px] sm:min-w-[110px]">
+                    <span className="font-display text-xs sm:text-sm font-semibold text-brand tabular-nums">
+                      {formatMinutes(landmark.time, isEn)}
                     </span>
-                    <span className="mt-1 text-[11px] font-medium text-neutral-700 max-w-[100px] leading-tight">
+                    <span className="mt-0.5 text-[11px] sm:text-xs font-medium text-neutral-800 whitespace-nowrap leading-tight">
                       {landmark.name[langKey]}
                     </span>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Text Description Matching 3.PNG - 6 Cols */}
-          <div className="order-1 lg:order-2 lg:col-span-6">
-            <span className="loc-text-elem text-xs font-semibold text-brand tracking-wider">
-              {isEn ? "Location" : "الموقع"}
-            </span>
-
-            <h2 className="loc-text-elem font-display mt-3 text-[clamp(2.4rem,5.5vw,4.25rem)] font-bold leading-[1.08] tracking-tight text-[#171410]">
-              {locationSection.headline[langKey]}
-            </h2>
-
-            <p className="loc-text-elem mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg">
-              {locationSection.description[langKey]}
-            </p>
-
-            <div className="loc-text-elem mt-8">
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:bg-[#7b0c0c] hover:scale-105"
-              >
-                <span>{isEn ? "Explore Prices" : "اعرف الأسعار"}</span>
-                <span aria-hidden="true" className="rtl:-scale-x-100">
-                  ←
-                </span>
-              </a>
-            </div>
-          </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>

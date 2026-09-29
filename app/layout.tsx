@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  IBM_Plex_Sans_Arabic,
-  El_Messiri,
-  Manrope,
-  Instrument_Serif,
-} from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Manrope } from "next/font/google";
 import "./globals.css";
 import siteConfig from "@/data/site_config.json";
 import Header from "@/components/Header";
@@ -18,25 +13,10 @@ const ibmArabic = IBM_Plex_Sans_Arabic({
   display: "swap",
 });
 
-const elMessiri = El_Messiri({
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display-ar",
-  display: "swap",
-});
-
 const manrope = Manrope({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-english",
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-display-en",
   display: "swap",
 });
 
@@ -70,10 +50,53 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "@id": `${siteConfig.contact.site_url}/#organization`,
+        name: siteConfig.brand.name_ar,
+        alternateName: siteConfig.brand.name_en,
+        url: siteConfig.contact.site_url,
+        logo: `${siteConfig.contact.site_url}/logo.svg`,
+        telephone: siteConfig.contact.phone,
+        email: siteConfig.contact.email,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Cairo",
+          addressCountry: "EG",
+        },
+        sameAs: [
+          siteConfig.social.facebook,
+          siteConfig.social.instagram,
+          siteConfig.social.linkedin,
+          siteConfig.social.youtube,
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteConfig.contact.site_url}/#website`,
+        url: siteConfig.contact.site_url,
+        name: siteConfig.brand.name_ar,
+        publisher: {
+          "@id": `${siteConfig.contact.site_url}/#organization`,
+        },
+        inLanguage: ["ar-EG", "en-US"],
+      },
+    ],
+  };
+
   return (
     <html lang="ar" dir="rtl">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
-        className={`${ibmArabic.variable} ${elMessiri.variable} ${manrope.variable} ${instrumentSerif.variable} font-sans antialiased`}
+        className={`${ibmArabic.variable} ${manrope.variable} font-sans antialiased`}
       >
         <SmoothScroll />
         <DirectionManager />

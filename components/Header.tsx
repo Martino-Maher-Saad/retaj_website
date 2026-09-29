@@ -167,10 +167,10 @@ export default function Header() {
                 <li key={item.href} className="nav-link-item">
                   <Link
                     href={item.href}
-                    className={`nav-link text-[15px] transition-colors py-1 ${
+                    className={`nav-link text-[14px] xl:text-[15px] transition-colors py-1 tracking-tight ${
                       isActive
-                        ? "text-brand font-bold border-b-2 border-brand"
-                        : "font-medium text-foreground hover:text-brand"
+                        ? "text-brand font-semibold border-b-[1.5px] border-brand"
+                        : "font-medium text-foreground/90 hover:text-brand"
                     }`}
                   >
                     {item.label}
@@ -186,9 +186,9 @@ export default function Header() {
               href={langTarget}
               onClick={handleLanguageSwitch}
               aria-label="تبديل اللغة"
-              className="nav-link hidden text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-brand sm:inline-flex items-center cursor-pointer"
+              className="nav-link hidden text-[14px] font-medium tracking-tight text-foreground/90 transition-colors hover:text-brand sm:inline-flex items-center cursor-pointer"
             >
-              <span className="inline-block h-2 w-2 rounded-full bg-brand me-2" />
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand me-2" />
               <span>{langLabel}</span>
             </Link>
 
@@ -232,17 +232,22 @@ export default function Header() {
       >
         <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between px-6 pb-12 pt-8 sm:px-10">
           <ul className="flex flex-col gap-5">
-            {navItems.map((item) => (
-              <li key={item.href} className="mobile-link">
-                <Link
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-display block text-[clamp(2.25rem,7vw,3.5rem)] leading-[1.05] tracking-tight text-foreground transition-colors hover:text-brand"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href} className="mobile-link">
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`font-display block text-[clamp(2rem,6.5vw,3.25rem)] leading-[1.1] tracking-tight transition-colors hover:text-brand font-medium ${
+                      isActive ? "text-brand" : "text-foreground"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <div className="mobile-link mt-10 flex items-center justify-between border-t border-neutral-200 dark:border-neutral-800 pt-6">
             <Link
@@ -252,8 +257,8 @@ export default function Header() {
             >
               {langLabel}
             </Link>
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-500">
-              Madinet Masr
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
+              {brandName}
             </span>
           </div>
         </div>

@@ -35,7 +35,7 @@ export default function Footer({ isEn = false }: FooterProps) {
 
           {/* Quick Links */}
           <div className="col-span-1 md:col-span-3">
-            <h4 className="text-[11px] font-medium uppercase tracking-[0.32em] text-background/55">
+            <h4 className="text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-background/50">
               {footerData.quickLinksTitle[langKey]}
             </h4>
             <ul className="mt-6 space-y-3.5">
@@ -43,7 +43,7 @@ export default function Footer({ isEn = false }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="footer-link inline-block text-[14px] text-background/85 transition-colors hover:text-brand"
+                    className="footer-link inline-block text-[14px] text-background/75 transition-colors hover:text-white font-normal"
                   >
                     {link.label}
                   </Link>
@@ -54,20 +54,20 @@ export default function Footer({ isEn = false }: FooterProps) {
 
           {/* Contact Information */}
           <div className="col-span-1 md:col-span-4">
-            <h4 className="text-[11px] font-medium uppercase tracking-[0.32em] text-background/55">
+            <h4 className="text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-background/50">
               {footerData.contactTitle[langKey]}
             </h4>
             <ul className="mt-6 space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 shrink-0 text-brand h-4 w-4" strokeWidth={1.5} />
                 <div className="text-[14px]">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-background/45">
+                  <p className="text-[10px] uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-background/45 font-medium">
                     {isEn ? "Sales" : "المبيعات"}
                   </p>
                   <a
                     dir="ltr"
                     href={`tel:${footerData.phone}`}
-                    className="font-mono text-background/90 transition-colors hover:text-brand"
+                    className="text-background/90 transition-colors hover:text-brand font-medium tabular-nums"
                   >
                     {footerData.phone}
                   </a>
@@ -77,12 +77,12 @@ export default function Footer({ isEn = false }: FooterProps) {
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 shrink-0 text-brand h-4 w-4" strokeWidth={1.5} />
                 <div className="text-[14px]">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-background/45">
+                  <p className="text-[10px] uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-background/45 font-medium">
                     {isEn ? "Email" : "البريد الإلكتروني"}
                   </p>
                   <a
                     href={`mailto:${footerData.email}`}
-                    className="text-background/90 transition-colors hover:text-brand"
+                    className="text-background/90 transition-colors hover:text-brand font-normal"
                   >
                     {footerData.email}
                   </a>
@@ -92,10 +92,10 @@ export default function Footer({ isEn = false }: FooterProps) {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 shrink-0 text-brand h-4 w-4" strokeWidth={1.5} />
                 <div className="text-[14px]">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-background/45">
+                  <p className="text-[10px] uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-background/45 font-medium">
                     {isEn ? "Location" : "الموقع"}
                   </p>
-                  <span className="text-background/90">
+                  <span className="text-background/90 font-normal">
                     {footerData.address[langKey]}
                   </span>
                 </div>
@@ -119,7 +119,7 @@ export default function Footer({ isEn = false }: FooterProps) {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/madinetmasr"
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -143,7 +143,7 @@ export default function Footer({ isEn = false }: FooterProps) {
 
             {/* Facebook */}
             <a
-              href="https://www.facebook.com/MadinetMasrOfficialPage"
+              href={siteConfig.social.facebook}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -161,7 +161,7 @@ export default function Footer({ isEn = false }: FooterProps) {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/company/madinetmasr/"
+              href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -179,7 +179,7 @@ export default function Footer({ isEn = false }: FooterProps) {
 
             {/* YouTube */}
             <a
-              href="https://www.youtube.com/@madinetmasr"
+              href={siteConfig.social.youtube}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"
@@ -197,7 +197,9 @@ export default function Footer({ isEn = false }: FooterProps) {
           </div>
 
           <p className="order-3 text-[11px] text-background/55">
-            {isEn ? "All rights reserved © 2026 — Madinet Masr Sales Guide" : "جميع الحقوق محفوظة © 2026 — Madinet Masr Sales Guide"}
+            {isEn
+              ? `All rights reserved © ${new Date().getFullYear()} — ${siteConfig.brand.name_en}`
+              : `جميع الحقوق محفوظة © ${new Date().getFullYear()} — ${siteConfig.brand.name_ar}`}
           </p>
         </div>
       </div>

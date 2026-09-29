@@ -30,8 +30,8 @@
     ]
   },
   "contact": {
-    "phone": "+201070020054",
-    "display_phone": "+201070020054",
+    "phone": "+01015626755",
+    "display_phone": "+01015626755",
     "whatsapp": "+201146659065",
     "display_whatsapp": "01146659065",
     "email": "sales@madinetmasr-sales.com",
@@ -73,10 +73,6 @@
         "href": "/gallery"
       },
       {
-        "label": "المدونة",
-        "href": "/blog"
-      },
-      {
         "label": "الأسئلة الشائعة",
         "href": "/faq"
       }
@@ -105,10 +101,6 @@
       {
         "label": "Gallery",
         "href": "/en/gallery"
-      },
-      {
-        "label": "Blog",
-        "href": "/en/blog"
       },
       {
         "label": "FAQ",

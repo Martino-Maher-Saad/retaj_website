@@ -91,26 +91,26 @@ export default function TrackRecord({ isEn = false }: TrackRecordProps) {
       <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-14">
         {/* Header matching reference site */}
         <header className="mx-auto max-w-3xl text-center">
-          <p className="track-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-current/60">
+          <p className="track-eyebrow text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-current/60">
             {trackData.eyebrow[langKey]}
           </p>
           <h2
             id="track-headline"
-            className="track-headline font-display mt-6 text-[clamp(2rem,5vw,4rem)] leading-[1.15] tracking-tight rtl:leading-[1.3] font-bold"
+            className="track-headline font-display mt-4 text-[clamp(2.2rem,5vw,3.75rem)] leading-[1.08] tracking-tight rtl:leading-[1.24] font-semibold"
           >
             <span className="block">{trackData.titleLine1[langKey]}</span>
-            <span className="block text-brand italic">{trackData.titleLine2[langKey]}</span>
+            <span className="block text-brand italic font-normal">{trackData.titleLine2[langKey]}</span>
           </h2>
-          <p className="track-description mt-8 text-[15px] leading-relaxed text-current/75 sm:text-base">
+          <p className="track-description mt-6 max-w-2xl mx-auto text-[15px] leading-relaxed text-current/75 sm:text-base font-normal">
             {trackData.description[langKey]}
           </p>
         </header>
 
         {/* 3 Figures Layout matching reference site */}
-        <div className="mt-20 space-y-16 sm:mt-28 sm:space-y-24 lg:mt-32 lg:space-y-32">
+        <div className="mt-16 space-y-14 sm:mt-24 sm:space-y-20 lg:mt-28 lg:space-y-24">
           {trackData.communities.map((comm) => (
             <figure key={comm.num} className="track-figure relative">
-              <div className="track-mask relative aspect-[16/9] w-full overflow-hidden rounded-sm bg-neutral-100 shadow-xl">
+              <div className="track-mask relative aspect-[16/9] w-full overflow-hidden rounded-sm bg-neutral-100 shadow-[0_16px_40px_rgba(0,0,0,0.06)] border border-black/[0.06]">
                 <div className="track-image-inner absolute inset-0">
                   <Image
                     src={comm.image}
@@ -131,14 +131,14 @@ export default function TrackRecord({ isEn = false }: TrackRecordProps) {
                 />
                 <figcaption className="track-caption absolute bottom-6 start-6 end-6 flex flex-wrap items-end justify-between gap-4 text-white sm:bottom-8 sm:start-8 sm:end-8">
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-brand font-bold">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-brand tabular-nums">
                       {comm.num} · {comm.status[langKey]}
                     </p>
-                    <h3 className="font-display mt-3 text-[clamp(2rem,4.5vw,3.75rem)] leading-none tracking-tight rtl:leading-[1.15] font-bold text-white">
+                    <h3 className="font-display mt-2 text-[clamp(1.85rem,4vw,3.25rem)] leading-tight tracking-tight rtl:leading-[1.15] font-semibold text-white">
                       {comm.name[langKey]}
                     </h3>
                   </div>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/80">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-white/80">
                     {comm.location[langKey]}
                   </p>
                 </figcaption>
