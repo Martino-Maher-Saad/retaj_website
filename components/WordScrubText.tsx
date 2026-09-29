@@ -60,19 +60,45 @@ export default function WordScrubText({
     };
   }, [rawText, start, end]);
 
-  const Tag = as;
   const words = rawText.split(" ");
+  const content = words.map((word, idx) => (
+    <span
+      key={idx}
+      className="scrub-word inline-block mr-[0.22em] rtl:ml-[0.22em] rtl:mr-0 will-change-[opacity]"
+    >
+      {word}
+    </span>
+  ));
 
-  return (
-    <Tag ref={containerRef as any} id={id} className={className}>
-      {words.map((word, idx) => (
-        <span
-          key={idx}
-          className="scrub-word inline-block mr-[0.22em] rtl:ml-[0.22em] rtl:mr-0 will-change-[opacity]"
-        >
-          {word}
-        </span>
-      ))}
-    </Tag>
-  );
+  const setRef = (el: HTMLElement | null) => {
+    containerRef.current = el;
+  };
+
+  switch (as) {
+    case "h1":
+      return (
+        <h1 ref={setRef} id={id} className={className}>
+          {content}
+        </h1>
+      );
+    case "h3":
+      return (
+        <h3 ref={setRef} id={id} className={className}>
+          {content}
+        </h3>
+      );
+    case "p":
+      return (
+        <p ref={setRef} id={id} className={className}>
+          {content}
+        </p>
+      );
+    case "h2":
+    default:
+      return (
+        <h2 ref={setRef} id={id} className={className}>
+          {content}
+        </h2>
+      );
+  }
 }

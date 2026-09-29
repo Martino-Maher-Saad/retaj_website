@@ -2,10 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { ShieldCheck, Key, Building2, Users } from "lucide-react";
+import { Key, ShieldCheck, Building2, Landmark } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import WordScrubText from "@/components/WordScrubText";
 import homeContent from "@/data/home_content.json";
 
 interface LifestyleFeaturesProps {
@@ -13,10 +12,10 @@ interface LifestyleFeaturesProps {
 }
 
 const ICONS = {
-  ShieldCheck,
-  Key,
-  Building2,
-  Users,
+  finishing: Key,
+  security: ShieldCheck,
+  community: Building2,
+  design: Landmark,
 };
 
 export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesProps) {
@@ -29,37 +28,35 @@ export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesPro
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Eyebrow reveal
       gsap.fromTo(
-        ".features-eyebrow",
-        { y: 16, autoAlpha: 0 },
+        ".features-headline",
+        { y: 24, autoAlpha: 0 },
         {
           y: 0,
           autoAlpha: 1,
-          duration: 0.7,
+          duration: 0.9,
           ease: "expo.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 85%",
+            start: "top 80%",
             once: true,
           },
         }
       );
 
-      // Card reveals
-      const cardEls = sectionRef.current?.querySelectorAll(".feature-card-item");
-      cardEls?.forEach((card, idx) => {
+      const tiles = sectionRef.current?.querySelectorAll(".features-tile");
+      tiles?.forEach((tile, idx) => {
         gsap.fromTo(
-          card,
-          { y: 35, autoAlpha: 0 },
+          tile,
+          { y: 40, autoAlpha: 0 },
           {
             y: 0,
             autoAlpha: 1,
-            duration: 0.8,
-            delay: idx * 0.1,
+            duration: 0.85,
+            delay: (idx % 2) * 0.1,
             ease: "expo.out",
             scrollTrigger: {
-              trigger: card,
+              trigger: tile,
               start: "top 85%",
               once: true,
             },
@@ -76,63 +73,67 @@ export default function LifestyleFeatures({ isEn = false }: LifestyleFeaturesPro
       id="features"
       ref={sectionRef}
       aria-labelledby="features-headline"
-      className="relative overflow-hidden bg-[#faf8f5] py-28 sm:py-36 lg:py-48 text-[#171410]"
+      className="relative py-32 sm:py-48 lg:py-56 bg-background text-foreground"
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
-        {/* Header */}
-        <div className="max-w-3xl">
-          <p className="features-eyebrow text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-500 sm:text-xs">
+      <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-14">
+        {/* Header matching reference site */}
+        <header className="mx-auto mb-16 max-w-3xl text-center sm:mb-24 lg:mb-28">
+          <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-current/60">
             {featData.eyebrow[langKey]}
           </p>
-
-          <WordScrubText
+          <h2
             id="features-headline"
-            as="h2"
-            className="mt-4 font-display text-[clamp(2.2rem,5vw,4.5rem)] font-bold leading-[1.08] tracking-tight text-[#171410]"
+            className="features-headline font-display mt-6 text-[clamp(2rem,5vw,4rem)] leading-[1.15] tracking-tight rtl:leading-[1.3] font-bold"
           >
             {featData.title[langKey]}
-          </WordScrubText>
-        </div>
+          </h2>
+        </header>
 
-        {/* 2x2 Feature Grid Matching Video at 01:26 - 01:31 */}
-        <div className="mt-14 sm:mt-18 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+        {/* 2x2 Grid Tiles matching reference site */}
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10">
           {featData.features.map((feat) => {
-            const Icon = ICONS[feat.icon as keyof typeof ICONS] || ShieldCheck;
+            const Icon = ICONS[feat.id as keyof typeof ICONS] || ShieldCheck;
             return (
-              <div
+              <article
                 key={feat.id}
-                className="feature-card-item group relative aspect-[16/11] sm:aspect-[16/10] overflow-hidden rounded-2xl bg-neutral-900 shadow-xl border border-neutral-200"
+                className="features-tile group relative aspect-[4/3] overflow-hidden rounded-sm bg-neutral-900 shadow-xl"
               >
-                {/* Background Image */}
-                <Image
-                  src={feat.image}
-                  alt={feat.title[langKey]}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-
-                {/* Subtle Gradient Overlays */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"
-                />
-
-                {/* Red Circular Icon Badge at Top-End Corner matching video */}
-                <div className="absolute top-5 end-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#980f0f] text-white shadow-lg shadow-[#980f0f]/40 transition-transform duration-300 group-hover:scale-110">
-                  <Icon size={20} strokeWidth={2.2} />
+                <div className="features-mask absolute inset-0">
+                  <Image
+                    src={feat.image}
+                    alt={feat.title[langKey]}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-[1.05]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(20,17,15,0.88) 0%, rgba(20,17,15,0.5) 40%, rgba(20,17,15,0.1) 75%, transparent 100%)",
+                    }}
+                  />
                 </div>
 
-                {/* Bottom Content Overlaid on Card */}
-                <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8 text-white flex flex-col gap-2">
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white drop-shadow-md">
+                {/* Circular Brand Badge at top-6 start-6 */}
+                <span
+                  aria-hidden="true"
+                  className="absolute top-6 start-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white shadow-[0_8px_24px_rgba(152,15,15,0.4)] sm:top-8 sm:start-8 sm:h-14 sm:w-14 transition-transform duration-300 group-hover:scale-105"
+                >
+                  <Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.5} />
+                </span>
+
+                {/* Overlaid Content at bottom-6 start-6 end-6 */}
+                <div className="features-content absolute bottom-6 start-6 end-6 text-white sm:bottom-8 sm:start-8 sm:end-8">
+                  <h3 className="font-display text-[clamp(1.5rem,2.5vw,2.25rem)] leading-tight tracking-tight rtl:leading-[1.2] font-bold">
                     {feat.title[langKey]}
                   </h3>
-                  <p className="text-[13px] sm:text-[14px] leading-relaxed text-neutral-200/90 max-w-lg">
+                  <p className="mt-3 max-w-md text-[14px] leading-relaxed text-white/85 sm:text-[15px]">
                     {feat.desc[langKey]}
                   </p>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

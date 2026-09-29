@@ -133,10 +133,8 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed inset-x-0 top-0 z-[57] transition-[background-color,backdrop-filter,border-color,color] duration-150 border-b ${
-          isScrolled
-            ? "border-neutral-200/80 bg-[#faf8f5]/85 text-foreground backdrop-blur-md shadow-xs"
-            : "border-transparent bg-transparent text-foreground"
+        className={`fixed inset-x-0 top-0 z-[57] transition-[background-color,backdrop-filter,border-color,color] duration-150 border-b border-neutral-200/80 bg-[#faf8f5]/95 text-foreground backdrop-blur-md ${
+          isScrolled ? "shadow-sm" : "shadow-xs"
         }`}
       >
         <nav
@@ -161,16 +159,25 @@ export default function Header() {
 
           {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-6 lg:flex xl:gap-8">
-            {navItems.map((item) => (
-              <li key={item.href} className="nav-link-item">
-                <Link
-                  href={item.href}
-                  className="nav-link text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-brand"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && item.href !== "/en" && pathname.startsWith(item.href));
+              return (
+                <li key={item.href} className="nav-link-item">
+                  <Link
+                    href={item.href}
+                    className={`nav-link text-[15px] transition-colors py-1 ${
+                      isActive
+                        ? "text-brand font-bold border-b-2 border-brand"
+                        : "font-medium text-foreground hover:text-brand"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Right Controls */}
@@ -179,9 +186,10 @@ export default function Header() {
               href={langTarget}
               onClick={handleLanguageSwitch}
               aria-label="تبديل اللغة"
-              className="nav-link hidden text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-brand sm:inline-block cursor-pointer"
+              className="nav-link hidden text-[15px] font-medium tracking-tight text-foreground transition-colors hover:text-brand sm:inline-flex items-center cursor-pointer"
             >
-              {langLabel}
+              <span className="inline-block h-2 w-2 rounded-full bg-brand me-2" />
+              <span>{langLabel}</span>
             </Link>
 
             {/* Mobile Hamburger */}
