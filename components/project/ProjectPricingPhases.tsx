@@ -9,10 +9,13 @@ interface Unit {
   type: { ar: string; en: string };
   phase: string;
   category: { ar: string; en: string };
-  area: string;
+  area: string | { ar?: string; en?: string };
   startingPriceText: { ar: string; en: string };
   downPayment: string;
   monthlyInstallment?: number;
+  rooms?: { ar: string; en: string } | string;
+  subText?: { ar: string; en: string } | string;
+  delivery?: { ar: string; en: string } | string;
 }
 
 interface Phase {
@@ -23,6 +26,9 @@ interface Phase {
   startingPrice: number;
   downPayment: string;
   installments: number;
+  delivery?: { ar: string; en: string } | string;
+  deliveryFrom?: string;
+  cashDiscount?: string | { ar?: string; en?: string };
 }
 
 interface ProjectPricingPhasesProps {
@@ -32,13 +38,156 @@ interface ProjectPricingPhasesProps {
     headline: { ar: string; en: string };
     description: { ar: string; en: string };
     cashDiscount: string;
+    cashDiscountText?: { ar: string; en: string } | string;
+    deliveryFrom?: string;
+    delivery?: { ar: string; en: string } | string;
   };
   phases: Phase[];
   units: Unit[];
   isEn?: boolean;
 }
 
+// Format area dynamically: "م²" in Arabic and "m²" in English
+function formatArea(area: unknown, isEn: boolean): string {
+  if (!area) return "";
+  if (typeof area === "object" && area !== null) {
+    const obj = area as { ar?: string; en?: string };
+    return isEn ? obj.en || obj.ar || "" : obj.ar || obj.en || "";
+  }
+  const str = String(area).trim();
+  // Strip existing area suffixes (م², م2, m², m2, sqm, etc.)
+  const numPart = str.replace(/\s*(م²|م2|m²|m2|sqm|sq\.m|متر|متراً)\s*/gi, "").trim();
+  return isEn ? `${numPart} m²` : `${numPart} م²`;
+}
+
+// Get the 2nd line of the card dynamically from projects.json (rooms/subText) or auto-derive
+function getUnitSecondLine(unit: Unit, isEn: boolean): string {
+  const langKey = isEn ? "en" : "ar";
+
+  // 1. Explicit subText in unit
+  if (unit.subText) {
+    if (typeof unit.subText === "object") return unit.subText[langKey] || "";
+    return String(unit.subText);
+  }
+
+  // 2. Explicit rooms in unit
+  if (unit.rooms) {
+    if (typeof unit.rooms === "object") return unit.rooms[langKey] || "";
+    return String(unit.rooms);
+  }
+
+  // 3. Auto-derived from unit.type
+  const typeAr = unit.type?.ar || "";
+  const typeEn = unit.type?.en || "";
+
+  if (
+    typeAr.includes("غرفة نوم واحدة") ||
+    typeAr.includes("غرفة واحدة") ||
+    typeEn.toLowerCase().includes("1 bedroom")
+  ) {
+    return isEn ? "1 Bedroom" : "غرفة واحدة";
+  }
+  if (
+    typeAr.includes("غرفتين") ||
+    typeAr.includes("2 غرفة") ||
+    typeEn.toLowerCase().includes("2 bedroom")
+  ) {
+    return isEn ? "2 Bedrooms" : "غرفتين نوم";
+  }
+  if (
+    typeAr.includes("3 غرف") ||
+    typeAr.includes("ثلاث غرف") ||
+    typeEn.toLowerCase().includes("3 bedroom")
+  ) {
+    return isEn ? "3 Bedrooms" : "3 غرف نوم";
+  }
+  if (
+    typeAr.includes("4 غرف") ||
+    typeAr.includes("أربع غرف") ||
+    typeEn.toLowerCase().includes("4 bedroom")
+  ) {
+    return isEn ? "4 Bedrooms" : "4 غرف نوم";
+  }
+  if (typeAr.includes("تاون هاوس") || typeEn.toLowerCase().includes("townhouse")) {
+    return isEn ? "Townhouse" : "تاون هاوس";
+  }
+  if (typeAr.includes("لوفت") || typeEn.toLowerCase().includes("loft")) {
+    return isEn ? "Loft" : "لوفت بريميوم";
+  }
+  if (typeAr.includes("مكتب") || typeEn.toLowerCase().includes("office")) {
+    return isEn ? "Office" : "مكتب إداري";
+  }
+  if (typeAr.includes("عيادة") || typeEn.toLowerCase().includes("clinic")) {
+    return isEn ? "Clinic" : "عيادة طبية";
+  }
+
+  // 4. Fallback to monthlyInstallment or downPayment
+  if (unit.monthlyInstallment) {
+    return isEn
+      ? `From EGP ${unit.monthlyInstallment.toLocaleString()}/mo`
+      : `قسط يبدأ من ${unit.monthlyInstallment.toLocaleString()} ج/ش`;
+  }
+  if (unit.downPayment) {
+    return isEn ? `Down payment ${unit.downPayment}` : `مقدم ${unit.downPayment}`;
+  }
+
+  return isEn ? "Available Unit" : "وحدة متاحة";
+}
+
+function formatDeliveryText(delivery?: string, isEn: boolean = false): string {
+  if (!delivery) return isEn ? "1 - 3 Yrs" : "من سنة إلى 3 سنوات";
+  const lower = delivery.toLowerCase();
+  if (lower.includes("1 year") || lower === "1") return isEn ? "1 Year" : "سنة واحدة";
+  if (lower.includes("2 year") || lower === "2") return isEn ? "2 Years" : "سنتين";
+  if (lower.includes("3 year") || lower === "3") return isEn ? "3 Years" : "3 سنوات";
+  if (lower.includes("4 year") || lower === "4") return isEn ? "4 Years" : "4 سنوات";
+  return delivery;
+}
+
+function getDeliveryDisplay(
+  phase: Phase,
+  pricingSection: { deliveryFrom?: string; delivery?: { ar: string; en: string } | string },
+  isEn: boolean
+): string {
+  const langKey = isEn ? "en" : "ar";
+  if (phase.delivery) {
+    if (typeof phase.delivery === "object") return phase.delivery[langKey] || "";
+    return formatDeliveryText(phase.delivery, isEn);
+  }
+  if (pricingSection.delivery) {
+    if (typeof pricingSection.delivery === "object") return pricingSection.delivery[langKey] || "";
+    return formatDeliveryText(pricingSection.delivery, isEn);
+  }
+  return formatDeliveryText(pricingSection.deliveryFrom, isEn);
+}
+
+function getCashDiscountDisplay(
+  phase: Phase,
+  pricingSection: { cashDiscount?: string; cashDiscountText?: { ar: string; en: string } | string },
+  isEn: boolean
+): string {
+  const langKey = isEn ? "en" : "ar";
+  // 1. Phase-level cashDiscount (e.g. "50%" or { ar: "خصم 50%", en: "50% Discount" })
+  if (phase.cashDiscount) {
+    if (typeof phase.cashDiscount === "object") return phase.cashDiscount[langKey] || "";
+    const cd = String(phase.cashDiscount);
+    return cd.includes("%") ? `${isEn ? "Up to " : "يصل إلى "}${cd}` : cd;
+  }
+  // 2. Section-level cashDiscountText
+  if (pricingSection.cashDiscountText) {
+    if (typeof pricingSection.cashDiscountText === "object") return pricingSection.cashDiscountText[langKey] || "";
+    return String(pricingSection.cashDiscountText);
+  }
+  // 3. Fallback to section-level cashDiscount
+  const fallback = pricingSection.cashDiscount || "";
+  if (fallback.includes("%")) {
+    return `${isEn ? "Up to " : "يصل إلى "}${fallback}`;
+  }
+  return fallback;
+}
+
 export default function ProjectPricingPhases({
+  projectName,
   pricingSection,
   phases,
   units,
@@ -94,18 +243,22 @@ export default function ProjectPricingPhases({
         </header>
 
         <h3 className="mt-10 text-[11px] font-medium uppercase tracking-[0.25em] rtl:tracking-[0.08em] text-neutral-500 sm:mt-12">
-          {isEn ? "Unit Types & Areas" : "أنواع وحدات تاج سيتي والمساحات"}
+          {isEn
+            ? `Unit Types & Areas — ${projectName.en}`
+            : `أنواع وحدات ${projectName.ar} والمساحات`}
         </h3>
 
         {/* Phases & Units */}
         <div className="mt-6 space-y-12 sm:space-y-14">
           {phases.map((phase, pIdx) => {
-            const phaseUnits = units.filter(
-              (u) =>
-                u.phase.toLowerCase().includes(phase.id.replace("-", " ").toLowerCase()) ||
-                phase.name.en.toLowerCase().includes(u.phase.toLowerCase())
-            );
-            const displayUnits = phaseUnits.length > 0 ? phaseUnits : units.slice(0, 3);
+            const phaseUnits = units.filter((u) => {
+              const uPhase = (u.phase || "").toLowerCase().replace(/[\s-_]+/g, "");
+              const pId = (phase.id || "").toLowerCase().replace(/[\s-_]+/g, "");
+              const pNameEn = (phase.name?.en || "").toLowerCase().replace(/[\s-_]+/g, "");
+              return uPhase === pId || uPhase === pNameEn || (uPhase === "kinda" && pId === "kindaoffices");
+            });
+            if (phaseUnits.length === 0) return null;
+            const displayUnits = phaseUnits;
 
             return (
               <div key={phase.id} className="pricing-card-item">
@@ -117,6 +270,8 @@ export default function ProjectPricingPhases({
                 <ul className="mt-5 grid grid-cols-2 gap-3 sm:mt-6 sm:gap-5 lg:grid-cols-3 lg:gap-6">
                   {displayUnits.map((unit, uIdx) => {
                     const isFeatured = pIdx === 0 && uIdx === 0;
+                    const rawPrice = unit.startingPriceText[langKey] || "";
+                    const hasCurrency = /جنيه|egp/i.test(rawPrice);
 
                     return (
                       <li
@@ -143,13 +298,11 @@ export default function ProjectPricingPhases({
                         <dl className="mt-3 space-y-1 text-[12px] text-neutral-600 sm:mt-4 sm:space-y-1.5 sm:text-[13px]">
                           <div className="flex items-center gap-2">
                             <dt className="text-neutral-400">◼</dt>
-                            <dd>{unit.area}</dd>
+                            <dd>{formatArea(unit.area, isEn)}</dd>
                           </div>
                           <div className="flex items-center gap-2">
                             <dt className="text-neutral-400">◼</dt>
-                            <dd>
-                              {isEn ? "Options available" : "خيارات متعددة"}
-                            </dd>
+                            <dd>{getUnitSecondLine(unit, isEn)}</dd>
                           </div>
                         </dl>
 
@@ -159,11 +312,13 @@ export default function ProjectPricingPhases({
                           </p>
                           <p className="mt-1 flex flex-wrap items-baseline gap-x-1.5 gap-y-0 sm:gap-2">
                             <span className="font-display text-[clamp(1.25rem,3.8vw,2.35rem)] leading-none tracking-tight tabular-nums text-foreground font-semibold">
-                              {unit.startingPriceText[langKey]}
+                              {rawPrice}
                             </span>
-                            <span className="text-xs font-medium text-neutral-500 sm:text-sm">
-                              {isEn ? "EGP" : "جنيه"}
-                            </span>
+                            {!hasCurrency && (
+                              <span className="text-xs font-medium text-neutral-500 sm:text-sm">
+                                {isEn ? "EGP" : "جنيه"}
+                              </span>
+                            )}
                           </p>
                         </div>
 
@@ -200,7 +355,7 @@ export default function ProjectPricingPhases({
 
                   <div className="flex flex-col items-center rounded-sm border border-black/[0.06] bg-background px-4 py-4 text-center sm:min-w-[140px] sm:flex-1 sm:px-6 sm:py-5 shadow-xs">
                     <span className="font-display text-[clamp(1.3rem,3.5vw,2.25rem)] leading-none tracking-tight text-brand font-semibold tabular-nums">
-                      {isEn ? "2.5 - 4 Yrs" : "سنتين ونصف"}
+                      {getDeliveryDisplay(phase, pricingSection, isEn)}
                     </span>
                     <span className="mt-2 text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-neutral-500 sm:text-[11px]">
                       {isEn ? "Delivery" : "التسليم"}
@@ -209,9 +364,7 @@ export default function ProjectPricingPhases({
 
                   <div className="flex flex-col items-center rounded-sm border border-black/[0.06] bg-background px-4 py-4 text-center sm:min-w-[140px] sm:flex-1 sm:px-6 sm:py-5 shadow-xs">
                     <span className="font-display text-[clamp(1.3rem,3.5vw,2.25rem)] leading-none tracking-tight text-brand font-semibold tabular-nums">
-                      {pricingSection.cashDiscount.includes("%")
-                        ? `${isEn ? "Up to " : "يصل إلى "}${pricingSection.cashDiscount}`
-                        : pricingSection.cashDiscount}
+                      {getCashDiscountDisplay(phase, pricingSection, isEn)}
                     </span>
                     <span className="mt-2 text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-neutral-500 sm:text-[11px]">
                       {isEn ? "Cash discount" : "خصم كاش"}
