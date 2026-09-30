@@ -70,6 +70,10 @@ export default async function ProjectPageEn({ params }: PageProps) {
         projectName={project.name}
         deliveredTrackRecord={project.deliveredTrackRecord}
         fallbackImages={fallbackImages}
+        deliveredSection={
+          (project as unknown as { deliveredSection?: any; deliveredHeader?: any }).deliveredSection ||
+          (project as unknown as { deliveredSection?: any; deliveredHeader?: any }).deliveredHeader
+        }
         isEn={true}
       />
       <ProjectFAQ faqs={project.projectFaqs} isEn={true} />

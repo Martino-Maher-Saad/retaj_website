@@ -31,15 +31,23 @@ function formatMinutes(timeStr: string, isEn: boolean): string {
   return `${num} دقيقة`;
 }
 
-// Exact percentage coordinates matched to 3.PNG
+// 9 coordinates: exactly 3 landmarks per ring (3 concentric rings x 3 = 9 places),
+// rotated and staggered so no two landmarks are on the same radial line or touching each other.
 const radarCoordinates = [
-  { left: "50%", top: "20%" }, // 5 دقائق العاصمة الإدارية
-  { left: "75%", top: "33%" }, // 10 دقائق الكوربة
-  { left: "78%", top: "54%" }, // 10 دقائق المطار
-  { left: "54%", top: "82%" }, // 12 دقيقة الرحاب
-  { left: "20%", top: "72%" }, // 12 دقيقة كايرو فيستيفال
-  { left: "10%", top: "34%" }, // 17 دقيقة AUC
-  { left: "26%", top: "8%" },  // 20 دقيقة المعادي
+  // --- Ring 1 (Inner Ring / الخط الأول: 3 أماكن) ---
+  { left: "50%", top: "27%" }, // أعلى الدائرة الداخلية
+  { left: "70%", top: "62%" }, // أسفل يمين الدائرة الداخلية
+  { left: "30%", top: "62%" }, // أسفل يسار الدائرة الداخلية
+
+  // --- Ring 2 (Middle Ring / الخط الثاني: 3 أماكن) ---
+  { left: "78%", top: "29%" }, // أعلى يمين الدائرة الوسطى
+  { left: "50%", top: "85%" }, // أسفل منتصف الدائرة الوسطى
+  { left: "18%", top: "40%" }, // منتصف يسار الدائرة الوسطى
+
+  // --- Ring 3 (Outer Ring / الخط الثالث: 3 أماكن) ---
+  { left: "20%", top: "14%" }, // أعلى يسار الدائرة الخارجية
+  { left: "87%", top: "55%" }, // منتصف يمين الدائرة الخارجية
+  { left: "22%", top: "85%" }, // أسفل يسار الدائرة الخارجية
 ];
 
 export default function ProjectLocation({
@@ -181,22 +189,22 @@ export default function ProjectLocation({
             </span>
           </div>
 
-          {/* Orbiting White Landmark Cards matching 3.PNG */}
+          {/* Orbiting White Landmark Cards: 3 per ring, geometrically distributed */}
           <ul>
-            {locationSection.landmarks.map((landmark, idx) => {
+            {locationSection.landmarks.slice(0, 9).map((landmark, idx) => {
               const pos = radarCoordinates[idx % radarCoordinates.length];
               return (
                 <li
                   key={idx}
                   data-chip="true"
-                  className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
+                  className="absolute -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto"
                   style={{ left: pos.left, top: pos.top }}
                 >
-                  <div className="flex flex-col items-center rounded-md border border-neutral-100/90 bg-white px-3.5 py-2 text-center shadow-[0_6px_22px_rgba(0,0,0,0.08)] sm:px-4 sm:py-2.5 min-w-[95px] sm:min-w-[110px]">
+                  <div className="flex flex-col items-center rounded-md border border-neutral-100/90 bg-white px-3 py-1.5 text-center shadow-[0_6px_20px_rgba(0,0,0,0.08)] sm:px-3.5 sm:py-2 min-w-[85px] max-w-[115px] sm:min-w-[100px] sm:max-w-[135px] transition-transform duration-300 hover:scale-105 hover:shadow-md">
                     <span className="font-display text-xs sm:text-sm font-semibold text-brand tabular-nums">
                       {formatMinutes(landmark.time, isEn)}
                     </span>
-                    <span className="mt-0.5 text-[11px] sm:text-xs font-medium text-neutral-800 whitespace-nowrap leading-tight">
+                    <span className="mt-0.5 text-[10.5px] sm:text-xs font-medium text-neutral-800 leading-tight line-clamp-2 text-center">
                       {landmark.name[langKey]}
                     </span>
                   </div>

@@ -1,9 +1,4 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface Feature {
   title: { ar: string; en: string };
@@ -30,41 +25,14 @@ export default function ProjectMasterplan({
   project,
   isEn = false,
 }: ProjectMasterplanProps) {
-  const sectionRef = useRef<HTMLElement>(null);
   const langKey = isEn ? "en" : "ar";
   const { lifestyleSection } = project;
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".about-stat",
-        { y: 25, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".about-stats-container",
-            start: "top 85%",
-            once: true,
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
       id="about"
-      ref={sectionRef}
       aria-labelledby="about-subheading"
-      className="relative py-32 sm:py-40 lg:py-48"
+      className="relative py-24 sm:py-32 lg:py-36"
     >
       <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-14">
         {/* Header matching live Section 2 */}
@@ -101,39 +69,6 @@ export default function ProjectMasterplan({
               </div>
             </div>
           </figure>
-        </div>
-
-        {/* Stats Row matching live Section 2 */}
-        <div className="about-stats-container mt-14 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-neutral-200/80 pt-10 sm:mt-18 sm:gap-6 sm:pt-12 lg:mt-24 lg:gap-10 sm:grid-cols-3">
-          <article className="about-stat">
-            <p className="text-xs font-medium tracking-[0.2em] text-brand tabular-nums">01</p>
-            <p className="mt-2.5 text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-neutral-500">
-              {isEn ? "Phases" : "المراحل"}
-            </p>
-            <p className="font-display mt-1 text-[clamp(1.2rem,2.8vw,2.1rem)] leading-tight tracking-tight text-foreground font-semibold tabular-nums">
-              +12
-            </p>
-          </article>
-
-          <article className="about-stat">
-            <p className="text-xs font-medium tracking-[0.2em] text-brand tabular-nums">02</p>
-            <p className="mt-2.5 text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-neutral-500">
-              {isEn ? "Status" : "الحالة"}
-            </p>
-            <p className="font-display mt-1 text-[clamp(1.2rem,2.8vw,2.1rem)] leading-tight tracking-tight text-foreground font-semibold">
-              {project.status[langKey]}
-            </p>
-          </article>
-
-          <article className="about-stat">
-            <p className="text-xs font-medium tracking-[0.2em] text-brand tabular-nums">03</p>
-            <p className="mt-2.5 text-[10px] font-medium uppercase tracking-[0.2em] rtl:tracking-[0.06em] text-neutral-500">
-              {isEn ? "Location" : "الموقع"}
-            </p>
-            <p className="font-display mt-1 text-[clamp(1.2rem,2.8vw,2.1rem)] leading-tight tracking-tight text-foreground font-semibold">
-              {project.location[langKey]}
-            </p>
-          </article>
         </div>
       </div>
     </section>

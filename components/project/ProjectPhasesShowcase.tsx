@@ -11,6 +11,7 @@ interface Phase {
   badge: { ar: string; en: string };
   description: { ar: string; en: string };
   startingPrice: number;
+  image?: string;
 }
 
 interface Unit {
@@ -92,14 +93,15 @@ export default function ProjectPhasesShowcase({
           const counterTotal =
             phases.length < 10 ? `0${phases.length}` : `${phases.length}`;
 
-          // Match unit image
-          const matchedUnit = units.find(
-            (u) =>
-              u.phase.toLowerCase().includes(phase.id.replace("-", " ").toLowerCase()) ||
-              phase.name.en.toLowerCase().includes(u.phase.toLowerCase())
-          );
+          // Match unit image (exact normalized match or phase.image)
+          const matchedUnit = units.find((u) => {
+            const uPhase = (u.phase || "").toLowerCase().replace(/[\s-_]+/g, "");
+            const pId = (phase.id || "").toLowerCase().replace(/[\s-_]+/g, "");
+            const pNameEn = (phase.name?.en || "").toLowerCase().replace(/[\s-_]+/g, "");
+            return uPhase === pId || uPhase === pNameEn || (uPhase === "kinda" && pId === "kindaoffices");
+          });
           const imageSrc =
-            matchedUnit?.image || units[idx % units.length]?.image;
+            phase.image || matchedUnit?.image || units[idx % units.length]?.image;
 
           return (
             <article
